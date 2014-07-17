@@ -1,0 +1,100 @@
+.user-actions {
+.fixed;
+.top(0);
+.bottom(0);
+.bg-col(white);
+.w(30);
+.pad(4;2;4;2);
+z-index: 100;
+.transition(0.5s, ease-in-out);
+.border-left(@red; .5);
+
+	&.actions-open {
+	.right(0);	
+	}
+	
+	&.actions-closed {
+	.right(-30);	
+	}
+	
+	.user-actions-wrap {
+	.none;
+	}
+	
+	.user-btns {
+	.abs;
+	.right(30);
+	.top(4);
+	text-align: right;
+		
+		.user-btn {
+		.block;
+		.pad-all(0);
+		.no-rounded;
+		.no-border;
+		width: 100%;
+		text-align: center;
+		.bg-col(@gray);
+		.col(white);
+		.mag-bot(.5);
+		.line-h(4);
+		.w(4);
+		.rel;
+		outline: none;
+		
+			i {
+			.in-block;
+			.w(4);
+			text-align: center;
+			}
+			
+			span {
+			.transition(0.2s, ease-in-out);
+			.abs;
+			.top(0.5);
+			.right(-15);
+			.h(3);
+			.line-h(3);
+			.w(0);
+			.bg-col(@red);
+			.col(white);
+			.none;
+			.rounded(4px);
+			
+				&:after {
+				.abs;
+				.right(-1);
+				top: 50%;
+				.mag-top(-.5);
+				content: "";
+				.block;
+				.border-left(@red; 1);	
+				.border-top(transparent; 0.5);	
+				.border-bot(transparent; 0.5);
+				}
+			}
+			
+			&:hover, &:active, &:focus {	
+			.bg-col(@red);
+				span {
+				.right(5);
+				.block;
+				.w(15);
+				}
+			}
+			
+			&.active {
+			.bg-col(@red);	
+			.col(white);
+				&:hover, &:active, &:focus {	
+				.col(@grayDk);
+				
+					span {
+					.none;	
+					}
+				}
+				
+			}
+		}	
+	}	
+}

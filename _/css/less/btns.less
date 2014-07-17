@@ -1,0 +1,138 @@
+.btn {
+.no-rounded;	
+.no-border;	
+}
+
+.panel-btns {
+	
+	.btn {
+	.col(white);	
+	.caps;
+	.rel;
+	outline: none;
+		&:after {
+		content: "\f105";
+		font-family: FontAwesome;	
+		.fright;
+		.in-block;
+		.font-size(1.6);
+		.pad-right(1);
+		}
+		
+		i {
+		.abs;
+		.left(0);
+		.top(0);
+		.bottom(0);
+		.w(3.2);
+		.line-h(3.2);
+		}
+	}
+	
+}
+
+.action-btns {
+	
+	.btn {
+	.col(white);	
+	.caps;
+	.rel;
+	outline: none;
+	.line-h(3.2);
+	.h(3.2);
+	.pad-all(0);
+		&:after {
+		content: "\f105";
+		font-family: FontAwesome;	
+		.abs;
+		.right(0);
+		.top(0);
+		.line-h(3);
+		height: 100%;
+		.font-size(1.6);
+		.pad-right(1);
+		}
+		
+		i {
+		.abs;
+		.left(0);
+		.top(0);
+		.bottom(0);
+		.w(3.2);
+		.line-h(3.2);
+		}
+		
+		&.no-arrow {
+			&:after {
+			.none;	
+			}
+		}
+		
+		&.sml-txt {
+		.font-size(1.2);	
+			&:after {
+			.font-size(1.2);
+			}
+		}
+	}
+	
+	&.col-aqua {
+		
+		.btn {
+		.bg-col(darken(@aqua, 20%));
+			i {
+			.bg-col(@aqua);
+			.col(darken(@aqua, 20%));
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(@aqua);	
+			}
+		}
+	}
+	
+	&.col-purple {
+		
+		.btn {
+		.bg-col(darken(@purple, 20%));
+			i {
+			.bg-col(@purple);
+			.col(darken(@purple, 20%));
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(@purple);	
+			}
+		}
+	}
+	
+	&.col-pink {
+		
+		.btn {
+		.bg-col(@pink);
+			i {
+			.bg-col(darken(@pink, 20%));
+			.col(@pink);
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(darken(@pink, 20%));
+			}
+		}
+	}
+	
+	&.col-red {
+		
+		.btn {
+		.bg-col(@red);
+			i {
+			.bg-col(@redMid);
+			.col(@red);
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(@redMid);	
+			}
+		}
+	}
+}

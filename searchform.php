@@ -1,0 +1,11 @@
+<div class="search-form">
+
+	<form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
+
+		<input type="search" value="<?php the_search_query(); ?>" placeholder="Search…" class="search-query form-control" name="s" id="s" />
+			
+		<input type="submit" id="searchsubmit" value="Go" class="search-submit btn btn-default btn-block" />
+	  	
+	</form>
+
+</div>
