@@ -6,8 +6,6 @@ $start_date = new DateTime( $start_date_raw );
 $end_date = new DateTime();
 $ts = $start_date->getTimestamp();
 $numdays = trim($_POST['num_days']);
-
-
 	
 	if ( $start_date_raw == "") {
 	$errors[] = "Please select a start date.";
