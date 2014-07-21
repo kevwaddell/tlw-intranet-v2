@@ -15,9 +15,9 @@ $today = date('Ymd', strtotime("today"));
 
 /*
 echo '<pre>';
-print_r($start_of_year);
+print_r(strtotime("Thursday, 1 January, 2015"));
 echo '<br>';
-print_r($next_year);
+print_r(date("Ymd", strtotime("Thursday, 1 January, 2015")));
 echo '</pre>';
 */
 
@@ -46,7 +46,6 @@ $holidays_check = get_posts($holidays_check_args);
 $holidays_used = 0;
 $holidays_booked = 0;
 
-
 if (count($holidays_check) > 0) {
 
 	foreach ($holidays_check as $holiday) {
@@ -66,12 +65,6 @@ if (count($holidays_check) > 0) {
 
 $holidays_left = $user_holidays - ($holidays_used + $holidays_booked);
 
-/*
-echo '<pre>';
-print_r($holidays_taken);
-echo '</pre>';
-*/
-
 $user_job_title = get_the_author_meta( "job_title", $curauth->ID );
 $user_department = "Department name here";
 $job_description = get_the_author_meta( "description", $curauth->ID );
@@ -80,7 +73,7 @@ $user_first_name = get_the_author_meta( "first_name", $curauth->ID );
 $user_display_name = get_the_author_meta( "display_name", $curauth->ID );
 $user_id = get_the_author_meta( "ID", $curauth->ID );
 $user_email = get_the_author_meta( "user_email", $curauth->ID );
-//echo '<pre>';print_r($current_user);echo '</pre>';
+//echo '<pre>';print_r($user_id);echo '</pre>';
 $rb_admin = get_field('rb_admin', 'options');
 ?>
 

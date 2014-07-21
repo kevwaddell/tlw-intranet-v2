@@ -14,7 +14,6 @@ $current_user_ID = get_current_user_id();
 $icon = get_field('icon', $meetings->ID);
 $color = get_field('col', $meetings->ID);
 $rb_admin = get_field('rb_admin', 'options');
-//echo '<pre>';print_r($current_user_ID);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
 			<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h2>
@@ -53,9 +52,9 @@ $rb_admin = get_field('rb_admin', 'options');
 					
 					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/data-list-query.php'); ?>
 					
-					<!-- MEETINGS SECTION -->
-					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/holiday-list.php'); ?>
-					<!-- MEETINGS SECTION END -->
+					<!-- OUT OF OFFICE SECTION -->
+					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/out-of-office-list.php'); ?>
+					<!-- OUT OF OFFICE SECTION END -->
 					
 				</div>
 			</section>

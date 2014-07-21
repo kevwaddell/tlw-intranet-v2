@@ -1,6 +1,6 @@
 <div class="page-section section-closed" style="margin-top: 10px;">
 	
-	<h3 class="section-header"><i class="fa fa-clock-o fa-lg"></i>Your Holidays</h3>
+	<h3 class="section-header"><i class="fa fa-plane fa-lg"></i>Your Holidays</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
 	
 	<div class="holidays-section-inner">
@@ -128,12 +128,14 @@
 					wp_reset_postdata();
 					 ?>
 					 
+					 <?php if ( !isset($_GET['holiday_sortby']) || $_GET['holiday_sortby'] == 'next-year' ) { ?>
 					 <tfoot class="data-list-footer">
 					 	<tr>
-					 		<td colspan="4">Total days</td>
+					 		<td colspan="4" class="total">Total days</td>
 					 		<td><?php echo $total_days;?></td>
 					 	</tr>
 					 </tfoot>
+					<?php } ?>
 					
 					</tbody>
 					

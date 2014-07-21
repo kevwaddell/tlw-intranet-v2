@@ -283,6 +283,31 @@
 		
 	}
 	
+	table tfoot.data-list-footer {
+	.font-size(1.2);
+	.bg-col(@gray);
+	.caps;
+	.col(white);
+	.no-border;
+	.border-top(white; 0.5);
+		
+		td {
+		vertical-align: middle;
+		text-align: center;
+		.border-left(white; 0.2);
+		.h(4);	
+		width: auto;
+		.bold;
+		
+			&.total {
+			.no-border;
+			text-align: right;
+			.pad-right(1);
+			}
+		}
+		
+	}
+	
 	.data-list, .data-list-posts {
 	.border-bot(@grayDk; 0.5);
 	.pad-bot(1);

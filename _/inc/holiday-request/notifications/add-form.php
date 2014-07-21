@@ -6,7 +6,7 @@
 	
 	<div class="form-group">
 	<label for="start_date"><span class="required">*</span>Start date</label>
-	<input type="text" id="start_date" name="start_date" class="form-control date-picker" placeholder="Choose a date" value="<?php echo (isset($_POST['start_date'])) ? $_POST['start_date']:""; ?>">
+	<input type="date" id="holiday_start_date" name="holiday_start_date" class="form-control date-picker" placeholder="Choose a date" value="<?php echo (isset($_POST['holiday_start_date'])) ? $_POST['holiday_start_date']:""; ?>">
 	</div>
 	
 	<div class="form-group">

@@ -11,6 +11,19 @@
 		</div>
 		
 		<div class="col-xs-10">
+			
+			<?php if ($current_user->ID == $user_id && !is_super_admin()) { 
+			$edit_profile_pg = get_page_by_title("Edit Profile");	
+			?>
+			<?php if ($current_user->ID != $rb_admin['ID']) { ?>
+			<div class="action-btns col-red">
+				<a href="<?php echo get_permalink($edit_profile_pg->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-pencil fa-lg"></i>Edit your profile</a>
+			</div>
+			<div class="rule"></div>
+			<?php } ?>
+			
+			<?php } ?>
+			
 			<div class="row">	
 				
 				<div class="col-xs-5">
@@ -120,16 +133,20 @@
 	</div>
 	
 		<?php if ($current_user->ID == $user_id && !is_super_admin()) { 
-			$edit_profile_pg = get_page_by_title("Edit Profile");	
-			$holiday_request_pg = get_page_by_title("Holiday Request");
+			$holiday_request_pg = get_page_by_title("Holiday Requests");
 			$meetings_page = get_page_by_title("Meetings");
 			?>
 			<?php if ($current_user->ID != $rb_admin['ID']) { ?>
 			<div class="rule"></div>
 			<div class="action-btns col-red">
-				<a href="<?php echo get_permalink($edit_profile_pg->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-pencil fa-lg"></i>Edit your profile</a>
-				<a href="<?php echo get_permalink($holiday_request_pg->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-plane fa-lg"></i>Send a holiday request</a>
-				<a href="<?php echo get_permalink($meetings_page->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-clock-o fa-lg"></i>Book a meeting room</a>
+				<div class="row">
+					<div class="col-xs-6">
+						<a href="<?php echo get_permalink($holiday_request_pg->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-plane fa-lg"></i>Make a holiday request</a>
+					</div>
+					<div class="col-xs-6">
+						<a href="<?php echo get_permalink($meetings_page->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-clock-o fa-lg"></i>Book a meeting room</a>
+					</div>
+				</div>
 			</div>
 			<div class="rule"></div>
 			<?php } ?>

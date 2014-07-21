@@ -1,25 +1,30 @@
 <?php if ( isset($_POST['userid']) ) { 
-$user_id = $_POST['userid'];
-$current_user = get_user_by('id', $user_id);
-$start_date_raw = trim($_POST['start_date']);
-$start_date = new DateTime( $start_date_raw );
-$end_date = new DateTime();
-$ts = $start_date->getTimestamp();
-$numdays = trim($_POST['num_days']);
 	
-	if ( $start_date_raw == "") {
+	/* VARS */
+	$user_id = $_POST['userid'];
+	$current_user = get_user_by('id', $user_id);
+	$hol_start_date_raw = trim($_POST['holiday_start_date']);
+	$start_year = date("Y", strtotime($hol_start_date_raw));
+	//echo '<pre>';print_r( strtotime($hol_start_date_raw) );echo '</pre>';
+	$s_date = new DateTime($hol_start_date_raw);
+	$e_date = new DateTime();
+	$sts = $s_date->getTimestamp();
+	$ts = $s_date->getTimestamp();
+	$numdays = trim($_POST['num_days']);
+	$addDay = 86400;
+	
+	/* ERRORS CHECK */
+	if ( $hol_start_date_raw == "") {
 	$errors[] = "Please select a start date.";
 	}
 	
 	if ( $numdays == "") {
 	$errors[] = "Please enter the number of days.";
 	}
-	
-	if (count($errors) == 0) {
-	$addDay = 86400;
-	
-		for($i=1; $i<$numdays; $i++){
-	
+		
+	/* CHECK FOR WEEKEND DAYS */
+	for($i=1; $i<$numdays; $i++){
+
 	    // get what day it is next day
 	    $nextDay = date('w', ($ts+$addDay));
 	
@@ -30,41 +35,42 @@ $numdays = trim($_POST['num_days']);
 	
 	    // modify timestamp, add 1 day
 	    $ts = $ts+$addDay;
-		}
+	}
 
-	$end_date->setTimestamp($ts);
+	$e_date->setTimestamp($ts);
 	
-	/*
-echo '<pre>';
-	print_r($start_date->format( 'Ymd' ));
-	echo '<br>';
-	print_r($end_date->format( 'Ymd' ));
-	echo '<br>';
-	print_r($post_title);
-	echo '</pre>';
-*/
+	if ($s_date->format( 'Y' ) < $e_date->format( 'Y' )) {
+	$errors[] = "Your end date <strong>(".$e_date->format( 'l jS F' ).")</strong> falls into the <strong>".$e_date->format( 'Y' )."</strong> holiday quota.<br><small>*Please book <strong>". $e_date->format( 'Y' ) ."</strong> dates separately.</small>";
+	}
 	
-	$post_title = $current_user->data->display_name;
-	
-	$post_args = array(
-	'post_name' => sanitize_title($post_title. ' ' .$start_date->format( 'Ymd' ). ' '.$end_date->format( 'Ymd' )),
-	'post_title' => $post_title,
-	'post_status'   => 'pending',
-	'post_author'   => $user_id,
-	'post_type'     => 'tlw_holiday'
-	);
-	
-	//echo '<pre>';print_r($post_args);echo '</pre>';
-	
-	$post_id = wp_insert_post($post_args);
-	
-	/* SET META */
-	update_post_meta($post_id, '_holiday_start_date', 'field_53c67357805e5'); 
-	update_post_meta($post_id, 'holiday_start_date', $start_date->format( 'Ymd' )); 
-	update_post_meta($post_id, '_holiday_end_date', 'field_53c673b0805e6');  
-	update_post_meta($post_id, 'holiday_end_date', $end_date->format( 'Ymd' ));  
-	update_post_meta($post_id, '_number_of_days', 'field_53c673d9805e7');  
-	update_post_meta($post_id, 'number_of_days', $numdays);  
+	/* IF NO ERRORS ADD POST */
+	if ( count($errors) == 0 ) {
+
+		$post_title = $current_user->data->display_name;
+		
+		$post_args = array(
+		'post_name' => sanitize_title($post_title. ' ' .$s_date->format( 'Ymd' ). ' '.$e_date->format( 'Ymd' )),
+		'post_title' => $post_title,
+		'post_status'   => 'pending',
+		'post_author'   => $user_id,
+		'post_type'     => 'tlw_holiday'
+		);
+		
+		if ( $e_date->format( 'Ymd' ) < date('Ymd') ) {
+		$post_args['post_status'] = 'publish';
+		}
+		
+		//echo '<pre>';print_r($post_args);echo '</pre>';
+		
+		$post_id = wp_insert_post($post_args);
+		
+		/* SET META */
+		update_post_meta($post_id, '_holiday_start_date', 'field_53c67357805e5'); 
+		update_post_meta($post_id, 'holiday_start_date', $s_date->format( 'Ymd' )); 
+		update_post_meta($post_id, '_holiday_end_date', 'field_53c673b0805e6');  
+		update_post_meta($post_id, 'holiday_end_date', $e_date->format( 'Ymd' ));  
+		update_post_meta($post_id, '_number_of_days', 'field_53c673d9805e7');  
+		update_post_meta($post_id, 'number_of_days', $numdays);  
 	
 	}
 ?>
@@ -76,8 +82,8 @@ echo '<pre>';
 	
 	<strong class="caps">Holiday details:</strong><br>
 	<p>
-		<span class="bold">Start date:</span> <?php echo $start_date->format( 'D jS F Y' ) ?><br>
-		<span class="bold">End date:</span> <?php echo $end_date->format( 'D jS F Y' ); ?><br>
+		<span class="bold">Start date:</span> <?php echo $s_date->format( 'D jS F Y' ) ?><br>
+		<span class="bold">End date:</span> <?php echo $e_date->format( 'D jS F Y' ); ?><br>
 		<span class="bold">Number of days:</span>  <?php echo $numdays; ?><br>
 	</p>
 	<br>
@@ -85,10 +91,10 @@ echo '<pre>';
 	<div class="action-btns">
 		<div class="row">
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=add_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i>Confirm</a>
+			<a href="<?php echo get_permalink($page_id); ?>?action=add_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i>Confirm</a>
 		</div>
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=cancel_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-danger btn-block"><i class="fa fa-times fa-lg"></i>Cancel</a>
+			<a href="<?php echo get_permalink($page_id); ?>?action=cancel_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
 		</div>
 	</div>
 	
@@ -102,7 +108,7 @@ echo '<pre>';
 	
 	<div class="well well-sm errors">
 	    <p>Errors!</p>
-		<ul>
+	   	<ul>
 		<?php foreach ($errors as $error) { ?>
 		<li><?php echo $error; ?></li>
 		<?php } ?>

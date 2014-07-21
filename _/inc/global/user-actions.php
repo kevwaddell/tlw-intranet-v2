@@ -5,9 +5,12 @@
 		<?php if (!is_front_page()) { ?>
 		
 		<a href="<?php echo get_option('home'); ?>/" class="user-btn"><span>Dashboard</span><i class="fa fa-home fa-lg"></i></a>
+		
 		<?php } ?>
 		
 		<?php if (is_user_logged_in()) { ?>
+		
+		<a href="<?php echo wp_logout_url(); ?>" class="user-btn"><span>Logout</span><i class="fa fa-unlock-alt fa-lg"></i></a>
 		
 		<button id="user-links" class="user-btn"><span>User links</span><i class="fa fa-user fa-lg"></i></button>
 		
@@ -15,7 +18,7 @@
 		
 		<?php } else {?>
 		
-		<button id="login" class="user-btn"><span>Login</span><i class="fa fa-lock fa-lg"></i></button>
+		<a href="#log-in-alert" id="login" class="user-btn" data-toggle="modal"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
 			
 		<?php } ?>
 		
@@ -53,16 +56,6 @@
 		<h3>Your favouroites</h3>
 	</div>
 	
-	<?php } else { ?>
-	
-	<div id="login-box" class="user-actions-wrap">
-	
-	<h3>Login</h3>
-	
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('User actions') ) : ?><?php endif; ?>	
-	
-	</div>
-		
 	<?php } ?>
 	
 	<div id="search-box" class="user-actions-wrap">

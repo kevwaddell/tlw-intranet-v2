@@ -26,7 +26,7 @@
     if ( $('input.date-picker').length == 1) {
 	    $('input.date-picker').datepicker({
         // Consistent format with the HTML5 picker
-        format: 'D d MM, yyyy',
+        format: 'DD d MM yyyy',
         weekStart: 1
 		});
     }
@@ -260,7 +260,7 @@
 			if (alert.find('input.date-picker').length == 1) {
 			    $('input.date-picker').datepicker({
 		        // Consistent format with the HTML5 picker
-		        format: 'D d MM, yyyy',
+		        format: 'DD d MM yyyy',
 		        weekStart: 1
 				});
 			}
@@ -295,7 +295,7 @@
 			if (alert.find('input.date-picker').length == 1) {
 			    $('input.date-picker').datepicker({
 		        // Consistent format with the HTML5 picker
-		        format: 'D d MM, yyyy',
+		        format: 'DD d MM yyyy',
 		        weekStart: 1
 				});
 			}
@@ -326,7 +326,7 @@
 	      if ( $(this).find('input.date-picker').length == 1) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
-	        format: 'D d MM, yyyy',
+	        format: 'DD d MM yyyy',
 	        weekStart: 1
 			});
 		 }
@@ -340,7 +340,7 @@
 	 $('body').on(event_type,'.alert a.action-btn', function(e){
      	var href = $(this).attr("href");
      	
-     	console.log(href);
+     	//console.log(href);
      	
      	$('.alerts').empty();
      	//console.log(href);
@@ -351,7 +351,7 @@
      	
      	$('.alerts').load(href+" .alerts-wrap", function(data){
      	
-     	console.log(data);
+     	//console.log(data);
 	     
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
 	     	
@@ -367,7 +367,7 @@
      	var href = $(this).attr("href");
      	var query = window.location.search;
      	
-     	console.log(query.length);
+     	//console.log(query.length);
      	
      	if (query.length == 0) {
 	    
@@ -425,6 +425,7 @@
 	     if ( $(this).find('input#meeting_date').length == 1) {
 		    $('input#meeting_date').datepicker({
 	        // Consistent format with the HTML5 picker
+	        format: 'DD d MM yyyy',
 	        weekStart: 1
 			});
 		 }
@@ -450,7 +451,7 @@
 	      if ( $(this).find('input.date-picker').length == 1) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
-	        format: 'D d MM, yyyy',
+	        format: 'DD d MM yyyy',
 	        weekStart: 1
 			});
 		 }

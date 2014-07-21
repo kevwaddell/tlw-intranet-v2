@@ -1,14 +1,16 @@
 <?php 
-//echo '<pre>';print_r($end_of_year);echo '</pre>';
+//echo '<pre>';print_r($current_user->ID);echo '</pre>';
 
 $holidays_args = array(
 'post_type' => 'tlw_holiday',
 'posts_per_page' => -1,
-'post_author'	=> $current_user->ID,
+'author'	=> $user_id,
 'order'	=> 'DESC',
 'meta_key'	=> 'holiday_start_date',
 'orderby' => 'meta_value_num',
 );
+
+//echo '<pre>';print_r($holidays_args);echo '</pre>';
 
 if (!isset($_GET['holiday_sortby'])) {
 	$holidays_args['post_status'] = 'publish';
