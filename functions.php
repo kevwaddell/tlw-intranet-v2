@@ -4,7 +4,7 @@ if ( !function_exists(core_mods) ) {
 	function core_mods() {
 		if ( !is_admin() ) {
 			wp_register_style( 'styles', get_stylesheet_directory_uri().'/_/css/styles.css', null, filemtime( get_stylesheet_directory().'/_/css/styles.css' ) );
-			wp_register_style( 'datepicker', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css', null );
+			wp_register_style( 'datepicker', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css', null );
 			wp_register_script( 'slim-scroll', get_stylesheet_directory_uri() . '/_/js/jquery.slimscroll.min.js', array('jquery'), '1.0.0', true );
 			wp_register_script( 'scroll-to', get_stylesheet_directory_uri() . '/_/js/jquery.scrollTo.min.js', array('jquery'), '1.0.0', true );
 			wp_register_script( 'bootstrap-datepicker', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js', array('jquery', 'bootstrap-all-min'), '1.0.0', true );
@@ -80,7 +80,6 @@ if ( function_exists( 'register_sidebar' ) ) {
 add_filter('widget_text', 'do_shortcode');
 
 add_theme_support( 'post-thumbnails', array( 'page', 'post' ) );
-add_post_type_support( 'page', 'excerpt' );
 
 if( function_exists('add_term_ordering_support') ) {
 add_term_ordering_support ('category');
@@ -128,9 +127,14 @@ function add_gravityforms_style() {
 add_action('wp_print_styles', 'add_gravityforms_style');
 
 function custom_excerpt_length( $length ) {
-	return 40;
+	return 20;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function my_theme_add_editor_styles() {
+    add_editor_style( get_stylesheet_directory_uri().'/_/css/custom-editor-style.css' );
+}
+add_action( 'after_setup_theme', 'my_theme_add_editor_styles' );
 
 /* GRAVITY FORMS FUNCTIONS */
 require_once(STYLESHEETPATH . '/_/functions/gravity-forms-functions.php');
@@ -150,6 +154,8 @@ require_once(STYLESHEETPATH . '/_/functions/change-meta-box-title.php');
 /* AFC FUNCTIONS */
 require_once(STYLESHEETPATH . '/_/functions/afc_save_post.php');
 
+/* CUSTOM ROW ACTIONS */
+require_once(STYLESHEETPATH . '/_/functions/post_row_actions.php');
 
 //holder_add_theme( 'wordpress', '333333', 'eeeeee' );
 holder_add_theme( 'lite-gray', '888888', 'eeeeee' );
@@ -165,7 +171,7 @@ function change_author_permalinks() {
     global $wp_rewrite;
 
     // Change the value of the author permalink base to whatever you want here
-    $wp_rewrite->author_base = 'staff-member';
+    $wp_rewrite->author_base = 'staff-members';
 
     $wp_rewrite->flush_rules();
 }

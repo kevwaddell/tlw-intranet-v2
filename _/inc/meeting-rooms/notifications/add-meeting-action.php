@@ -5,7 +5,7 @@ $current_user = get_user_by('id', $_POST['userid']);
 
 /* POST VARS */
 $user_id = $_POST['userid'];
-$description = stripslashes(trim($_POST['description']));
+$description = trim($_POST['description']);
 $meeting_room = $_POST['meeting_room'];
 $meeting_date_raw = trim($_POST['meeting_date']);
 $meeting_date_convert = strtotime($meeting_date_raw);
@@ -45,7 +45,7 @@ if (count($errors) == 0) {
 	
 	$post_args = array(
 	'post_name' => sanitize_title($description.' '.$meeting_date),
-	'post_title' => $description,
+	'post_title' => wp_strip_all_tags($description),
 	'post_status'   => 'pending',
 	'post_author'   => $user_id,
 	'post_type'     => 'tlw_meeting'

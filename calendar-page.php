@@ -15,16 +15,15 @@ $parent = get_page($post->post_parent);
 $meetings_pg = get_page_by_title("Meetings");
 $ical_page = get_page_by_title("Cal feed");
 $rooms = get_terms('tlw_rooms_tax');
-$form = get_field('form', $post->post_parent);
 $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 $extra_content = get_field('extra_content');
 //echo '<pre>';print_r($ical_page_split_url);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
-			<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>">
+			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 			<?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?>
 			<?php echo $parent->post_title; ?> <?php the_title(); ?>
-			</h2>
+			</h1>
 			
 			<?php if ($extra_content) { ?>
 			<?php echo $extra_content; ?>
@@ -50,9 +49,9 @@ $extra_content = get_field('extra_content');
 						<?php if (is_user_logged_in()) { 
 						$user_ID = get_current_user_id();		
 						?>
-						<a href="<?php the_permalink(); ?>?request=room_booking&userid=<?php echo $user_ID ; ?>" class="btn btn-default btn-block btn-action" data-toggle="modal"><i class="fa fa-check fa-lg"></i><?php echo $form->title; ?></a>
+						<a href="<?php the_permalink(); ?>?request=room_booking&userid=<?php echo $user_ID ; ?>" class="btn btn-default btn-block btn-action" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
 						<?php } else { ?>
-						<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i><?php echo $form->title; ?></a>
+						<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room></a>
 						<?php } ?>							
 				</div>
 				</div>		

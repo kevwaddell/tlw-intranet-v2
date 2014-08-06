@@ -131,3 +131,30 @@
 	}
 
 }
+
+table#wp-calendar {
+	width: 100%;
+	caption {
+	.bg-col(@grayDk);
+	.col(white);
+	.mag-bot(0.5);
+	.pad-all(0.3);
+	.font-size(1.2);
+	.caps;	
+	}
+	
+	thead {
+		tr {
+		.bg-col(@gray);
+		.col(white);	
+		}	
+		th {
+		text-align: center;	
+		.border-right(@grayLt; 0.1);
+			&[title="Sunday"] {
+			.no-border;	
+			}
+		}
+	}
+	
+}

@@ -3,11 +3,11 @@
 <?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>	
 
 <?php 
-$icon = get_field('icon', $meetings->ID);
-$color = get_field('col', $meetings->ID);
+$icon = get_field('icon');
+$color = get_field('col');
 ?>	
 		<article <?php post_class(); ?>>
-			<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h2>
+			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
 			
 			<?php the_content(); ?>
 		</article>

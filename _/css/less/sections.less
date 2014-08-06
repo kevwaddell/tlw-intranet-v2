@@ -101,7 +101,7 @@
 		.mag-left(1);	
 		}
 	}
-	.actions-key, .filters-key, .user-filters-key, .post-filters-key, .holidays-filters-key  {
+	.actions-key, .filters  {
 	text-align: right;
 	width: 60%;
 	.fleft;	
@@ -130,6 +130,12 @@
 			}
 		}
 		
+		&.col-pink {
+			a.active {
+			.col(@pink);	
+			}
+		}
+		
 		&.col-purple {
 			a.active {
 			.col(@purple);	
@@ -138,7 +144,7 @@
 		
 	}
 	
-	.filters-key, .user-filters-key, .post-filters-key, .holidays-filters-key {
+	.filters {
 	text-align: center;
 	width: 100%;
 	float: none;
@@ -276,6 +282,10 @@
 			width: 35%;	
 			}
 			
+			&.name {
+			width: 30%;	
+			}
+			
 			&.booked-by, &.email {
 			width: 20%;	
 			}
@@ -392,6 +402,11 @@
 					}
 				}
 				
+				&.name {
+				.no-border;	
+				width: 30%;	
+				}
+				
 				&.room {
 				width: 15%;	
 				}
@@ -469,18 +484,67 @@
 		
 	}
 	
-	.data-list-posts {
+	div.list-item {
+	.mag-bot(1);
+	.mag-top(1);
+	.pad-top(1);
+	.border-top(@grayLt; 0.2);
+	
+		h2 {
+		.font-size(2);
+		.font-normal;	
+		.mag-top(0);
+		}
+		
+		footer {
+		.pad(0;4;0;1);
+		.h(3);
+		.line-h(3);
+		.bg-col(@grayLt);
+		.rel;	
+		.font-size(1.4);
+			time {
+			.mag-right(2);	
+			}
+			i {
+			.col(@gray);	
+			}
+			
+			a {
+			.block;
+			.w(3);
+			.h(3);
+			.bg-col(@grayDk);
+			.fright;	
+			.mag-right(-4);
+			.col(white);
+			.no-text-dec;
+				&:after {
+				content: "\f101";
+				font-family: FontAwesome;	
+				.block;
+				.h(3);
+				.w(3);
+				text-align: center;
+				.font-size(2);
+				}
+				
+				&:hover, &:active, &:focus {
+				.bg-col(@gray);	
+				}
+			}
+		}
 		
 	}
 }
 
 /* USER LIST */
 .user-list {
-.pad-all(2);
+.pad(0;0.5;0;0.5);
 	a.user-link {
 	.block;
 	.bg-col(@grayLt);
-	.mag-bot(3);
+	.mag-bot(2);
 	.pad-top(2);
 	.no-text-dec;
 	
@@ -518,6 +582,7 @@
 		.drop-shadow(0, 0, 10px,0.5);
 		}
 	}
+	
 }
 
 /* MEETING DETAILS */
@@ -548,5 +613,9 @@
 	.bg-col(@grayLt);;
 	.pad(1;1;1;2);	
 	.mag-left(-2.8);
+	}
+	
+	.job-info {
+	.pad-top(1);	
 	}
 }

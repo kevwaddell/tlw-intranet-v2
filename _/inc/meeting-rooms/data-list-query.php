@@ -1,5 +1,5 @@
 <?php 
-$post_type = get_query_var('post_type');
+$post_type = "tlw_meeting";
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $posts_per_page = get_query_var('posts_per_page');
 

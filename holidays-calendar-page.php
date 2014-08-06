@@ -12,7 +12,7 @@ Template Name: Holidays Calendar page
 $icon = get_field('icon');
 $color = get_field('col');
 $parent = get_page($post->post_parent);
-$request_pg = get_page_by_title("Holiday Request");
+$request_pg = get_page_by_title("Holiday Requests");
 $ical_page = get_page_by_title("Holidays Cal Feed");
 $rooms = get_terms('tlw_rooms_tax');
 $form = get_field('form', $post->post_parent);
@@ -21,10 +21,10 @@ $extra_content = get_field('extra_content');
 //echo '<pre>';print_r($ical_page_split_url);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
-			<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>">
+			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 			<?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?>
 			<?php the_title(); ?>
-			</h2>
+			</h1>
 			
 			<?php if ($extra_content) { ?>
 			<?php echo $extra_content; ?>
@@ -32,8 +32,14 @@ $extra_content = get_field('extra_content');
 			<?php } ?>
 			
 			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">	
-				<a href="<?php echo get_permalink($request_pg->ID); ?>" class="btn btn-default btn-block no-arrow"><i class="fa fa-angle-double-left fa-lg"></i><?php echo $request_pg->post_title; ?></a>
-				<a href="webcal://<?php echo $ical_page_split_url[1]; ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>Download calendar</a>
+				<div class="row">
+					<div class="col-xs-6">
+						<a href="<?php echo get_permalink($request_pg->ID); ?>" class="btn btn-default btn-block no-arrow"><i class="fa fa-angle-double-left fa-lg"></i><?php echo $request_pg->post_title; ?></a>
+					</div>
+					<div class="col-xs-6">
+						<a href="webcal://<?php echo $ical_page_split_url[1]; ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>Download calendar</a>
+					</div>
+				</div>
 			</div>
 			
 			<div class="rule"></div>

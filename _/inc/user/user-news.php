@@ -1,15 +1,15 @@
-<div class="page-section section-closed">
+<div class="page-section section-closed" style="margin-top: 10px;">
 	
 	<h3 class="section-header"><i class="fa fa-rss fa-lg"></i>Your News Articles</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
 	
-	<div class="news-section-inner">
+	<div id="news-section-inner" class="section-inner">
 	
-		<div class="news-section-wrap">
+		<div id="news-section-wrap" class="section-wrap">
 		
 			<div class="data-list-key">
 			
-				<div class="post-filters-key col-red">
+				<div class="filters col-red">
 					<span><a href="<?php echo get_author_posts_url($user_id);?>" <?php echo (!isset($_GET['post_sortby'])) ? " class=\"active\"":""; ?>>All</a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?post_sortby=publish"<?php echo (isset($_GET['post_sortby']) && $_GET['post_sortby'] == "publish") ? " class=\"active\"":""; ?>>Published</a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?post_sortby=pending"<?php echo (isset($_GET['post_sortby']) && $_GET['post_sortby'] == "pending") ? " class=\"active\"":""; ?>>Pending</a></span>
@@ -45,7 +45,7 @@
 								<th class="settings"><i class="fa fa-cogs fa-lg"></i></th>
 								<th class="marker"><i class="fa fa-info-circle fa-lg"></i></th>
 								<th class="description">Article title</th>
-								<th class="time">Published Date</th>
+								<th class="time">Date added</th>
 							</tr>
 						</thead>
 					
@@ -55,7 +55,7 @@
 					$date_raw = strtotime(get_the_date());
 					$date_raw = date('Ymd' , $date_raw);
 					?>	
-						<tr id="entry-tr-<?php echo $news_count; ?>" class="entry-tr<?php echo ( $news_count > 10) ? " entry-hidden":" entry-visible" ; ?>">
+						<tr id="entry-tr-<?php echo $news_count; ?>" class="entry-tr">
 							<td colspan="4">
 								 <table class="table table-bordered">
 										<tbody>
@@ -93,6 +93,60 @@
 					<?php endwhile; ?>
 						</tbody>
 					</table>
+					
+					<?php if (count($your_news_ids) > 10) { 
+						
+						if (isset($_GET['post_sortby'])) {
+						$url_format = '&post_sortby='.$_GET['post_sortby'];	
+						}
+						
+					?>
+	
+					<div class="pagination-links pagination-actions">
+					
+					<?php if ( isset($_GET['yn_pg']) && $_GET['yn_pg'] > 1 ) { ?>
+					
+					<a class="prev page-numbers" href="?yn_pg=<?php echo ($_GET['yn_pg'] - 1); ?><?php echo $url_format; ?>">&laquo; Previous</a>
+					
+					<?php } ?>
+					
+					<?php for ($np = 1; $np <= $news_max_num_pages; $np++) { ?>
+						
+						<?php if ( !isset($_GET['yn_pg']) ) { ?>
+							
+							<?php if ( $np == 1) { ?>
+							
+							<span class="page-numbers current"><?php echo $np; ?></span>
+							
+							<?php } ?>
+							
+							<?php if ( $np != 1) { ?>
+							
+							<a class="page-numbers" href="?yn_pg=<?php echo $np; ?><?php echo $url_format; ?>"><?php echo $np; ?></a>
+								
+							<?php } ?>
+							
+						<?php } else { ?>
+							
+							<?php if ( $np == $_GET['yn_pg'] ) { ?>
+							<span class="page-numbers current"><?php echo $np; ?></span>
+							<?php } else { ?>
+							<a class="page-numbers" href="?yn_pg=<?php echo $np; ?><?php echo $url_format; ?>"><?php echo $np; ?></a>
+							<?php } ?>
+							
+						<?php } ?>
+							
+					<?php } ?>
+					
+					<?php if ( !isset($_GET['yn_pg']) || $_GET['yn_pg'] < $news_max_num_pages ) { ?>
+					
+					<a class="next page-numbers" href="?yn_pg=<?php echo (isset($_GET['yn_pg'])) ? ($_GET['yn_pg'] + 1): "2"; ?><?php echo $url_format; ?>">Next &raquo;</a>
+					
+					<?php } ?>
+					
+					</div>	
+				
+					<?php } ?>
 				
 				</div>
 			</div>
@@ -117,7 +171,9 @@
 		 
 		</div>
 			
-		 <?php endif; ?>
+		 <?php endif;
+		 wp_reset_postdata();
+		  ?>
 	
 		</div><!-- Section inner wrap -->
 

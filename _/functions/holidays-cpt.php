@@ -42,22 +42,10 @@ function register_cpt_tlw_holiday() {
     register_post_type( 'tlw_holiday', $args );
     
     remove_post_type_support( 'tlw_holiday', 'title' );
-    
-    add_filter('post_row_actions','tlw_meetings_remove_quick_edit_link', 10, 2);
-    
-    function tlw_meetings_remove_quick_edit_link($actions) {
-    //echo '<pre>';print_r(get_post_type());echo '</pre>';
-    
-	    if( get_post_type() === 'tlw_holiday' ) {
-	        unset( $actions['inline hide-if-no-js'] );
-			return $actions;
-	    }
-
-	}
 	
-	 add_filter('bulk_actions-edit-tlw_holiday','tlw_custom_bulk_actions');
+	add_filter('bulk_actions-edit-tlw_holiday','tlw_custom_bulk_actions');
 	 
-	 	function tlw_custom_bulk_actions($actions){
+	 function tlw_custom_bulk_actions($actions){
 		 //echo '<pre>';print_r($actions);echo '</pre>';
        	unset( $actions['edit'] );
         return $actions;

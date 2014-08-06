@@ -54,6 +54,7 @@
 	<div class="action-btns">
 		<div class="row">
 			<div class="col-xs-6">
+				<?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
 				<input type="submit" value="Update meeting" class="btn btn-info btn-block">
 			</div>
 			<div class="col-xs-6">

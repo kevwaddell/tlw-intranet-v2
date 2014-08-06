@@ -27,73 +27,76 @@ $total_query = count($query);
 $total_pages = intval($total_users / $number) + 1;
 $user_counter = 0;
 //echo '<pre>';print_r($total_users);echo '</pre>';
+$icon = get_field('icon');
+$color = get_field('col');
 ?>
 
 <article <?php post_class('page'); ?>>
 
-<h2 class="block-header col-red"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo the_title(); ?></h2>
+<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:"col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo the_title(); ?></h1>
 
 <?php if ($total_users > 0) { ?>
 
-
-<?php if ($total_users > $number) { ?>
-<div class="page-links">
-<?php echo paginate_links(array(  
-              'base' => get_pagenum_link(1) . '%_%',  
-              'format' => '?paged=%#%',  
-              'current' => $paged,  
-              'total' => $total_pages,  
-              'prev_text' => 'Previous',  
-              'next_text' => 'Next'  
-            )); 
-            
- ?>
-</div>	
-<?php } ?>
-
-
 <div class="user-list">
+
+	<div class="user-list-inner">
 	
-	<div class="row">
+		<?php if ($total_users > $number) { ?>
+		<div class="pagination-links user-pag user-pag-top">
+		<?php echo paginate_links(array(  
+		              'base' => get_pagenum_link(1) . '%_%',  
+		              'format' => '?paged=%#%',  
+		              'current' => $paged,  
+		              'total' => $total_pages,  
+		              'prev_text' => 'Previous',  
+		              'next_text' => 'Next'  
+		            )); 
+		            
+		 ?>
+		</div>	
+		<?php } ?>
 	
-	<?php foreach ($query->results as $user) { 
-	$user_counter++;	
-	?>
-	
-	<div class="col-xs-5ths">
-	
-		<a href="<?php echo get_author_posts_url($user->ID);?>" id="user-link-<?php echo $user_counter; ?>" title="View Profile" class="user-link<?php echo ($user_counter >= 16 && $user_counter <= $number) ? ' last-link':'';?>">
+		<div class="row">
 		
-	        <span class="user-avatar"><?php echo get_avatar( $user->ID, 150 ); ?></span>  
-	        <span class="user-name"> <?php echo get_the_author_meta('first_name', $user->ID);?><br><?php echo get_the_author_meta('last_name', $user->ID);?></span>  
-	        
-	    </a>  
-    
+		<?php foreach ($query->results as $user) { 
+		$user_counter++;	
+		?>
+		
+		<div class="col-xs-5ths">
+		
+			<a href="<?php echo get_author_posts_url($user->ID);?>" id="user-link-<?php echo $user_counter; ?>" title="View Profile" class="user-link<?php echo ($user_counter >= 16 && $user_counter <= $number) ? ' last-link':'';?>">
+			
+		        <span class="user-avatar"><?php echo get_avatar( $user->ID, 150 ); ?></span>  
+		        <span class="user-name"> <?php echo get_the_author_meta('first_name', $user->ID);?><br><?php echo get_the_author_meta('last_name', $user->ID);?></span>  
+		        
+		    </a>  
+	    
+		</div>
+	    
+		<?php } ?>
+		
+		</div>
+		
+		<?php if ($total_users > $number) { ?>
+
+		<div class="pagination-links user-pag user-pag-bot">
+		<?php echo paginate_links(array(  
+		              'base' => get_pagenum_link(1) . '%_%',  
+		              'format' => '?paged=%#%',  
+		              'current' => $paged,  
+		              'total' => $total_pages,  
+		              'prev_text' => 'Previous',  
+		              'next_text' => 'Next'  
+		            )); 
+		            
+		 ?>
+		</div>	
+		
+		<?php } ?>
+
 	</div>
-    
-	<?php } ?>
-	
-	</div>
-	
-	<?php if ($total_users > $number) { ?>
-	
-	<div class="page-links">
-	<?php echo paginate_links(array(  
-                  'base' => get_pagenum_link(1) . '%_%',  
-                  'format' => '?paged=%#%',  
-                  'current' => $paged,  
-                  'total' => $total_pages,  
-                  'prev_text' => 'Previous',  
-                  'next_text' => 'Next'  
-                )); 
-                
-     ?>
-	</div>	
-	
-	<?php } ?>
 	
 </div>
-
 
 <?php } else { ?>
 <p>No users at the moment.</p>

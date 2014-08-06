@@ -1,6 +1,6 @@
 <div class="data-list-key">
 	
-	<div class="filters-key<?php echo (!empty($color)) ? " col-".$color:""; ?>">
+	<div class="filters<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 		<span><a href="<?php echo get_permalink($meetings->ID); ?>" <?php echo (!isset($_GET['sortby'])) ? " class=\"active\"":""; ?>>Today's</a></span>
 		<span><a href="<?php echo get_permalink($meetings->ID); ?>?sortby=pending"<?php echo (isset($_GET['sortby']) && $_GET['sortby'] == "pending") ? " class=\"active\"":""; ?>>Pending</a></span>
 		<span><a href="<?php echo get_permalink($meetings->ID); ?>?sortby=future"<?php echo (isset($_GET['sortby']) && $_GET['sortby'] == "future") ? " class=\"active\"":""; ?>>Future</a></span>

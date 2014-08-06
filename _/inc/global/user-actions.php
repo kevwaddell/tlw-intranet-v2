@@ -59,7 +59,7 @@
 	<?php } ?>
 	
 	<div id="search-box" class="user-actions-wrap">
-		<?php get_search_form(); ?>
+		<?php get_template_part( 'hidden-searchform' ); ?>
 	</div>
 
 

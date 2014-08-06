@@ -5,14 +5,16 @@ height: 100%;
 }
 
 pre {
-	top: 50px;
-	left: 20px;
+	top: 0px;
+	left: 0px;
 	position: fixed;
 	z-index: 1000;
-	height: 50%;
+	height: 100%;
 	width: 50%;
 	overflow: auto;
-}
+	background-color: black;
+	color: white;
+	}
 
 body {
 .rel;
@@ -101,9 +103,33 @@ max-width: 1550px;
 .mag-top(1);
 .pad-top(1);
 .border-top(@gray; 0.1);
+.border-bot(@gray; 0.1);
+.pad-bot(1);
 .font-size(1.4);
-	text-align: center;
-	span.current, a.page-numbers {
+text-align: center;
+	
+	&.user-pag {
+	.mag-left(-0.5);
+	.mag-right(-0.5);
+	}
+
+	&.user-pag-top {
+	border-top: none;
+	.border-bot(@gray; 0.1);
+	.pad-top(0);
+	.pad-bot(1);
+	.mag-bot(2);
+	}
+	
+	&.top {
+	.mag-bot(2);
+	}
+	
+	&.user-pag-bot {
+	.mag-top(2);
+	}
+	
+	span.current, a.page-numbers, a.page, a.nextpostslink, a.previouspostslink {
 	.in-block;
 	.w(3);
 	.h(3);
@@ -114,7 +140,10 @@ max-width: 1550px;
 	.bg-col(@grayDk);
 	.col(white);
 	}
-	a.page-numbers {
+	span.pages {
+	.mag-right(2);	
+	}
+	a.page-numbers, a.page, a.nextpostslink, a.previouspostslink {
 	.no-text-dec;
 	.bg-col(@grayLt);	
 	.col(@grayDk);
@@ -124,17 +153,18 @@ max-width: 1550px;
 		}
 	}
 	
-	a.next, a.prev {
+	a.next, a.nextpostslink, a.prev, a.previouspostslink {
 	width: auto;
 	.pad(0;1.5;0;1.5);
 	.mag-right(0);	
+	.no-text-dec;
 	}
 	
-	a.next {
+	a.next, a.nextpostslink {
 	.fright;
 	}
 	
-	a.prev {
+	a.prev, a.previouspostslink {
 	.fleft;
 	}
 }

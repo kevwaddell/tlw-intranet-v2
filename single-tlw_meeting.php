@@ -5,7 +5,7 @@
 <?php include (STYLESHEETPATH . '/_/inc/meeting-single/meeting-vars.php'); ?>
 	
 		<article <?php post_class('page'); ?>>
-			<h2 class="block-header col-purple">Meeting details</h2>
+			<h1 class="block-header col-purple">Meeting details</h1>
 			
 			<div class="action-btns col-purple">
 				<div class="row">

@@ -3,13 +3,13 @@
 	<h3 class="section-header"><i class="fa fa-plane fa-lg"></i>Your Holidays</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
 	
-	<div class="holidays-section-inner">
+	<div id="holidays-section-inner" class="section-inner">
 	
-		<div class="holidays-section-wrap">
+		<div id="holidays-section-wrap" class="section-wrap">
 				
 			<div class="data-list-key">
 			
-				<div class="holidays-filters-key col-red">
+				<div class="filters col-red">
 					<span><a href="<?php echo get_author_posts_url($user_id);?>" <?php echo (!isset($_GET['holiday_sortby'])) ? " class=\"active\"":""; ?>><?php echo date('Y');?></a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?holiday_sortby=next-year"<?php echo (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "next-year") ? " class=\"active\"":""; ?>><?php echo date('Y', strtotime("next year"));?></a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?holiday_sortby=pending"<?php echo (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "pending") ? " class=\"active\"":""; ?>>Pending</a></span>

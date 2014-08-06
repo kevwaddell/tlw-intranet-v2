@@ -1,9 +1,14 @@
+<?php
+/*
+Template Name: Meetings page
+*/
+?>
+
 <?php get_header(); ?>
 
 <?php 
 $current_user_ID = get_current_user_id();
 $meetings = get_page_by_title('Meetings');
-$meeting_rooms_pg = get_page($meetings->post_parent);
 $calendar = get_page_by_title('Calendar');
 $meetings_page_content_raw = $meetings->post_content;
 $meetings_page_content = apply_filters('the_content', $meetings_page_content_raw );
@@ -27,38 +32,24 @@ echo '</pre>';
 
 
 <article <?php post_class('page'); ?>>
-
-	<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo $meetings->post_title; ?></h2>
 	
-	<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">
-		<a href="<?php echo get_permalink($meeting_rooms_pg->ID); ?>" class="btn btn-default btn-block no-arrow"><i class="fa fa-angle-double-left fa-lg"></i><?php echo $meeting_rooms_pg->post_title; ?></a>
-	</div>
+	<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>	
+	
+	<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo $meetings->post_title; ?></h1>
 	
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/banner-imgs.php'); ?>
 
 	<?php if (!empty($meetings_page_content)) { ?>
 	<?php echo $meetings_page_content ; ?>
 	<?php } ?>
+	
+	<?php endwhile; ?>
+	<?php endif; ?>
 
 	<div class="rule"></div>
-									
-	<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">
-		<div class="row" style="margin-bottom: 10px;">
-			<div class="col-xs-6">
-				<?php if (is_user_logged_in()) { 
-					
-				?>
-				<a href="<?php echo get_permalink($meetings->ID); ?>?request=room_booking&userid=<?php echo $current_user_ID ; ?>" class="btn btn-default btn-block btn-action" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
-				<?php } else { ?>
-				<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
-				<?php } ?>
-			</div>
-			<div class="col-xs-6">
-				<a href="<?php echo get_permalink($calendar->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>View calendar</a>
-			</div>
-		</div>
-	</div>
-					
+	
+	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/btn-actions.php'); ?>								
+						
 	<div class="rule"></div>
 
 	<div class="alerts alerts-off">

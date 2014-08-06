@@ -46,7 +46,6 @@ if (!isset($_GET['holiday_sortby'])) {
 if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "tomorrow") {
 	$holidays_args['order'] = 'ASC';
 	$holidays_args['meta_query'] = array(
-		
 		'relation' => 'AND',
 		array(
 			'key' => 'holiday_start_date',
@@ -66,18 +65,17 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "tomorrow") {
 if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "this-week") {
 	$holidays_args['order'] = 'ASC';
 	$holidays_args['meta_query'] = array(
-		
 		'relation' => 'AND',
-		array(
-			'key' => 'holiday_start_date',
-			'value' => $this_wk_strt,
-			'compare' => '>=',
-			'type' => 'NUMERIC'
-		),
 		array(
 			'key' => 'holiday_start_date',
 			'value' => $this_wk_end,
 			'compare' => '<=',
+			'type' => 'NUMERIC'
+		),
+		array(
+			'key' => 'holiday_end_date',
+			'value' => $this_wk_strt,
+			'compare' => '>=',
 			'type' => 'NUMERIC'
 		)
 	);
@@ -86,19 +84,18 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "this-week") {
 if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "next-week") {
 	$holidays_args['order'] = 'ASC';
 	$holidays_args['meta_query'] = array(
-		
-		'relation' => 'OR',
+		'relation' => 'AND',
 		array(
 			'key' => 'holiday_start_date',
-			'value' => array($next_wk_strt, $next_wk_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $next_wk_end,
+			'compare' => '<=',
+			'type' => 'NUMERIC'
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => array($next_wk_strt, $next_wk_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $next_wk_strt,
+			'compare' => '>=',
+			'type' => 'NUMERIC'
 		)
 	);
 }
@@ -106,19 +103,18 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "next-week") {
 if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "this-month") {
 	$holidays_args['order'] = 'ASC';
 	$holidays_args['meta_query'] = array(
-		
-		'relation' => 'OR',
+		'relation' => 'AND',
 		array(
 			'key' => 'holiday_start_date',
-			'value' => array($this_month_strt, $this_month_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $this_month_end,
+			'compare' => '<=',
+			'type' => 'NUMERIC'
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => array($this_month_strt, $this_month_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $this_month_strt,
+			'compare' => '>=',
+			'type' => 'NUMERIC'
 		)
 
 	);
@@ -128,26 +124,27 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "this-month") {
 if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "next-month") {
 	$holidays_args['order'] = 'ASC';
 	$holidays_args['meta_query'] = array(
-		
-		'relation' => 'OR',
+		'relation' => 'AND',
 		array(
 			'key' => 'holiday_start_date',
-			'value' => array($next_month_strt, $next_month_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $next_month_end,
+			'compare' => '<=',
+			'type' => 'NUMERIC'
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => array($next_month_strt, $next_month_end),
-			'compare' => 'BETWEEN',
-			'type' => 'DATE'
+			'value' => $next_month_strt,
+			'compare' => '>=',
+			'type' => 'NUMERIC'
 		)
 
 	);
 }
 
 $holidays = new WP_Query($holidays_args);
+$holidays_post_count = $holidays->found_posts;
+$max_num_pages = $holidays->max_num_pages;
 
-echo '<pre>';print_r($holidays);echo '</pre>'; 
+//echo '<pre>';print_r($holidays);echo '</pre>'; 
 
  ?>

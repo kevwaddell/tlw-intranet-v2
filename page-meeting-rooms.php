@@ -11,7 +11,7 @@
 	//echo '<pre>';print_r($rooms);echo '</pre>';
 	 ?>
 			<article <?php post_class(); ?>>
-				<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h2>
+				<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
 				<?php the_content(); ?>
 				
 				<div class="rule"></div>

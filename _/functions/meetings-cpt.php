@@ -31,11 +31,11 @@ function register_cpt_tlw_meeting() {
         'show_in_nav_menus' => false,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
-        'has_archive' => true,
+        'has_archive' => false,
         'query_var' => 'meeting',
         'can_export' => true,
         'rewrite' => array( 
-            'slug' => 'meeting-rooms/meetings', 
+            'slug' => 'meeting', 
             'with_front' => false,
             'feeds' => true,
             'pages' => true

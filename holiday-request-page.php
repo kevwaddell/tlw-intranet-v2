@@ -16,13 +16,15 @@ $color = get_field('col', $meetings->ID);
 $rb_admin = get_field('rb_admin', 'options');
 ?>	
 		<article <?php post_class(); ?>>
-			<h2 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h2>
+			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
+			
+			<?php include (STYLESHEETPATH . '/_/inc/holiday-request/banner-imgs.php'); ?>
 			
 			<?php the_content(); ?>
 			
 			<div class="rule"></div>
 			
-			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">
+			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 				<?php if (is_user_logged_in()) { ?>
 				
 				<a href="<?php the_permalink(); ?>?request=holiday&userid=<?php echo $current_user_ID ; ?>" class="btn btn-default btn-block btn-action"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>

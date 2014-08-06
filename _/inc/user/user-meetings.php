@@ -1,15 +1,15 @@
-<div class="page-section section-closed" style="margin-top: 10px;">
-	
+<div class="page-section section-closed">
+
 	<h3 class="section-header"><i class="fa fa-clock-o fa-lg"></i>Your Meetings</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
 	
-	<div class="meetings-section-inner">
+	<div id="meetings-section-inner" class="section-inner">
 	
-		<div class="meetings-section-wrap">
+		<div id="meetings-section-wrap" class="section-wrap">
 				
 			<div class="data-list-key">
 			
-				<div class="user-filters-key col-red">
+				<div class="filters col-red">
 					<span><a href="<?php echo get_author_posts_url($user_id);?>" <?php echo (!isset($_GET['sortby'])) ? " class=\"active\"":""; ?>>Today's</a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?sortby=pending"<?php echo (isset($_GET['sortby']) && $_GET['sortby'] == "pending") ? " class=\"active\"":""; ?>>Pending</a></span>
 					<span><a href="<?php echo get_author_posts_url($user_id);?>?sortby=future"<?php echo (isset($_GET['sortby']) && $_GET['sortby'] == "future") ? " class=\"active\"":""; ?>>Future</a></span>
@@ -19,7 +19,8 @@
 				</div>
 			
 			</div>
-	
+			
+			<?php //echo '<pre>';print_r( ceil( $meetings_post_count/10) );echo '</pre>'; ?>
 		
 			<div class="data-list-key">
 				
@@ -36,11 +37,9 @@
 					
 			</div>
 		
-		<?php 
-		//echo '<pre>';print_r(count($your_meetings));echo '</pre>';
-		if ( !empty($your_meetings) ){ 
-		global $post;
+		<?php if ( $meetings_query->have_posts() ):
 		$meetings_count = 0;
+		//echo '<pre>';print_r($your_meeting_ids);echo '</pre>';
 		?>
 		
 		<div class="data-list">
@@ -63,8 +62,7 @@
 					
 					<tbody>
 					
-					<?php foreach ( $your_meetings as $post ) { 
-					setup_postdata($post); 
+					<?php while ( $meetings_query->have_posts() ) : $meetings_query->the_post(); 
 					$meetings_count++;
 					?>	
 					
@@ -89,7 +87,7 @@
 	*/
 					date_default_timezone_set($default_tz);
 					 ?>	
-					<tr id="entry-tr-<?php echo $meetings_count; ?>" class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-red":"" ; ?><?php echo ( $meetings_count > 10) ? " entry-hidden":" entry-visible" ; ?>">
+					<tr id="entry-tr-<?php echo $meetings_count; ?>" class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-red":"" ; ?>">
 						 <td colspan="7">
 						 
 							<table class="table table-bordered">
@@ -151,25 +149,71 @@
 							 </td>
 						 </tr>
 	
-					<?php }
-					wp_reset_postdata();
-					 ?>
+					<?php endwhile; ?>
 					
 					</tbody>
 					
 					</table>
 					
-					<?php if ( count($your_meetings) > 10 ){?>
-					<div class="action-btns col-red" style="margin-top:10px;">
-						<button id="pm-load-more-btn" class="btn btn-default btn-block no-arrow"><i class="fa fa-refresh fa-lg"></i>Load More</button>
-					</div>
+					<?php if (count($your_meeting_ids) > 10) { 
+						
+						if (isset($_GET['sortby'])) {
+						$url_format = '&sortby='.$_GET['sortby'];	
+						}
+						
+					?>
+	
+					<div class="pagination-links pagination-actions">
+					<?php if ( isset($_GET['pg']) && $_GET['pg'] > 1 ) { ?>
+					
+					<a class="prev page-numbers" href="?pg=<?php echo ($_GET['pg'] - 1); ?><?php echo $url_format; ?>">&laquo; Previous</a>
+					
 					<?php } ?>
+					
+					<?php for ($p = 1; $p <= $meetings_max_num_pages; $p++) { ?>
+						
+						<?php if ( !isset($_GET['pg']) ) { ?>
+							
+							<?php if ( $p == 1) { ?>
+							
+							<span class="page-numbers current"><?php echo $p; ?></span>
+							
+							<?php } ?>
+							
+							<?php if ( $p != 1) { ?>
+							
+							<a class="page-numbers" href="?pg=<?php echo $p; ?><?php echo $url_format; ?>"><?php echo $p; ?></a>
+								
+							<?php } ?>
+							
+						<?php } else { ?>
+							
+							<?php if ( $p == $_GET['pg'] ) { ?>
+							<span class="page-numbers current"><?php echo $p; ?></span>
+							<?php } else { ?>
+							<a class="page-numbers" href="?pg=<?php echo $p; ?><?php echo $url_format; ?>"><?php echo $p; ?></a>
+							<?php } ?>
+							
+						<?php } ?>
+
+					<?php } ?>
+					
+					<?php if ( !isset($_GET['pg']) || $_GET['pg'] < $meetings_max_num_pages ) { ?>
+					
+					<a class="next page-numbers" href="?pg=<?php echo (isset($_GET['pg'])) ? ($_GET['pg'] + 1): "2"; ?><?php echo $url_format; ?>">Next &raquo;</a>
+					
+					<?php } ?>
+					
+					</div>	
+				
+					<?php } ?>
+
 					
 				</div>
 		
 			</div>
 			
-		<?php } else { ?>
+		<?php else: ?>
 		
 		<div class="well text-center">
 		
@@ -194,7 +238,7 @@
 		</div>
 
 		
-		<?php } ?>
+		<?php endif; ?>
 			
 		</div><!-- Section inner wrap -->
 		
