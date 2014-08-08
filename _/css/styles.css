@@ -758,6 +758,18 @@ body#meeting ul#menu-main-menu li li.meetings a:focus {
 .action-btns.col-purple .btn:focus {
   background-color: #b975da;
 }
+.action-btns.col-green .btn {
+  background-color: #7ba02b;
+}
+.action-btns.col-green .btn i {
+  background-color: #aed45d;
+  color: #7ba02b;
+}
+.action-btns.col-green .btn:hover,
+.action-btns.col-green .btn:active,
+.action-btns.col-green .btn:focus {
+  background-color: #aed45d;
+}
 .action-btns.col-pink .btn {
   background-color: #ea76ab;
 }
@@ -769,6 +781,30 @@ body#meeting ul#menu-main-menu li li.meetings a:focus {
 .action-btns.col-pink .btn:active,
 .action-btns.col-pink .btn:focus {
   background-color: #d92175;
+}
+.action-btns.col-orange .btn {
+  background-color: #ffaf4e;
+}
+.action-btns.col-orange .btn i {
+  background-color: #e77f00;
+  color: #ffaf4e;
+}
+.action-btns.col-orange .btn:hover,
+.action-btns.col-orange .btn:active,
+.action-btns.col-orange .btn:focus {
+  background-color: #e77f00;
+}
+.action-btns.col-blue .btn {
+  background-color: #2d80a9;
+}
+.action-btns.col-blue .btn i {
+  background-color: #184358;
+  color: #2d80a9;
+}
+.action-btns.col-blue .btn:hover,
+.action-btns.col-blue .btn:active,
+.action-btns.col-blue .btn:focus {
+  background-color: #184358;
 }
 .action-btns.col-red .btn {
   background-color: #c60751;
@@ -2378,6 +2414,13 @@ figure.feat-img a:focus span.zoom-mask {
   text-align: left;
   border: none;
 }
+.page-section .data-list-table .table tr.actions-tr small {
+  display: block;
+  padding-left: 10px;
+  color: #ffffff;
+  line-height: 30px;
+  font-size: 12px;
+}
 .page-section .data-list-table .table tr.actions-tr a {
   padding: 0px;
   background-color: transparent;
@@ -2495,10 +2538,6 @@ figure.feat-img a:focus span.zoom-mask {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 /* MEETING DETAILS */
-.meeting-details,
-.user-details {
-  padding-top: 10px;
-}
 .meeting-details .user-avatar,
 .user-details .user-avatar {
   padding: 5px;
@@ -2530,6 +2569,223 @@ figure.feat-img a:focus span.zoom-mask {
 .meeting-details .job-info,
 .user-details .job-info {
   padding-top: 10px;
+}
+/* DEPARTMENTS LISTS */
+#departments-list {
+  border-bottom: 1px solid #918f8f;
+}
+#departments-list .list-item {
+  margin-bottom: 20px;
+}
+#departments-list .list-item a {
+  display: block;
+  height: 80px;
+  line-height: 80px;
+  text-decoration: none;
+  color: #ffffff;
+}
+#departments-list .list-item a span.icon {
+  display: block;
+  float: left;
+  height: 80px;
+  width: 80px;
+}
+#departments-list .list-item a span.icon i {
+  display: block;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  line-height: 80px;
+}
+#departments-list .list-item a span.title {
+  display: block;
+  height: 80px;
+  text-align: center;
+  font-size: 20px;
+}
+#departments-list .list-item a.col-red {
+  background-color: #c60751;
+}
+#departments-list .list-item a.col-red span.icon {
+  background-color: #7a1039;
+  color: #c60751;
+}
+#departments-list .list-item a.col-red:hover,
+#departments-list .list-item a.col-red:active,
+#departments-list .list-item a.col-red:focus {
+  background-color: #7a1039;
+}
+#departments-list .list-item a.col-red:hover span.icon,
+#departments-list .list-item a.col-red:active span.icon,
+#departments-list .list-item a.col-red:focus span.icon {
+  background-color: #c60751;
+  color: #7a1039;
+}
+#departments-list .list-item a.col-aqua {
+  background-color: #8bc2bd;
+}
+#departments-list .list-item a.col-aqua span.icon {
+  background-color: #509791;
+  color: #8bc2bd;
+}
+#departments-list .list-item a.col-aqua:hover,
+#departments-list .list-item a.col-aqua:active,
+#departments-list .list-item a.col-aqua:focus {
+  background-color: #509791;
+}
+#departments-list .list-item a.col-aqua:hover span.icon,
+#departments-list .list-item a.col-aqua:active span.icon,
+#departments-list .list-item a.col-aqua:focus span.icon {
+  background-color: #8bc2bd;
+  color: #509791;
+}
+#departments-list .list-item a.col-purple {
+  background-color: #b975da;
+}
+#departments-list .list-item a.col-purple span.icon {
+  background-color: #8c31b8;
+  color: #b975da;
+}
+#departments-list .list-item a.col-purple:hover,
+#departments-list .list-item a.col-purple:active,
+#departments-list .list-item a.col-purple:focus {
+  background-color: #8c31b8;
+}
+#departments-list .list-item a.col-purple:hover span.icon,
+#departments-list .list-item a.col-purple:active span.icon,
+#departments-list .list-item a.col-purple:focus span.icon {
+  background-color: #b975da;
+  color: #8c31b8;
+}
+#departments-list .list-item a.col-green {
+  background-color: #aed45d;
+}
+#departments-list .list-item a.col-green span.icon {
+  background-color: #7ba02b;
+  color: #aed45d;
+}
+#departments-list .list-item a.col-green:hover,
+#departments-list .list-item a.col-green:active,
+#departments-list .list-item a.col-green:focus {
+  background-color: #7ba02b;
+}
+#departments-list .list-item a.col-green:hover span.icon,
+#departments-list .list-item a.col-green:active span.icon,
+#departments-list .list-item a.col-green:focus span.icon {
+  background-color: #aed45d;
+  color: #7ba02b;
+}
+#departments-list .list-item a.col-pink {
+  background-color: #ea76ab;
+}
+#departments-list .list-item a.col-pink span.icon {
+  background-color: #d92175;
+  color: #ea76ab;
+}
+#departments-list .list-item a.col-pink:hover,
+#departments-list .list-item a.col-pink:active,
+#departments-list .list-item a.col-pink:focus {
+  background-color: #d92175;
+}
+#departments-list .list-item a.col-pink:hover span.icon,
+#departments-list .list-item a.col-pink:active span.icon,
+#departments-list .list-item a.col-pink:focus span.icon {
+  background-color: #ea76ab;
+  color: #d92175;
+}
+#departments-list .list-item a.col-orange {
+  background-color: #ffaf4e;
+}
+#departments-list .list-item a.col-orange span.icon {
+  background-color: #e77f00;
+  color: #ffaf4e;
+}
+#departments-list .list-item a.col-orange:hover,
+#departments-list .list-item a.col-orange:active,
+#departments-list .list-item a.col-orange:focus {
+  background-color: #e77f00;
+}
+#departments-list .list-item a.col-orange:hover span.icon,
+#departments-list .list-item a.col-orange:active span.icon,
+#departments-list .list-item a.col-orange:focus span.icon {
+  background-color: #ffaf4e;
+  color: #e77f00;
+}
+#departments-list .list-item a.col-blue {
+  background-color: #2d80a9;
+}
+#departments-list .list-item a.col-blue span.icon {
+  background-color: #184358;
+  color: #2d80a9;
+}
+#departments-list .list-item a.col-blue:hover,
+#departments-list .list-item a.col-blue:active,
+#departments-list .list-item a.col-blue:focus {
+  background-color: #184358;
+}
+#departments-list .list-item a.col-blue:hover span.icon,
+#departments-list .list-item a.col-blue:active span.icon,
+#departments-list .list-item a.col-blue:focus span.icon {
+  background-color: #2d80a9;
+  color: #184358;
+}
+#department-list {
+  border-bottom: 1px solid #918f8f;
+  /* List item */
+
+}
+#department-list .list-item {
+  margin-bottom: 20px;
+  position: relative;
+  /* user-info */
+
+}
+#department-list .list-item figure.profile-img {
+  border: 5px solid #918f8f;
+  overflow: hidden;
+  height: 154px;
+  position: relative;
+}
+#department-list .list-item figure.profile-img img {
+  position: absolute;
+  width: 154px;
+  height: 100%;
+  left: 50%;
+  top: 0px;
+  margin-left: -77px;
+}
+#department-list .list-item .user-info {
+  margin-left: -30px;
+  background-color: #e9e9e9;
+  height: 154px;
+  /* Info text */
+
+}
+#department-list .list-item .user-info .info-text {
+  padding: 5px 10px 5px 30px;
+  border-bottom: 2px solid #ffffff;
+}
+#department-list .list-item .user-info .info-text.name {
+  font-size: 18px;
+  background-color: #918f8f;
+  color: #ffffff;
+}
+#department-list .list-item .user-info .info-text.position {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+#department-list .list-item .user-info .info-text.email {
+  font-size: 14px;
+}
+#department-list .list-item .user-info .info-text.email i {
+  color: #918f8f;
+  margin-right: 5px;
+}
+#department-list .list-item .user-info .action-btns {
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+  width: 100%;
 }
 .calendar-section .ics-calendar-header {
   font-size: 16px;
@@ -2677,7 +2933,7 @@ table#wp-calendar thead th[title="Sunday"] {
   bottom: 0px;
   background-color: #ffffff;
   width: 300px;
-  padding: 40px 20px 40px 20px;
+  padding: 10px 0px 40px 20px;
   z-index: 100;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -2693,6 +2949,79 @@ table#wp-calendar thead th[title="Sunday"] {
 }
 .user-actions .user-actions-wrap {
   display: none;
+  padding-right: 20px;
+  height: 100%;
+}
+.user-actions #user-links-box .user-title {
+  margin-top: -10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 2px;
+  background-color: #c60751;
+  height: 40px;
+  line-height: 40px;
+  color: #ffffff;
+}
+.user-actions #user-links-box .user-title span.user-avatar {
+  display: block;
+  float: left;
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+}
+.user-actions #user-links-box .user-title span.user-avatar img {
+  display: block;
+}
+.user-actions #user-links-box ul {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.user-actions #user-links-box ul li {
+  height: 40px;
+  margin-bottom: 2px;
+  position: relative;
+}
+.user-actions #user-links-box ul li i {
+  display: block;
+  float: left;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #918f8f;
+  background-color: #4b4b4b;
+}
+.user-actions #user-links-box ul li a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 20px;
+  background-color: #918f8f;
+  color: #ffffff;
+  text-decoration: none;
+}
+.user-actions #user-links-box ul li a:after {
+  content: "\f105";
+  font-family: FontAwesome;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  line-height: 40px;
+  height: 100%;
+  font-size: 16px;
+  padding-right: 10px;
+}
+.user-actions #user-links-box ul li a:hover,
+.user-actions #user-links-box ul li a:active,
+.user-actions #user-links-box ul li a:focus {
+  background-color: #4b4b4b;
+}
+.user-actions h3 {
+  margin-top: 0px;
+  color: #918f8f;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 18px;
 }
 .user-actions .user-btns {
   position: absolute;
@@ -2776,6 +3105,127 @@ table#wp-calendar thead th[title="Sunday"] {
 .user-actions .user-btns .user-btn.active:active span,
 .user-actions .user-btns .user-btn.active:focus span {
   display: none;
+}
+.user-actions button.favs-btn {
+  border-bottom: 2px solid #ffffff;
+  text-align: left;
+  padding: 0px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #918f8f;
+  color: #ffffff;
+}
+.user-actions button.favs-btn:hover,
+.user-actions button.favs-btn:active,
+.user-actions button.favs-btn:focus {
+  background-color: #4b4b4b;
+  color: #ffffff;
+}
+.user-actions button.favs-btn i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  float: left;
+  background-color: #4b4b4b;
+  color: #918f8f;
+  text-align: center;
+  margin-right: 10px;
+}
+.user-actions button.favs-btn:after {
+  content: "\f055";
+  font-family: FontAwesome;
+  float: right;
+  display: inline-block;
+  font-size: 16px;
+  padding-right: 10px;
+}
+.user-actions button.favs-btn.active {
+  background-color: #c60751;
+  color: #ffffff;
+}
+.user-actions button.favs-btn.active i {
+  background-color: #7a1039;
+  color: #c60751;
+}
+.user-actions button.favs-btn.active:after {
+  content: "\f056";
+}
+.user-actions button.favs-btn.active:hover i,
+.user-actions button.favs-btn.active:focus i,
+.user-actions button.favs-btn.active:active i {
+  color: #fa6ca3;
+}
+.user-actions button.favs-btn.active:hover:after,
+.user-actions button.favs-btn.active:focus:after,
+.user-actions button.favs-btn.active:active:after {
+  color: #fa6ca3;
+}
+.user-favs-list {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.user-favs-list.list-closed {
+  height: 0px;
+}
+.user-favs-list.list-open {
+  max-height: 500px;
+}
+.user-favs-list .user-favs-list-outer {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.user-favs-list .user-favs-list-wrap {
+  padding-top: 10px;
+}
+.user-favs-list .list-item {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.user-favs-list .list-item a {
+  display: block;
+  text-decoration: none;
+}
+.user-favs-list .list-item a span.title {
+  color: #c60751;
+  font-weight: bold;
+  line-height: 16px;
+}
+.user-favs-list .list-item a span.cat {
+  color: #4b4b4b;
+}
+.user-favs-list .list-item a span.date {
+  color: #918f8f;
+}
+.user-favs-list .list-item a:hover,
+.user-favs-list .list-item a:active,
+.user-favs-list .list-item a:focus {
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+  filter: alpha(opacity=50);
+}
+.user-favs-list .list-item span {
+  display: block;
+}
+.user-favs-list .list-item span.title {
+  margin-bottom: 5px;
+}
+.user-favs-list .list-item span.cat {
+  font-size: 14px;
+}
+.user-favs-list .list-item span.date {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.alert h2 {
+  margin-top: 0px;
 }
 .alerts {
   position: fixed;

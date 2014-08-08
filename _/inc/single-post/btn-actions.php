@@ -1,6 +1,6 @@
 <div class="post-actions<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 		
-	<a href="javascript:window.print()" title="Add to Favourites" class="btn"><span>Print</span><i class="fa fa-print fa-lg"></i></a>
+	<a href="javascript:window.print()" title="Print page" class="btn"><span>Print</span><i class="fa fa-print fa-lg"></i></a>
 	
 	<?php if (is_user_logged_in()) { 
 		if ($cat[0]->slug == 'office-news' || $cat[0]->slug == 'company-news') {
@@ -17,7 +17,7 @@
 		
 	?>
 	
-	<a href="<?php esc_url( the_permalink() ); ?>?action=addto_favs" class="btn btn-action" title="Add to Favourites"><span>Add to Favourites</span><i class="fa fa-star fa-lg"></i></a>
+	<a href="<?php esc_url( the_permalink() ); ?>?action=add_to_favs" class="btn btn-action" title="Add to Favourites"><span>Add to Favourites</span><i class="fa fa-star fa-lg"></i></a>
 
 	<a href="<?php echo get_permalink($add_post_pg->ID); ?>?httpref=<?php urlencode(the_permalink()); ?>" title="Add Post" class="btn"><span><?php echo $add_post_pg->post_title; ?></span><i class="fa fa-plus-circle fa-lg"></i></a>
 	<?php } ?>

@@ -113,11 +113,13 @@
 											
 											<?php if ( $start_time > $now && $post->post_author == $current_user_ID ) { ?>
 											<a href="<?php echo get_permalink($meetings->ID); ?>?request=edit&meetingid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
+											<?php } ?>
 											
+											<?php if ( $start_time > $now && $post->post_author == $current_user_ID && ($post->post_status == "publish" || $post->post_status == "pending") ) { ?>
 											<a href="<?php echo get_permalink($meetings->ID); ?>?request=cancel&meetingid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>
 											<?php } ?>
 											
-											<?php if ( $post->post_status == "draft" ) { ?>
+											<?php if ( $post->post_status == "draft" && ( $post->post_author == $current_user_ID || current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
 											<a href="<?php echo get_permalink($meetings->ID); ?>?request=delete&meetingid=<?php echo get_the_ID();?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
 											<?php } ?>
 											
@@ -125,12 +127,24 @@
 											<a href="<?php the_permalink(); ?>" class="btn btn-default view"><i class="fa fa-eye"></i> View details</a>
 											<?php } ?>
 											
-											<?php if ( $post->post_status == "pending" && $start_time > $now && current_user_can("administrator") || $current_user_ID == $rb_admin['ID'] ) { ?>
+											<?php if ( ($post->post_status == "pending" && $start_time > $now) && (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
 											<a href="<?php echo get_permalink($meetings->ID); ?>?request=reject&meetingid=<?php echo get_the_ID();?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject</a>
 											<?php } ?>
 											
-											<?php if ( $post->post_status == "pending" && $start_time > $now && current_user_can("administrator") || $current_user_ID == $rb_admin['ID'] ) { ?>
+											<?php if ( (($post->post_status == "pending" || $post->post_status == "draft") && $start_time > $now) && (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
 											<a href="<?php echo get_permalink($meetings->ID); ?>?request=approve&meetingid=<?php echo get_the_ID();?>" class="btn btn-default approve action-btn"><i class="fa fa-thumbs-o-up"></i> Approve</a>
+											<?php } ?>
+											
+											<?php if ( $current_user_ID != $post->post_author && $current_user_ID != $rb_admin['ID'] && !current_user_can("administrator")) { ?>
+												
+												<?php if ( $post->post_status == "draft") { ?>
+												<small>This meeting has been canceled.</small>
+												<?php } ?>
+												
+													<?php if ( $post->post_status == "pending") { ?>
+												<small>This meeting is awaiting approval.</small>
+												<?php } ?>
+												
 											<?php } ?>
 										</td>
 									</tr>

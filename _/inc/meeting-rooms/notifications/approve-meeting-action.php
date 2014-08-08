@@ -16,7 +16,7 @@ $send_to = 	$user->data->user_email;
 $send_to = 	"kwaddelltlw@icloud.com";
 }
 
-	if ($meeting->post_status == 'pending') {
+	if ($meeting->post_status == 'pending' || $meeting->post_status == 'draft') {
 		  
 		include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/approve-meeting-email.php');
 				

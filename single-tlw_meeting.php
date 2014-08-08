@@ -5,9 +5,9 @@
 <?php include (STYLESHEETPATH . '/_/inc/meeting-single/meeting-vars.php'); ?>
 	
 		<article <?php post_class('page'); ?>>
-			<h1 class="block-header col-purple">Meeting details</h1>
+			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?>Meeting details</h1>
 			
-			<div class="action-btns col-purple">
+			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 				<div class="row">
 					<div class="col-xs-6">
 						<a href="<?php echo get_permalink($meetings->ID); ?>" class="btn btn-default btn-block no-arrow"><i class="fa fa-angle-double-left fa-lg"></i>Back to <?php echo $meetings->post_title; ?></a>		
@@ -20,7 +20,18 @@
 			
 			<div class="rule"></div>
 			
-			<?php include (STYLESHEETPATH . '/_/inc/meeting-single/meeting-details.php'); ?>	
+			<div class="row">
+				<div class="col-xs-11">
+			
+					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/meeting-details.php'); ?>	
+					
+				</div>
+				
+				<div class="col-xs-1">
+					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/user-actions.php'); ?>	
+				</div>
+			
+			</div>
 
 			<div class="rule"></div>
 			
@@ -38,6 +49,7 @@
 					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-remove-email.php'); ?>
 					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/errors-attendee-action.php'); ?>
 					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/cancel-meeting-request.php'); ?>
+					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-add-to-favourites.php'); ?>
 				</div>
 			</div>
 			<!-- NOTIFICATION ALERTS -->

@@ -20,6 +20,8 @@ date_default_timezone_set('Europe/London');
 $now_local = localtime(time(), true);
 $now = strtotime("today ".sprintf('%02d', $now_local[tm_hour]).":".sprintf('%02d', $now_local[tm_min]));
 date_default_timezone_set($default_tz);
+$icon = get_field('icon', $meetings->ID);
+$color = get_field('col', $meetings->ID);
 
 /*
 echo '<pre>';

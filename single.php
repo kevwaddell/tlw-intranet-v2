@@ -6,7 +6,6 @@
 
 <?php 
 global $current_user;
-get_currentuserinfo();
 $icon = 'fa-rss';
 $color = 'col-aqua';
 $cat = get_the_category();
@@ -14,7 +13,7 @@ $cat_id = $cat[0]->term_id;
 $tags = implode( ", ", wp_get_post_terms($post->ID, 'post_tag', array("fields" => "names") ) ) ; 
 $icon = get_field('icon', 'category_'.$cat_id);
 $color = get_field('color', 'category_'.$cat_id);
-
+//$favs = get_user_meta($current_user->ID, 'user_favourites', true);
 /*
 if ($cat[0]->slug == 'events') {
 $icon = 'fa-calendar';	
@@ -24,6 +23,8 @@ if ($cat[0]->slug == 'announcements') {
 $icon = 'fa-bullhorn';	
 }
 */
+
+//echo '<pre>';print_r($favs);echo '</pre>';
 ?>	
 		<article <?php post_class('page'); ?>>
 
@@ -108,7 +109,7 @@ $icon = 'fa-bullhorn';
 		
 		<div class="alerts alerts-off">
 			<div class="alerts-wrap">
-			
+			<?php include (STYLESHEETPATH . '/_/inc/single-post/notifications/action-add-to-favourites.php'); ?>
 			</div>
 		</div>
 		

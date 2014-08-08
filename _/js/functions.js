@@ -23,6 +23,11 @@
         railVisible: true
     });
     
+    $('.user-favs-list-outer').slimScroll({
+    	 height: '500px',
+        alwaysVisible: true
+    });
+    
     if ( $('input.date-picker').length == 1) {
 	    $('input.date-picker').datepicker({
         // Consistent format with the HTML5 picker
@@ -109,7 +114,9 @@
     return false;
     });
     
-    $('body').on(event_type,'button.user-btn', function(e){
+   /*  USER BTNS */
+   
+   $('body').on(event_type,'button.user-btn', function(e){
     	
     	var current_id = $(this).attr('id');
     	var current_box = $("#"+current_id+"-box");
@@ -154,6 +161,20 @@
     	
     	return false;
     });
+    
+    $('body').on(event_type,'button.favs-btn', function(e){
+    
+    var list = $(this).next();
+    
+    $('button.favs-btn').not(this).removeClass('active');
+    $('.user-favs-list').not(list).removeClass('list-open').addClass('list-closed');
+    
+    $(this).toggleClass('active'); 
+    $(list).toggleClass('list-open list-closed'); 
+    
+    return false;
+    });
+    
     
     /* ACTION AND REQUEST FUNCTIONS */
     

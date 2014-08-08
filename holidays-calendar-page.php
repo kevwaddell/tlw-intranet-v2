@@ -18,6 +18,7 @@ $rooms = get_terms('tlw_rooms_tax');
 $form = get_field('form', $post->post_parent);
 $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 $extra_content = get_field('extra_content');
+$rb_admin = get_field('rb_admin', 'options');
 //echo '<pre>';print_r($ical_page_split_url);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
@@ -30,6 +31,8 @@ $extra_content = get_field('extra_content');
 			<?php echo $extra_content; ?>
 			<div class="rule"></div>
 			<?php } ?>
+			
+			<?php if (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) { ?>
 			
 			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">	
 				<div class="row">
@@ -47,6 +50,22 @@ $extra_content = get_field('extra_content');
 			<section class="calendar-section<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 				<?php the_content(); ?>
 			</section>
+			
+			<?php } else { ?>
+			
+			<div class="alert alert-danger text-center">
+				<span class="icon fa fa-warning fa-4x"></span>
+				<h2>Restricted access</h2>
+				<p>Sorry, access to this page is restricted to administration only.</p><br>
+				
+				<div class="action-btns">
+					<a href="<?php echo get_permalink($request_pg->ID); ?>" title="back" class="btn btn-danger btn-block no-arrow"><i class="fa fa-angle-double-left"></i>Go back</a>
+				</div>
+			</div>
+			
+			<?php } ?>
+			
+			
 			
 		</article>
 <?php endwhile; ?>

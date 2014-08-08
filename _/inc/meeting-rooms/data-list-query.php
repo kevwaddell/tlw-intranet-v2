@@ -111,37 +111,4 @@ $main_post_count = $main_query->found_posts;
 $max_num_pages = $main_query->max_num_pages;
 
 //echo '<pre>';print_r($main_query);echo '</pre>';
-
-
-if (current_user_can("administrator")) {
-
-	$args['post_status'] = 'draft';
-	$args['order'] = 'ASC';
-	
-	$args['meta_query'] = array(
-		'relation' => 'AND',
-		array(
-			'key' => 'start_time',
-			'value' => $today_start,
-			'compare' => '<'
-		)
-	);
-	
-	$past_canceled_query = new WP_Query( $args );
-	$past_canceled_count = $past_canceled_query->post_count;	
-	
-	/* UNAPPROVED QUERY */
-	$args['post_status'] = 'pending';
-	$args['meta_query'] = array(
-		array(
-			'key' => 'start_time',
-			'value' => $today_start,
-			'compare' => '<'
-		)
-	);
-	
-	$unapproved_query = new WP_Query( $args );
-	$unapproved_count = $unapproved_query->post_count;
-	
-}
  ?>

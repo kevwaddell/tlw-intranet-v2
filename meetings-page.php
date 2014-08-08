@@ -51,15 +51,35 @@ echo '</pre>';
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/btn-actions.php'); ?>								
 						
 	<div class="rule"></div>
+	
+	<?php if (isset($_GET['request']) && $_GET['request'] == "booking_request") { ?>
+	
+	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/booking-request-action.php'); ?>
+	
+	<div class="rule"></div>
 
+	<?php } ?>
+	
+	<section class="page-section">
+		<div class="lists-wrap">
+			
+			<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/data-list-query.php'); ?>
+			
+			<!-- MEETINGS SECTION -->
+			<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/meeting-list.php'); ?>
+			<!-- MEETINGS SECTION END -->
+			
+			</div>
+	</section>
+	
+	
 	<div class="alerts alerts-off">
 		<div class="alerts-wrap">
 	<!-- NOTIFICATION ALERTS -->
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-request.php'); ?>
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-action.php'); ?>
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-approval.php'); ?>
-					
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/booking-request-action.php'); ?>
+				
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/approve-meeting-request.php'); ?>
 	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/approve-meeting-action.php'); ?>
 	
@@ -80,18 +100,6 @@ echo '</pre>';
 		<!-- NOTIFICATION ALERTS -->
 		</div>
 	</div>
-	
-	<section class="page-section">
-		<div class="lists-wrap">
-			
-			<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/data-list-query.php'); ?>
-			
-			<!-- MEETINGS SECTION -->
-			<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/meeting-list.php'); ?>
-			<!-- MEETINGS SECTION END -->
-			
-			</div>
-	</section>
 
 
 </article>

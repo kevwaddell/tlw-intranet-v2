@@ -13,6 +13,4 @@
 
 </div>
 
-<div class="rule"></div>
-
 <?php } ?>

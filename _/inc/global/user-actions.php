@@ -8,15 +8,20 @@
 		
 		<?php } ?>
 		
-		<?php if (is_user_logged_in()) { ?>
+		<?php if (is_user_logged_in()) { 
+		global $current_user;
+		$favs = unserialize( get_user_meta($current_user->ID, 'user_favourites', true) );	
+		?>
 		
 		<a href="<?php echo wp_logout_url(); ?>" class="user-btn"><span>Logout</span><i class="fa fa-unlock-alt fa-lg"></i></a>
 		
 		<button id="user-links" class="user-btn"><span>User links</span><i class="fa fa-user fa-lg"></i></button>
 		
+		<?php if (count($favs) > 0) { ?>	
 		<button id="favourites" class="user-btn"><span>favorites</span><i class="fa fa-star fa-lg"></i></button>
+		<?php }  ?>
 		
-		<?php } else {?>
+		<?php } else { ?>
 		
 		<a href="#log-in-alert" id="login" class="user-btn" data-toggle="modal"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
 			
@@ -32,14 +37,12 @@
 		<div class="user-title">
 
 			<?php 
-			global $current_user;
-			get_currentuserinfo();
 			$profile_page = get_page_by_title('Your Profile');
-			$avatar = get_avatar( $current_user->ID, 30 );
+			$avatar = get_avatar( $current_user->ID, 40 );
 			//echo '<pre>';print_r($current_user);echo '</pre>';
 			 ?>
 		
-			<span class="tml-user-avatar"><?php echo $avatar; ?></span><?php echo $current_user->display_name; ?>
+			<span class="user-avatar"><?php echo $avatar; ?></span><?php echo $current_user->display_name; ?>
 		
 		</div>
 	 
@@ -52,13 +55,23 @@
 		</ul>
 	</div>
 	
+	<?php if (count($favs) > 0) { ?>
 	<div id="favourites-box" class="user-actions-wrap">
-		<h3>Your favouroites</h3>
+		<h3>Your favourites</h3>
+		
+		<?php include (STYLESHEETPATH . '/_/inc/global/favourites-list.php'); ?>
+		
+		<div class="action-btns col-gray" style="margin-top: 10px;">
+			<a href="<?php echo get_author_posts_url( $current_user->ID, $current_user->user_nicename); ?>" title="Edit Favourites" class="btn btn-default btn-block"><i class="fa fa-pencil fa-lg"></i>Edit Favourites</a>
+		</div>
+		
 	</div>
+	<?php }  ?>
 	
 	<?php } ?>
 	
 	<div id="search-box" class="user-actions-wrap">
+		<h3>Search</h3>
 		<?php get_template_part( 'hidden-searchform' ); ?>
 	</div>
 

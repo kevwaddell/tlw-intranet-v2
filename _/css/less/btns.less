@@ -222,6 +222,21 @@
 		}
 	}
 	
+	&.col-green {
+		
+		.btn {
+		.bg-col(darken(@green, 20%));
+			i {
+			.bg-col(@green);
+			.col(darken(@green, 20%));
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(@green);	
+			}
+		}
+	}
+	
 	&.col-pink {
 		
 		.btn {
@@ -233,6 +248,36 @@
 			
 			&:hover, &:active, &:focus {
 			.bg-col(darken(@pink, 20%));
+			}
+		}
+	}
+	
+	&.col-orange {
+		
+		.btn {
+		.bg-col(@orange);
+			i {
+			.bg-col(darken(@orange, 20%));
+			.col(@orange);
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(darken(@orange, 20%));
+			}
+		}
+	}
+	
+	&.col-blue {
+		
+		.btn {
+		.bg-col(@blue);
+			i {
+			.bg-col(darken(@blue, 20%));
+			.col(@blue);
+			}
+			
+			&:hover, &:active, &:focus {
+			.bg-col(darken(@blue, 20%));
 			}
 		}
 	}

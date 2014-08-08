@@ -7,7 +7,7 @@
 if ($start_time > $now) { ?>
 
 <div class="rule"></div>
-<div class="action-btns col-purple">
+<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">
 	<div class="row">
 		<div class="col-xs-6">
 			<a href="<?php the_permalink(); ?>?request=edit" class="btn btn-default btn-block edit-meeting"><i class="fa fa-pencil fa-lg"></i>Edit</a>	
