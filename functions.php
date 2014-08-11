@@ -153,6 +153,7 @@ require_once(STYLESHEETPATH . '/_/functions/change-meta-box-title.php');
 
 /* AFC FUNCTIONS */
 require_once(STYLESHEETPATH . '/_/functions/afc_save_post.php');
+require_once(STYLESHEETPATH . '/_/functions/afc_relationship_filter.php');
 
 /* CUSTOM ROW ACTIONS */
 require_once(STYLESHEETPATH . '/_/functions/post_row_actions.php');

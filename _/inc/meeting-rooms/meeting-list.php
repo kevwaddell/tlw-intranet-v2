@@ -90,7 +90,7 @@
 											<i class="fa fa-square"></i>
 										</td>
 										<td class="room">
-											<a href="<?php echo get_term_link( $room[0]->term_id, $room[0]->taxonomy );?>"><?php echo $room[0]->name;?></a>
+											<?php echo $room[0]->name;?>
 										</td>
 										<td class="description">
 											<?php echo $description; ?>

@@ -84,15 +84,7 @@
 	?>
 	
 	<?php if (is_user_logged_in()) { ?>
-	<div class="notifications">
-		<button><i class="fa fa-angle-down fa-lg pull-left"></i>Notifications<span class="badge pull-right">4</span></button>
-		
-		<div class="messages messages-hidden">
-			<a href="#">Meetings<span class="badge pull-right">2</span></a>
-			<a href="#">Room bookings<span class="badge pull-right">1</span></a>
-			<a href="#">Holiday requests<span class="badge pull-right">1</span></a>
-		</div>
-	</div>
+	<?php include (STYLESHEETPATH . '/_/inc/global/user-notifications.php'); ?>
 	<?php } ?>	
 	
 	</header>

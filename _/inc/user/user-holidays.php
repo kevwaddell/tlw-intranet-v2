@@ -1,4 +1,4 @@
-<div class="page-section section-closed" style="margin-top: 10px;">
+<div class="page-section <?php echo (isset($_GET['holiday_sortby']) ? 'section-open':'section-closed'); ?>" style="margin-top: 10px;">
 	
 	<h3 class="section-header"><i class="fa fa-plane fa-lg"></i>Your Holidays</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>

@@ -107,14 +107,31 @@
 			</div>
 			<?php } ?>
 			
-			<?php if (!empty($user_department)) { ?>
+			<?php if (!empty($user_department)) { 
+			$dep_counter = 0;	
+			?>
 			<div class="row">	
 				
 				<div class="col-xs-5">
-					<div class="info-label">Department:</div> 
+					<div class="info-label">
+					<?php if (count($user_department) > 1) { ?>
+					Departments:
+					<?php } else { ?>
+					Department:
+					<?php } ?>
+					</div> 
 				</div>
 				<div class="col-xs-7">
-					<div class="text"><?php echo $user_department; ?></div>
+					<div class="text">
+						<?php foreach($user_department as $dep) {
+						$dep_page = get_page($dep);	
+						$dep_counter++;
+						?>
+						
+						<?php if ($dep_counter > 1) { echo " | ";} ?>
+						<a href="<?php echo get_permalink($dep); ?>" title="View <?php echo $dep_page->post_title; ?> department"><?php echo $dep_page->post_title; ?></a>
+						<?php } ?>
+					</div>
 				</div>
 				
 			</div>

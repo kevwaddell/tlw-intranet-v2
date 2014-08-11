@@ -2310,7 +2310,13 @@ figure.feat-img a:focus span.zoom-mask {
   background-color: #ecdaf5;
 }
 .page-section .data-list-table tr.entry-tr.col-red {
-  background-color: #fdcfe1;
+  background-color: #f95494;
+}
+.page-section .data-list-table tr.entry-tr.col-green {
+  background-color: #e0efc2;
+}
+.page-section .data-list-table tr.entry-tr.col-blue {
+  background-color: #b6daec;
 }
 .page-section .data-list-table tr.entry-tr.entry-hidden {
   display: none;

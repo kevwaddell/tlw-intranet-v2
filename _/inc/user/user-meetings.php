@@ -1,4 +1,4 @@
-<div class="page-section section-closed">
+<div class="page-section <?php echo (isset($_GET['sortby']) || isset($_GET['view'])) ? 'section-open':'section-closed'; ?>">
 
 	<h3 class="section-header"><i class="fa fa-clock-o fa-lg"></i>Your Meetings</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
@@ -87,7 +87,7 @@
 	*/
 					date_default_timezone_set($default_tz);
 					 ?>	
-					<tr id="entry-tr-<?php echo $meetings_count; ?>" class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-red":"" ; ?>">
+					<tr id="entry-tr-<?php echo $meetings_count; ?>" class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-blue":"" ; ?>">
 						 <td colspan="7">
 						 
 							<table class="table table-bordered">
@@ -100,7 +100,7 @@
 											<i class="fa fa-square"></i>
 										</td>
 										<td class="room">
-										<a href="<?php echo get_term_link( $room[0]->term_id, $room[0]->taxonomy );?>"><?php echo $room[0]->name;?></a>
+										<?php echo $room[0]->name;?>
 										</td>
 										<td class="description">
 										<?php echo $description; ?>
