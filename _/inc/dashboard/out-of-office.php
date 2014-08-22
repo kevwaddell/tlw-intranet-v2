@@ -1,15 +1,56 @@
+<?php 
+$today = date('Ymd', strtotime("today"));
+$out_of_office_args = array(
+	'posts_per_page'   => -1,
+	'post_status'	=> 'publish',
+	'post_type'  => 'tlw_holiday',
+	'order'	=> 'DESC',
+	'meta_key'	=> 'holiday_start_date',
+	'orderby' => 'meta_value_num',
+	'meta_query' => array(
+		
+		'relation' => 'AND',
+		array(
+			'key' => 'holiday_start_date',
+			'value' => $today,
+			'compare' => '<=',
+			'type' => 'NUMERIC'
+		),
+		array(
+			'key' => 'holiday_end_date',
+			'value' => $today,
+			'compare' => '>=',
+			'type' => 'NUMERIC'
+		)
+	)
+);
+
+$out_of_office = get_posts($out_of_office_args);
+
+//echo '<pre>';print_r($out_of_office);echo '</pre>';
+ ?>
+ 
+<?php if ($out_of_office) { ?>
+
 <div id="ooo-carousel" class="carousel slide">
 	
+	<?php if (count($out_of_office) > 1) { ?>
 	<ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    <?php for ($oo = 0; $oo < count($out_of_office); $oo++) { ?>
+		<li data-target="#ooo-carousel" data-slide-to="<?php echo $oo; ?>"<?php echo ($oo == 0) ? ' class="active"':''; ?>></li>
+  	<?php } ?>
 	</ol>
+	<?php } ?>
 	
 	<div class="carousel-inner">
-			<div class="item active">
+	
+	<?php foreach ($out_of_office as $user) { ?>
+		
+		<?php if ($user == reset($out_of_office)) { ?>
+		<div class="item active">
+		<?php } else { ?>
+		<div class="item">
+		<?php } ?>
 				<figure class="avatar">
 					<img src="http://www.tlwsolicitors.co.uk/wp-content/uploads/2014/02/Marc-Davidson-200x200-1392040834.jpg" alt="" width="100" height="100">
 				</figure>
@@ -20,51 +61,11 @@
 					<a href="#"><i class="fa fa-eye"></i> View Profile</a>
 				</div>
 			</div>
-			<div class="item">
-				<figure class="avatar">
-					<img src="http://www.tlwsolicitors.co.uk/wp-content/uploads/2014/02/Peter-McKenna-200x200-1393253166.jpg" alt="" width="100" height="100">
-				</figure>
-				<div class="info">
-					<h3 class="name">Peter McKenna</h3>
-					<p class="date"><span>Return Date:</span> Tuesday 2nd September 2014</p>
-					<a href="mailto:pmckenna@tlwsolicitors.co.uk"><i class="fa fa-envelope"></i> pmckenna@tlwsolicitors.co.uk</a>
-					<a href="#"><i class="fa fa-eye"></i> View Profile</a>
-				</div>
-			</div>
-			<div class="item">
-				<figure class="avatar">
-					<img src="http://www.tlwsolicitors.co.uk/wp-content/uploads/2014/02/John-Burn-200x200-1393253254.jpg" alt="" width="100" height="100">
-				</figure>
-				<div class="info">
-					<h3 class="name">John Burn</h3>
-					<p class="date"><span>Return Date:</span> Tuesday 2nd September 2014</p>
-					<a href="mailto:jburn@tlwsolicitors.co.uk"><i class="fa fa-envelope"></i> jburn@tlwsolicitors.co.uk</a>
-					<a href="#"><i class="fa fa-eye"></i> View Profile</a>
-				</div>
-			</div>
-			<div class="item">
-				<figure class="avatar">
-					<img src="http://www.tlwsolicitors.co.uk/wp-content/uploads/2014/02/Claire-Thornton-200x200-1392040741.jpg" alt="" width="100" height="100">
-				</figure>
-				<div class="info">
-					<h3 class="name">Claire Thornton</h3>
-					<p class="date"><span>Return Date:</span> Tuesday 2nd September 2014</p>
-					<a href="mailto:cthornton@tlwsolicitors.co.uk"><i class="fa fa-envelope"></i> cthornton@tlwsolicitors.co.uk</a>
-					<a href="#"><i class="fa fa-eye"></i> View Profile</a>
-				</div>
-			</div>
-			<div class="item">
-				<figure class="avatar">
-					<img src="http://www.tlwsolicitors.co.uk/wp-content/uploads/2014/02/Laura-Brown-200x200-1392040802.jpg" alt="" width="100" height="100">
-				</figure>
-				<div class="info">
-					<h3 class="name">Laura Brown</h3>
-					<p class="date"><span>Return Date:</span> Tuesday 2nd September 2014</p>
-					<a href="mailto:lbrown@tlwsolicitors.co.uk"><i class="fa fa-envelope"></i> lbrown@tlwsolicitors.co.uk</a>
-					<a href="#"><i class="fa fa-eye"></i> View Profile</a>
-				</div>
-			</div>
+	<?php } ?>
+			
 	</div>
+	
+	<?php if (count($out_of_office) > 1) { ?>
 	
 	<div class="panel-btns">
 		<div class="row">
@@ -83,5 +84,15 @@
 		
 		</div>
 	</div>
+	
+	<?php } ?>
 
 </div>
+
+ <?php } else { ?>
+ 
+ <div class="well text-center" style="margin-bottom: 0px;">
+ 	<span>There are no members of staff out of the office today.</span>
+ </div>
+
+ <?php } ?>

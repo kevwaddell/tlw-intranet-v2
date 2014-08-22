@@ -1978,8 +1978,8 @@ figure.feat-img a span.zoom-mask {
   filter: alpha(opacity=0);
   width: 100%;
   height: 100%;
-  background-color: #8bc2bd;
-  background-color: rgba(138, 193, 189, 0.7);
+  background-color: #918f8f;
+  background-color: rgba(144, 142, 142, 0.5);
   position: absolute;
   top: 0px;
   left: 0px;
@@ -1991,8 +1991,8 @@ figure.feat-img a span.zoom-mask {
 }
 figure.feat-img a span.zoom-mask i {
   display: block;
-  background-color: #8bc2bd;
-  background-color: rgba(138, 193, 189, 0.7);
+  background-color: #918f8f;
+  background-color: rgba(144, 142, 142, 0.5);
   color: #ffffff;
   padding: 10px;
   width: 52px;
