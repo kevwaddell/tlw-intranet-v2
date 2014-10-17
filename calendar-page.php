@@ -51,7 +51,7 @@ $extra_content = get_field('extra_content');
 						?>
 						<a href="<?php the_permalink(); ?>?request=room_booking&userid=<?php echo $user_ID ; ?>" class="btn btn-default btn-block btn-action" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
 						<?php } else { ?>
-						<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room></a>
+						<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
 						<?php } ?>							
 				</div>
 				</div>		

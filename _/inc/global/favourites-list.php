@@ -1,6 +1,7 @@
 <?php
 $post_ids = array();
 $meetings_ids = array();
+
 foreach ($favs as $fav) {
 	
 	if ($fav['post_type'] == 'post') {
@@ -16,17 +17,20 @@ foreach ($favs as $fav) {
 	}
 }
 
-//echo '<pre>';print_r($meetings_ids);echo '</pre>';
+//echo '<pre>';print_r($favs);echo '</pre>';
 
-$fav_posts_args = array(
-'post_type'	=> 'post',
-'include'	=> 	$post_ids,
-'posts_per_page'	=> -1,
-'orderby'	=> 'date'
-);
+if (!empty($post_ids)) {
+	$fav_posts_args = array(
+	'post_type'	=> 'post',
+	'include'	=> 	$post_ids,
+	'posts_per_page'	=> -1,
+	'orderby'	=> 'date'
+	);
+	
+	$fav_posts = get_posts($fav_posts_args);
+}
 
-$fav_posts = get_posts($fav_posts_args);
-
+if (!empty($meetings_ids)) {
 $fav_meetings_args = array(
 'post_type'	=> 'tlw_meeting',
 'include'	=> 	$meetings_ids,
@@ -36,6 +40,7 @@ $fav_meetings_args = array(
 );
 
 $fav_meetings = get_posts($fav_meetings_args);
+}
 
 $news = array();
 $events = array();

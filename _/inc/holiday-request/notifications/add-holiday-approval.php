@@ -9,7 +9,7 @@
 	
 	/* SET POST META */
 	if ( !($end_date < date('Ymd')) ) {
-	//include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-email.php');
+	include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-email.php');
 	}
 
 ?>

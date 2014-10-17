@@ -19,7 +19,7 @@ $form = get_field('form', $post->post_parent);
 $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 $extra_content = get_field('extra_content');
 $rb_admin = get_field('rb_admin', 'options');
-//echo '<pre>';print_r($ical_page_split_url);echo '</pre>';
+//echo '<pre>';print_r($rb_admin);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
 			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>">
@@ -32,7 +32,7 @@ $rb_admin = get_field('rb_admin', 'options');
 			<div class="rule"></div>
 			<?php } ?>
 			
-			<?php if (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) { ?>
+			<?php if (current_user_can("administrator") || $current_user_ID == $rb_admin->ID) { ?>
 			
 			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">	
 				<div class="row">

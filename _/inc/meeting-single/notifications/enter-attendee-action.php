@@ -2,7 +2,10 @@
 
 //array_push($excluded_staff, 1);
 $excluded_staff[] = 1;
-$excluded_staff[] = $rb_admin['ID'];
+
+if ($rb_admin['ID'] == '60') {
+$excluded_staff[] = $rb_admin['ID'];	
+}
 
 $users_args = array(
 'exclude'	=> $excluded_staff

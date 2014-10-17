@@ -41,7 +41,7 @@ $events_args = array(
 		array(
 			'key' => 'event_date',
 			'value' => $today,
-			'compare' => '>=',
+			'compare' => '>',
 			'type' => 'NUMERIC'
 		),
 		array(
@@ -55,6 +55,7 @@ $events_args = array(
 
 $events = get_posts($events_args);
 $events_feat_img = get_field('feat_img', 'category_'.$ev_cat_id);
+//echo '<pre>';print_r($events);echo '</pre>';
 ?>
 
 <div class="panel-articles">

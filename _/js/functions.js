@@ -13,7 +13,7 @@
 	}
 	
 	$('.panel-feed-wrap').slimScroll({
-        height: '180px',
+        height: 'auto',
         alwaysVisible: true
     });
     

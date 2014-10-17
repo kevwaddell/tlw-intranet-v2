@@ -84,7 +84,7 @@ $page_id = $meetings->ID;
 	
 	<strong class="caps">Meeting details:</strong><br>
 	<p>
-		<span class="bold">Description:</span> <?php echo $description; ?><br>
+		<span class="bold">Description:</span> <?php echo stripslashes($description); ?><br>
 		<span class="bold">Room:</span> <?php echo $room->name; ?><br>
 		<span class="bold">Date:</span>  <?php echo date('D jS F Y', $meeting_date_convert); ?><br>
 		<span class="bold">Time:</span>  <?php echo $meeting_start; ?> - <?php echo $meeting_end; ?>

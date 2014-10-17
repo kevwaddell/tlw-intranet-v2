@@ -19,7 +19,7 @@ $today_start = strtotime("Today 08:00");
 $today_end = strtotime("Today 18:00");
 $ics_options = get_option('ICSAdminOptions');
 $ics_files = unserialize($ics_options[ics_files]);
-$rooms = get_terms('tlw_rooms_tax');
+$rooms = get_terms('tlw_rooms_tax', 'hide_empty=0');
 $rb_admin = get_field('rb_admin', 'options');
 /*
 echo '<pre>';
@@ -27,7 +27,7 @@ print_r($today_start."<br>");
 print_r(date("D jS F Y H:i", $today_start)."<br><br>");
 echo '</pre>';
 */
-//echo '<pre>';print_r($current_user_ID);echo '</pre>';
+//echo '<pre>';print_r($rb_admin['user_email']);echo '</pre>';
 ?>
 
 

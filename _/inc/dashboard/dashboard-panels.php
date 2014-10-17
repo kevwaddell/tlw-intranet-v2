@@ -47,7 +47,7 @@
 	<div class="col-xs-6">
 	
 		<div class="dash-panel col-purple panel-closed">
-			<h2 class="panel-head"><i class="fa fa-clock-o fa-lg"></i>Meeting rooms</h2>
+			<h2 class="panel-head"><i class="fa fa-clock-o fa-lg"></i>Meetings</h2>
 			<button class="close-panel-btn"><i class="fa fa-times fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
 			
 			<div class="panel-content">

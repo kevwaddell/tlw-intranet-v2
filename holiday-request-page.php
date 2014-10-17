@@ -14,6 +14,7 @@ $current_user_ID = get_current_user_id();
 $icon = get_field('icon', $meetings->ID);
 $color = get_field('col', $meetings->ID);
 $rb_admin = get_field('rb_admin', 'options');
+//echo '<pre>';print_r($rb_admin);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
 			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
