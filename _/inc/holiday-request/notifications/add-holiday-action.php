@@ -1,4 +1,6 @@
-<?php if ( isset($_POST['userid']) ) { 
+<?php //echo '<pre>';print_r($_POST);echo '</pre>'; ?>
+
+<?php if ( isset($_POST['add_holiday']) ) { 
 	
 	/* VARS */
 	$user_id = $_POST['userid'];
@@ -62,20 +64,22 @@
 		
 		//echo '<pre>';print_r($post_args);echo '</pre>';
 		
-		$post_id = wp_insert_post($post_args);
+		$h_id = wp_insert_post($post_args);
 		
 		/* SET META */
-		update_post_meta($post_id, '_holiday_start_date', 'field_53c67357805e5'); 
-		update_post_meta($post_id, 'holiday_start_date', $s_date->format( 'Ymd' )); 
-		update_post_meta($post_id, '_holiday_end_date', 'field_53c673b0805e6');  
-		update_post_meta($post_id, 'holiday_end_date', $e_date->format( 'Ymd' ));  
-		update_post_meta($post_id, '_number_of_days', 'field_53c673d9805e7');  
-		update_post_meta($post_id, 'number_of_days', $numdays);  
+		update_post_meta($h_id, '_holiday_start_date', 'field_53c67357805e5'); 
+		update_post_meta($h_id, 'holiday_start_date', $s_date->format( 'Ymd' )); 
+		update_post_meta($h_id, '_holiday_end_date', 'field_53c673b0805e6');  
+		update_post_meta($h_id, 'holiday_end_date', $e_date->format( 'Ymd' ));  
+		update_post_meta($h_id, '_number_of_days', 'field_53c673d9805e7');  
+		update_post_meta($h_id, 'number_of_days', $numdays);  
 	
 	}
 ?>
 
-<?php if (count($errors) == 0) { ?>
+<?php if (count($errors) == 0) { 
+//echo '<pre>';print_r($cur_url);echo '</pre>';
+?>
 
 <div class="alert alert-success">
 	Please confirm your holiday details below.<br><br>
@@ -91,10 +95,10 @@
 	<div class="action-btns">
 		<div class="row">
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=add_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i>Confirm</a>
+			<a href="?action=confirm_holiday&holidayid=<?php echo $h_id; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i>Confirm</a>
 		</div>
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=cancel_holiday&holidayid=<?php echo $post_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
+			<a href="?request=cancel_holiday&holidayid=<?php echo $h_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
 		</div>
 	</div>
 	

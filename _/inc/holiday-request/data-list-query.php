@@ -145,6 +145,28 @@ $holidays = new WP_Query($holidays_args);
 $holidays_post_count = $holidays->found_posts;
 $max_num_pages = $holidays->max_num_pages;
 
-//echo '<pre>';print_r($holidays);echo '</pre>'; 
+$pending_holidays_args = array(
+'post_type' => 'tlw_holiday',
+'post_status'	=> 'pending',
+'posts_per_page' => $posts_per_page,
+'order'	=> 'DESC',
+'meta_key'	=> 'holiday_start_date',
+'orderby' => 'meta_value_num',
+'paged'	=> $paged,
+'meta_query' => array(
+		array(
+			'key' => 'holiday_start_date',
+			'value' => $today,
+			'compare' => '>',
+			'type' => 'NUMERIC'
+		)
+	)
+);
+
+$pending_hoidays = new WP_Query($pending_holidays_args);
+$pending_holidays_post_count = $pending_hoidays->found_posts;
+$pending_max_num_pages = $pending_hoidays->max_num_pages;
+
+//echo '<pre>';print_r($pending_hoidays);echo '</pre>'; 
 
  ?>

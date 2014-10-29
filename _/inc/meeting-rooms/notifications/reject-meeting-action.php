@@ -1,4 +1,7 @@
-<?php if (isset($_GET['meetingid']) && $_GET['action'] == "reject") { 
+<?php if (isset($_GET['meetingid']) && $_GET['action'] == "reject_meeting") { 
+
+$page_url = explode("?", $_SERVER['REQUEST_URI']);
+
 $meeting = get_post($_GET['meetingid']);
 $room = wp_get_post_terms( $meeting->ID, 'tlw_rooms_tax');
 $booked_by = get_user_by('id', $meeting->post_author);
@@ -24,10 +27,10 @@ $end_time = get_field('end_time', $meeting->ID);
 
 ?>
 
-<div class="alert alert-success">
+<div class="alert alert-success text-center">
 	Booking for <strong><?php echo $room[0]->name; ?></strong> meeting room has been rejected and<br><strong><?php echo $booked_by->data->display_name; ?></strong> has been notified.</strong><br><br>
 	<div class="action-btns">
-		<a href="<?php echo get_permalink($meetings->ID); ?>" class="btn btn-success btn-block">Continue</a>
+		<a href="<?php echo $page_url[0]; ?>" class="btn btn-success btn-block">Continue</a>
 	</div>
 </div>
 

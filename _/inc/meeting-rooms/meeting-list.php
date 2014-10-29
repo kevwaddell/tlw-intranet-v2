@@ -68,11 +68,12 @@
 					$now_local = localtime(time(), true);
 					$now = strtotime("today ".sprintf('%02d', $now_local[tm_hour]).":".sprintf('%02d', $now_local[tm_min]));
 					/*
-		echo '<pre>';
-					print_r($date_raw."<br>");
-					print_r(date('Ymd' ,strtotime("today")));
+					echo '<pre>';
+					print_r($now_local);
+					print_r( date('D jS F Y H:i' ,$now_local[tm_hour]) );
 					echo '</pre>';
-		*/
+					*/
+		
 					date_default_timezone_set($default_tz);
 					 ?>	
 						 <tr class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-purple":"" ; ?>">
@@ -99,6 +100,7 @@
 											<span class="booked-date"><?php echo date('D jS F Y', $date_convert);?></span>
 										</td>
 										<td class="time">
+											<!-- <span class="time"><?php echo date('D jS F Y H:i', $start_time);?></span><br> -->
 											<span class="time"><?php echo date('H:i', $start_time);?> - <?php echo date('H:i', $end_time);?></span>
 										</td>
 										<td class="booked-by">
@@ -112,15 +114,15 @@
 										<td colspan="7">
 											
 											<?php if ( $start_time > $now && $post->post_author == $current_user_ID ) { ?>
-											<a href="<?php echo get_permalink($meetings->ID); ?>?request=edit&meetingid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
+											<a href="<?php echo get_permalink($meetings->ID); ?>?request=edit_meeting&meetingid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
 											<?php } ?>
 											
 											<?php if ( $start_time > $now && $post->post_author == $current_user_ID && ($post->post_status == "publish" || $post->post_status == "pending") ) { ?>
-											<a href="<?php echo get_permalink($meetings->ID); ?>?request=cancel&meetingid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>
+											<a href="<?php echo get_permalink($meetings->ID); ?>?request=cancel_meeting&meetingid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>
 											<?php } ?>
 											
 											<?php if ( $post->post_status == "draft" && ( $post->post_author == $current_user_ID || current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
-											<a href="<?php echo get_permalink($meetings->ID); ?>?request=delete&meetingid=<?php echo get_the_ID();?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
+											<a href="<?php echo get_permalink($meetings->ID); ?>?request=delete_meeting&meetingid=<?php echo get_the_ID();?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
 											<?php } ?>
 											
 											<?php if ( $post->post_status == "publish" ) { ?>
@@ -128,11 +130,11 @@
 											<?php } ?>
 											
 											<?php if ( ($post->post_status == "pending" && $start_time > $now) && (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
-											<a href="<?php echo get_permalink($meetings->ID); ?>?request=reject&meetingid=<?php echo get_the_ID();?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject</a>
+											<a href="<?php echo get_permalink($meetings->ID); ?>?request=reject_meeting&meetingid=<?php echo get_the_ID();?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject</a>
 											<?php } ?>
 											
-											<?php if ( (($post->post_status == "pending" || $post->post_status == "draft") && $start_time > $now) && (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
-											<a href="<?php echo get_permalink($meetings->ID); ?>?request=approve&meetingid=<?php echo get_the_ID();?>" class="btn btn-default approve action-btn"><i class="fa fa-thumbs-o-up"></i> Approve</a>
+											<?php if ( (($post->post_status == "pending" || $post->post_status == "draft")) && (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) ) { ?>
+											<a href="<?php echo get_permalink($meetings->ID); ?>?request=approve_meeting&meetingid=<?php echo get_the_ID();?>" class="btn btn-default approve action-btn"><i class="fa fa-thumbs-o-up"></i> Approve</a>
 											<?php } ?>
 											
 											<?php if ( $current_user_ID != $post->post_author && $current_user_ID != $rb_admin['ID'] && !current_user_can("administrator")) { ?>

@@ -1,4 +1,8 @@
-<form action="<?php echo get_permalink($meetings->ID); ?>" method="post" class="meeting-form" id="edit_meeting_form">
+<?php 
+$form_url = explode("?", $_SERVER['REQUEST_URI']);
+?>
+
+<form action="<?php echo get_option('home'); ?><?php echo $form_url[0]; ?>" method="post" class="meeting-form" id="edit_meeting_form">
 
 	<input type="hidden" name="meetingid" id="meetingid" value="<?php echo $meeting->ID; ?>">
 	

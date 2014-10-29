@@ -14,7 +14,10 @@ $current_user_ID = get_current_user_id();
 $icon = get_field('icon', $meetings->ID);
 $color = get_field('col', $meetings->ID);
 $rb_admin = get_field('rb_admin', 'options');
-//echo '<pre>';print_r($rb_admin);echo '</pre>';
+$hb_admin = get_field('hb_admin', 'options');
+$ical_page = get_page_by_title("Holidays Cal Feed");
+$ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
+//echo '<pre>';print_r($hb_admin['ID']);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
 			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
@@ -25,35 +28,32 @@ $rb_admin = get_field('rb_admin', 'options');
 			
 			<div class="rule"></div>
 			
-			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
-				<?php if (is_user_logged_in()) { ?>
-				
-				<a href="<?php the_permalink(); ?>?request=holiday&userid=<?php echo $current_user_ID ; ?>" class="btn btn-default btn-block btn-action"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>
-				<?php } else { ?>
-				<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>
-				<?php } ?>
-				
-				<?php if (current_user_can("administrator") || $current_user_ID == $rb_admin['ID']) { ?>
-				<a href="<?php echo get_permalink($calendar->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>View Holidays calendar</a>
-				<?php } ?>
-			</div>
-			
+			<!-- ACTION BUTTONS -->
+			<?php include (STYLESHEETPATH . '/_/inc/holiday-request/action-btns.php'); ?>
+						
 			<div class="rule"></div>
+			<!-- ADMIN ALERTS -->
+			<?php include (STYLESHEETPATH . '/_/inc/admin/notifications/holiday-alerts.php'); ?>
 			
-			<div class="alerts alerts-off">
-				<div class="alerts-wrap">
-				<!-- NOTIFICATION ALERTS -->
-				<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-request.php'); ?>
-				<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-action.php'); ?>
-				<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-approval.php'); ?>
-				<!-- NOTIFICATION ALERTS -->
-				</div>
+			<!-- REQUEST AND ACTION ALERTS -->
+			<div class="alerts">
+			<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/alerts.php'); ?>				
 			</div>
 			
 			<section class="page-section">
 				<div class="lists-wrap">
 					
 					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/data-list-query.php'); ?>
+					
+					<?php if ( !isset($_GET['admin_request']) ) { ?>
+					
+					<?php if ( $current_user_ID == $hb_admin['ID'] || current_user_can("administrator") ) { ?>
+					<!-- PENDING HOLIDAYS -->
+					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/pending-holidays-list.php'); ?>
+					<!-- PENDING HOLIDAYS END -->
+					<?php } ?>
+					
+					<?php } ?>
 					
 					<!-- OUT OF OFFICE SECTION -->
 					<?php include (STYLESHEETPATH . '/_/inc/holiday-request/out-of-office-list.php'); ?>

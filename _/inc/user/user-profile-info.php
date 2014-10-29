@@ -153,25 +153,17 @@
 			$holiday_request_pg = get_page_by_title("Holiday Requests");
 			$meetings_page = get_page_by_title("Meetings");
 			?>
-			<?php if ($current_user->ID != $rb_admin['ID']) { ?>
+			
+			<?php if ($current_user->ID != 60) { ?>
 			<div class="rule"></div>
 			<div class="action-btns col-red">
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="<?php echo get_permalink($holiday_request_pg->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-plane fa-lg"></i>Make a holiday request</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="<?php echo get_permalink($meetings_page->ID); ?>" title="Edit profile" class="btn btn-default btn-block"><i class="fa fa-clock-o fa-lg"></i>Book a meeting room</a>
-					</div>
-				</div>
+				<a href="?request=add_holiday&userid=<?php echo $current_user->ID; ?>" title="Make a holiday request" class="btn btn-default btn-block no-arrow btn-action"><i class="fa fa-plane fa-lg"></i>Make a holiday request</a>
+				<a href="<?php echo get_permalink($meetings_page->ID); ?>" title="Edit profile" class="btn btn-default btn-block no-arrow"><i class="fa fa-clock-o fa-lg"></i>Book a meeting room</a>
 			</div>
-			<div class="rule"></div>
 			<?php } ?>
 			
-			<?php } else { ?>
+			<?php } ?>
 			
 			<div class="rule"></div>	
-				
-			<?php } ?>
 
 </div>

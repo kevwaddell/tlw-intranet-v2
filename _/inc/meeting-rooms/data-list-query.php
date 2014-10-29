@@ -25,12 +25,14 @@ if (!isset($_GET['sortby'])) {
 		array(
 			'key' => 'start_time',
 			'value' => $today_start,
-			'compare' => '>'
+			'compare' => '>',
+			'type'	=> 'NUMERIC'
 		),
 		array(
 			'key' => 'end_time',
 			'value' => $today_end,
-			'compare' => '<'
+			'compare' => '<',
+			'type'	=> 'NUMERIC'
 		)
 	);
 }
@@ -42,7 +44,8 @@ if (isset($_GET['sortby']) && $_GET['sortby'] == "pending") {
 		array(
 			'key' => 'start_time',
 			'value' => $today_start,
-			'compare' => '>'
+			'compare' => '>',
+			'type'	=> 'NUMERIC'
 		)
 	);
 }
@@ -51,11 +54,11 @@ if (isset($_GET['sortby']) && $_GET['sortby'] == "pending") {
 if (isset($_GET['sortby']) && $_GET['sortby'] == "future") {
 	$args['post_status'] = 'publish';
 	$args['meta_query'] = array(
-		'relation' => 'AND',
 		array(
 			'key' => 'start_time',
 			'value' => $today_end,
-			'compare' => '>'
+			'compare' => '>',
+			'type'	=> 'NUMERIC'
 		)
 	);
 }
@@ -67,11 +70,11 @@ if (isset($_GET['sortby']) && $_GET['sortby'] == "past") {
 	$args['order'] = 'DESC';
 	
 	$args['meta_query'] = array(
-		'relation' => 'AND',
 		array(
 			'key' => 'start_time',
 			'value' => $today_start,
-			'compare' => '<'
+			'compare' => '<',
+			'type'	=> 'NUMERIC'
 		)
 	);
 }
@@ -82,7 +85,6 @@ if (isset($_GET['sortby']) && $_GET['sortby'] == "canceled") {
 	$args['order'] = 'ASC';
 	
 	$args['meta_query'] = array(
-		'relation' => 'AND',
 		array(
 			'key' => 'start_time',
 			'value' => $today_start,

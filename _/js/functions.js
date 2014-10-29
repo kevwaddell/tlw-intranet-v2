@@ -32,9 +32,14 @@
 	    $('input.date-picker').datepicker({
         // Consistent format with the HTML5 picker
         format: 'DD d MM yyyy',
-        weekStart: 1
+        weekStart: 1,
+        todayHighlight: true
 		});
     }
+    
+    if ( $('input.timepicker').length == 1) {
+     $('input.timepicker').timepicker();
+     }
     
     $('#ooo-carousel').carousel('pause');
     
@@ -177,30 +182,10 @@
     
     
     /* ACTION AND REQUEST FUNCTIONS */
-    
-    /* ADD ATTENDEE BUTTON */
-     $('body').on(event_type,'a#add_attendee', function(e){
-     	var href = $(this).attr("href");
-     	
-     	///console.log(href);
-     	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	} else {
-	     	$('.alerts').addClass('alerts-off');
-     	}
-     	
-     	$('.alerts').load(href+" .alerts-wrap", function(data){
-	     
-	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
-	     	
-     	});
-     	
-     	return false;
-     });
      
      /* ADD ATTENDEE FORM */
-     $('body').on('submit', 'form#add_attendee_form', function() {
+    /*
+ $('body').on('submit', 'form#add_attendee_form', function() {
 		 
 		 var action = $(this).attr('action');
 		 
@@ -210,24 +195,25 @@
 		 	
 		 	$('.alerts').empty();
 		 	$('.page-section').empty();
+		 	$('.loader').fadeIn('fast');
 		 	
 		 }).done(function(data){
-		 
-		 	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-		 	} 
 			
-			var alert = $( data ).find('.alerts-wrap');
+			$('.loader').fadeOut('fast');
+			var alert = $( data ).find('.actions-wrap');
 			var lists = $( data ).find('.lists-wrap');
 			
 			$(alert).appendTo('.alerts').hide().fadeIn('slow');
 			$(lists).appendTo('.page-section');
+			
 			 
 		 });
 		 
 		 return false;
 	});
+*/
 	
+		
 	/* MEETING EDIT FORM */
 	$('body').on('submit', 'form#edit_meeting_form', function() {
 		 
@@ -239,14 +225,12 @@
 		 	
 		 	$('.alerts').empty();
 		 	$('.page-section').empty();
+		 	$('.loader').fadeIn('fast');
 		 	
 		 }).done(function(data){
-		 
-		 	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-		 	} 
 			
-			var alert = $( data ).find('.alerts-wrap');
+			$('.loader').fadeOut('fast');
+			var alert = $( data ).find('.actions-wrap');
 			var lists = $( data ).find('.lists-wrap');
 			
 			$(alert).appendTo('.alerts').hide().fadeIn('slow');
@@ -258,7 +242,8 @@
 	});
 	
 	/* MEETING ADD FORM */
-	$('body').on('submit', 'form#add_meeting_form', function() {
+	/*
+$('body').on('submit', 'form#add_meeting_form', function() {
 		 
 		 var action = $(this).attr('action');
 		 
@@ -291,13 +276,15 @@
 		 
 		 return false;
 	});
+*/
 	
 	/* HOLIDAY ADD FORM */
-	$('body').on('submit', 'form#add_holiday_form', function() {
+	/*
+$('body').on('submit', 'form#add_holiday_form', function() {
 		 
 		 var action = $(this).attr('action');
 		 
-		//console.log(action);
+		console.log($(this).serialize());
 		 
 		 $.post( action, $(this).serialize(), function( data ) {
 		 	
@@ -305,10 +292,6 @@
 		 	
 		 }).done(function(data){
 		 
-		 	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-		 	} 
-			
 			var alert = $( data ).find('.alerts-wrap');
 						
 			$(alert).appendTo('.alerts').hide().fadeIn('slow');
@@ -326,27 +309,30 @@
 		 
 		 return false;
 	});
+*/
 	
 	/* TABLE LOADER BUTTON */
 	 $('body').on(event_type,'tr.actions-tr a.action-btn', function(e){
-     	var href = $(this).attr("href");
+     	
+     	var params = $(this).attr("href");
+     	var href = window.location.href;
+     	
+     	$('.loader').fadeIn('fast');
      	
      	$('.alerts').empty();
      	//console.log(href);
      	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	} 
-     	
-     	$('.alerts').load(href+" .alerts-wrap", function(data){
+     	$('.alerts').load(href+params+" .actions-wrap", function(data){
 	     
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
+	     $('.loader').fadeOut('fast');
 	     
 	      if ( $(this).find('input.date-picker').length == 1) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
-	        weekStart: 1
+	        weekStart: 1,
+	        todayHighlight: true
 			});
 		 }
 	     	
@@ -356,23 +342,30 @@
      });
      
      	/* BUTTON ACTIONS LOADER BUTTON */
-	 $('body').on(event_type,'.alert a.action-btn', function(e){
-     	var href = $(this).attr("href");
+	 $('body').on(event_type,'.alert a.btn-action', function(e){
+     	
+     	var params = $(this).attr("href");
+     	var href = window.location.href;
      	
      	//console.log(href);
      	
      	$('.alerts').empty();
      	//console.log(href);
+     	$('.loader').fadeIn('fast');
      	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	} 
-     	
-     	$('.alerts').load(href+" .alerts-wrap", function(data){
-     	
-     	//console.log(data);
+     	$('.alerts').load(href+params+" .actions-wrap", function(data){
 	     
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
+	     $('.loader').fadeOut('fast');
+	     
+	     if ( $(this).find('input.date-picker').length == 1) {
+		    $('input.date-picker').datepicker({
+	        // Consistent format with the HTML5 picker
+	        format: 'DD d MM yyyy',
+	        weekStart: 1,
+	        todayHighlight: true
+			});
+		 }
 	     	
      	});
      	
@@ -389,10 +382,9 @@
      	
      	if (query.length == 0) {
 	    
-		    $('.alerts-wrap').fadeOut('slow', function(){
-		     $(this).removeAttr('style').empty();	
-		     $('.alerts').addClass('alerts-off');
-	     	});
+		    $('.alerts').find('.actions-wrap').fadeOut('slow', function(){
+	    		$('.alerts').empty();
+			});
 	     	
 	 	return false;
 
@@ -403,9 +395,8 @@
      /* ADD POST CANCEL BUTTON */
      $('body').on(event_type,'.alert button.close-btn', function(e){
 	    
-	    $('.alerts-wrap').fadeOut('slow', function(){
-	     $(this).removeAttr('style').empty();	
-	     $('.alerts').addClass('alerts-off');
+	   $('.alerts').find('.actions-wrap').fadeOut('slow', function(){
+	    	$('.alerts').empty();
      	});
 	     	
 	 	return false;
@@ -419,14 +410,10 @@
      	var href = $(this).attr("href");
      	var query = window.location.search;
      	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	} 
-     	
      	if (query.length == 0) {
 	    
-		    $('.alerts-wrap').fadeOut('slow', function(){
-		     $(this).removeAttr('style').empty();	
+		    $('.alerts').fadeOut('slow', function(){
+		     $('.alerts').empty();	
 	     	});
      	
 	     	$('.page-section').load(href+" .lists-wrap", function(data){
@@ -434,8 +421,6 @@
 		     $(this).find('.lists-wrap').hide().fadeIn('slow');
 		     	
 	     	});
-	     	
-	     	$('.alerts').addClass('alerts-off');
 	 	
 	 	return false;
 
@@ -447,17 +432,22 @@
     
      $('body').on(event_type,'.action-btns a.edit-meeting', function(e){
      	
-     	var href = $(this).attr("href");
+     	var params = $(this).attr("href");
+     	var href = window.location.href;
+     	
+     	$('.loader').fadeIn('fast');
 	    
-	    $('.meeting-details').load(href+" .meeting-details-wrap", function(data){
+	    $('.meeting-details').load(href+params+" .meeting-details-wrap", function(data){
 	     
 	     $(this).find('.meeting-details-wrap').hide().fadeIn('slow');
+	     $('.loader').fadeOut('fast');
 	     
 	     if ( $(this).find('input#meeting_date').length == 1) {
 		    $('input#meeting_date').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
-	        weekStart: 1
+	        weekStart: 1,
+	        todayHighlight: true
 			});
 		 }
 	     	
@@ -471,24 +461,38 @@
       
       $('body').on(event_type,'.action-btns a.btn-action', function(e){
      	
-     	var href = $(this).attr("href");
+     	var params = $(this).attr("href");
+     	var href = window.location.href;
      	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	}
+     	//console.log(href+params);
+     	
+     	$('.loader').fadeIn('fast');
      		    
-	 	$('.alerts').load(href+" .alerts-wrap", function(data){
-	     
-	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
+	 	$('.alerts').load(href+params+" .actions-wrap", function(data, status, xhr){
+	 	
+	 	//console.log(status);
+	 	//console.log($(this));
+	 	
+	 	if (status == "success") {
+		 
+		 $('.loader').fadeOut('fast');
+		 $(this).hide().fadeIn('fast');
 	     
 	      if ( $(this).find('input.date-picker').length == 1) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
-	        weekStart: 1
+	        weekStart: 1,
+	        todayHighlight: true
 			});
 		 }
-	     	
+		 
+		 if ($(this).find('input.timepicker').length == 1) {
+			 $('input.timepicker').timepicker();
+		 }
+     
+	 	}
+	
      	});   
      	  	
 	 	return false;
@@ -499,15 +503,21 @@
       
       $('body').on(event_type,'.post-actions a.btn-action', function(e){
      	
-     	var href = $(this).attr("href");
-     	
-     	if ($('.alerts').hasClass('alerts-off')) {
-	     	$('.alerts').removeClass('alerts-off');
-     	}
+     	var params = $(this).attr("href");
+     	var href = window.location.href;
      		    
-	 	$('.alerts').load(href+" .alerts-wrap", function(data){
+	 	$('.alerts').load(href+params+" .actions-wrap", function(data){
 	     
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
+	     
+	     if ( $(this).find('input.date-picker').length == 1) {
+		    $('input.date-picker').datepicker({
+	        // Consistent format with the HTML5 picker
+	        format: 'DD d MM yyyy',
+	        weekStart: 1,
+	        todayHighlight: true
+			});
+		 }
 
      	});   
      	  	

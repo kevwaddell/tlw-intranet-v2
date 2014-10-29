@@ -54,7 +54,7 @@
 								<th class="marker"><i class="fa fa-info-circle fa-lg"></i></th>
 								<th class="date-long">Start date</th>
 								<th class="date-long">End date</th>
-								<th>Number of days</th>
+								<th>Days</th>
 							</tr>
 						</thead>
 					
@@ -105,14 +105,14 @@
 											
 										<?php if ( $start_date > $today ) { ?>
 											<?php if ( $post->post_status == "pending") { ?>
-											<a href="<?php echo get_author_posts_url($user_id);?>?request=edit&holidayid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
+											<a href="<?php echo get_author_posts_url($user_id);?>?request=edit_holiday&holidayid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
 											<?php } ?>
 											
-											<a href="<?php echo get_author_posts_url($user_id);?>?request=cancel&holidayid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>	
+											<a href="<?php echo get_author_posts_url($user_id);?>?request=cancel_holiday&holidayid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>	
 										<?php } ?>		
 												
 										<?php if ( $end_date < $today || $post->post_status == "draft") { ?>
-											 <a href="<?php echo get_author_posts_url($user_id);?>?request=delete&holidayid=<?php echo get_the_ID();?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
+											 <a href="<?php echo get_author_posts_url($user_id);?>?request=delete_holiday&holidayid=<?php echo get_the_ID();?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
 										<?php } ?>
 	
 											

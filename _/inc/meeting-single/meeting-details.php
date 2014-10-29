@@ -1,7 +1,7 @@
 <div class="meeting-details">
 	<div class="meeting-details-wrap">
 	
-	<?php if (isset($_GET['request']) && $_GET['request'] == "edit") { 
+	<?php if (isset($_GET['request']) && $_GET['request'] == "edit_meeting") { 
 	$rooms_args = array('hide_empty' => false);
 	$rooms = get_terms('tlw_rooms_tax', $rooms_args);	
 	$start_split = explode(":", date('H:i', $start_time));

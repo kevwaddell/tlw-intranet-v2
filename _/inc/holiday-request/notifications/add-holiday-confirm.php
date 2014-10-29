@@ -1,5 +1,6 @@
-<?php if ( isset($_GET['holidayid']) && $_GET['action'] == "add_holiday") {
+<?php if ( isset($_GET['holidayid']) && $_GET['action'] == "confirm_holiday") {
 	
+	$cur_url = explode("?", $_SERVER['REQUEST_URI']);
 	$holiday_id = $_GET['holidayid'];
 	$holiday = get_post($holiday_id);
 	$start_date = get_field('holiday_start_date', $holiday_id);
@@ -7,8 +8,10 @@
 	$numdays = get_field('number_of_days', $holiday_id);
 	$booked_by = get_user_by('id', $holiday->post_author);
 	
+	//echo '<pre>';print_r(date("Ymd"));echo '</pre>';
+	
 	/* SET POST META */
-	if ( !($end_date < date('Ymd')) ) {
+	if ( $end_date > date("Ymd") ) {
 	include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-email.php');
 	}
 
@@ -16,7 +19,7 @@
 
 <div class="alert alert-success">
 
-	<?php if ( !($end_date < date('Ymd')) ) { ?>
+	<?php if ( $end_date > date("Ymd") ) { ?>
 	Your holiday request has been sent to<br><strong>Office Administration</strong> for approval.<br>
 	You will receive an email when your request has been approved.<br><br>
 	<?php } else { ?>
@@ -33,31 +36,10 @@
 	
 	<div class="action-btns">
 
-		<a href="<?php the_permalink(); ?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i>Continue</a>
+		<a href="<?php echo get_option('home'); ?><?php echo $cur_url[0]; ?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i>Continue</a>
 		
 	</div>
 	
 </div>
 
-<?php }  ?>
-
-<?php if ( isset($_GET['holidayid']) && $_GET['action'] == "cancel_holiday") {
-	
-	$holiday_id = $_GET['holidayid'];
-	wp_delete_post( $holiday_id, true );
-	
-?>
-<div class="alert alert-danger">
-	<?php if (!($end_date < date('Ymd'))) { ?>
-	Your holiday request has been canceled.<br><br>
-	<?php } else { ?>
-	Your holiday booking has been canceled.<br><br>
-	<?php } ?>
-	<div class="action-btns">
-
-		<a href="<?php the_permalink(); ?>" class="btn btn-danger btn-block"><i class="fa fa-check fa-lg"></i>Continue</a>
-		
-	</div>
-	
-</div>
 <?php }  ?>

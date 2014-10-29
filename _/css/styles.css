@@ -157,7 +157,7 @@ pre {
   left: 0px;
   position: fixed;
   z-index: 1000;
-  height: 100%;
+  height: 50%;
   width: 50%;
   overflow: auto;
   background-color: black;
@@ -2271,10 +2271,10 @@ figure.feat-img a:focus span.zoom-mask {
   width: 15%;
 }
 .page-section table thead.data-list-header th.date-long {
-  width: 35%;
+  width: 33%;
 }
 .page-section table thead.data-list-header th.name {
-  width: 30%;
+  width: 25%;
 }
 .page-section table thead.data-list-header th.booked-by,
 .page-section table thead.data-list-header th.email {
@@ -2392,7 +2392,7 @@ figure.feat-img a:focus span.zoom-mask {
 }
 .page-section .data-list-table .table td.name {
   border: none;
-  width: 30%;
+  width: 25%;
 }
 .page-section .data-list-table .table td.room {
   width: 15%;
@@ -2423,7 +2423,7 @@ figure.feat-img a:focus span.zoom-mask {
   width: 15%;
 }
 .page-section .data-list-table .table td.date-long {
-  width: 35%;
+  width: 33%;
 }
 .page-section .data-list-table .table td.booked-by,
 .page-section .data-list-table .table td.email {
@@ -3444,7 +3444,7 @@ body#user-page {
 .alert h2 {
   margin-top: 0px;
 }
-.alerts {
+.alerts .actions-wrap {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -3453,9 +3453,6 @@ body#user-page {
   background-color: #4b4b4b;
   background-color: rgba(74, 74, 74, 0.7);
   z-index: 1000;
-}
-.alerts.alerts-off {
-  display: none;
 }
 .alerts .alerts-wrap {
   text-align: center;
@@ -3478,6 +3475,9 @@ body#user-page {
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.alerts .alert.text-center {
+  text-align: center;
 }
 .alerts .errors {
   background-color: #fdcfe1;
@@ -3538,6 +3538,217 @@ body#user-page {
 }
 .modal-content .gform_button:hover {
   background-color: #918f8f;
+}
+.loader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #4b4b4b;
+  background-color: rgba(74, 74, 74, 0.9);
+  z-index: 1000;
+  display: none;
+}
+.loader on {
+  display: block;
+}
+#floatingBarsG {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -16.5px;
+  width: 30px;
+  height: 37px;
+}
+.blockG {
+  position: absolute;
+  background-color: #FFFFFF;
+  width: 5px;
+  height: 12px;
+  -moz-border-radius: 4px 4px 0 0;
+  -moz-transform: scale(0.4);
+  -moz-animation-name: fadeG;
+  -moz-animation-duration: 0.8s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: linear;
+  -webkit-border-radius: 4px 4px 0 0;
+  -webkit-transform: scale(0.4);
+  -webkit-animation-name: fadeG;
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: linear;
+  -ms-border-radius: 4px 4px 0 0;
+  -ms-transform: scale(0.4);
+  -ms-animation-name: fadeG;
+  -ms-animation-duration: 0.8s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-direction: linear;
+  -o-border-radius: 4px 4px 0 0;
+  -o-transform: scale(0.4);
+  -o-animation-name: fadeG;
+  -o-animation-duration: 0.8s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-direction: linear;
+  border-radius: 4px 4px 0 0;
+  transform: scale(0.4);
+  animation-name: fadeG;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+}
+#rotateG_01 {
+  left: 0;
+  top: 13px;
+  -moz-animation-delay: 0.3s;
+  -moz-transform: rotate(-90deg);
+  -webkit-animation-delay: 0.3s;
+  -webkit-transform: rotate(-90deg);
+  -ms-animation-delay: 0.3s;
+  -ms-transform: rotate(-90deg);
+  -o-animation-delay: 0.3s;
+  -o-transform: rotate(-90deg);
+  animation-delay: 0.3s;
+  transform: rotate(-90deg);
+}
+#rotateG_02 {
+  left: 4px;
+  top: 5px;
+  -moz-animation-delay: 0.4s;
+  -moz-transform: rotate(-45deg);
+  -webkit-animation-delay: 0.4s;
+  -webkit-transform: rotate(-45deg);
+  -ms-animation-delay: 0.4s;
+  -ms-transform: rotate(-45deg);
+  -o-animation-delay: 0.4s;
+  -o-transform: rotate(-45deg);
+  animation-delay: 0.4s;
+  transform: rotate(-45deg);
+}
+#rotateG_03 {
+  left: 13px;
+  top: 1px;
+  -moz-animation-delay: 0.5s;
+  -moz-transform: rotate(0deg);
+  -webkit-animation-delay: 0.5s;
+  -webkit-transform: rotate(0deg);
+  -ms-animation-delay: 0.5s;
+  -ms-transform: rotate(0deg);
+  -o-animation-delay: 0.5s;
+  -o-transform: rotate(0deg);
+  animation-delay: 0.5s;
+  transform: rotate(0deg);
+}
+#rotateG_04 {
+  right: 4px;
+  top: 5px;
+  -moz-animation-delay: 0.6s;
+  -moz-transform: rotate(45deg);
+  -webkit-animation-delay: 0.6s;
+  -webkit-transform: rotate(45deg);
+  -ms-animation-delay: 0.6s;
+  -ms-transform: rotate(45deg);
+  -o-animation-delay: 0.6s;
+  -o-transform: rotate(45deg);
+  animation-delay: 0.6s;
+  transform: rotate(45deg);
+}
+#rotateG_05 {
+  right: 0;
+  top: 13px;
+  -moz-animation-delay: 0.7s;
+  -moz-transform: rotate(90deg);
+  -webkit-animation-delay: 0.7s;
+  -webkit-transform: rotate(90deg);
+  -ms-animation-delay: 0.7s;
+  -ms-transform: rotate(90deg);
+  -o-animation-delay: 0.7s;
+  -o-transform: rotate(90deg);
+  animation-delay: 0.7s;
+  transform: rotate(90deg);
+}
+#rotateG_06 {
+  right: 4px;
+  bottom: 3px;
+  -moz-animation-delay: 0.8s;
+  -moz-transform: rotate(135deg);
+  -webkit-animation-delay: 0.8s;
+  -webkit-transform: rotate(135deg);
+  -ms-animation-delay: 0.8s;
+  -ms-transform: rotate(135deg);
+  -o-animation-delay: 0.8s;
+  -o-transform: rotate(135deg);
+  animation-delay: 0.8s;
+  transform: rotate(135deg);
+}
+#rotateG_07 {
+  bottom: 0;
+  left: 13px;
+  -moz-animation-delay: 0.9s;
+  -moz-transform: rotate(180deg);
+  -webkit-animation-delay: 0.9s;
+  -webkit-transform: rotate(180deg);
+  -ms-animation-delay: 0.9s;
+  -ms-transform: rotate(180deg);
+  -o-animation-delay: 0.9s;
+  -o-transform: rotate(180deg);
+  animation-delay: 0.9s;
+  transform: rotate(180deg);
+}
+#rotateG_08 {
+  left: 4px;
+  bottom: 3px;
+  -moz-animation-delay: 1s;
+  -moz-transform: rotate(-135deg);
+  -webkit-animation-delay: 1s;
+  -webkit-transform: rotate(-135deg);
+  -ms-animation-delay: 1s;
+  -ms-transform: rotate(-135deg);
+  -o-animation-delay: 1s;
+  -o-transform: rotate(-135deg);
+  animation-delay: 1s;
+  transform: rotate(-135deg);
+}
+@-moz-keyframes fadeG {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@-webkit-keyframes fadeG {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@-ms-keyframes fadeG {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@-o-keyframes fadeG {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@keyframes fadeG {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #ffffff;
+  }
 }
 /* --------------------------- */
 /* Form styles */

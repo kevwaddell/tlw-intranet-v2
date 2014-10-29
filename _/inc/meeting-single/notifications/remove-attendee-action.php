@@ -1,4 +1,4 @@
-<?php if (isset($_GET['action']) && $_GET['action'] == "remove") { 
+<?php if (isset($_GET['action']) && $_GET['action'] == "remove_attendee") { 
 $user = get_user_by('id', $_GET['user']);
 $user_meta = get_user_meta($_GET['user']);
 
@@ -12,7 +12,7 @@ $user_meta = get_user_meta($_GET['user']);
 	
 ?>
 
-<div class="alert alert-danger">
+<div class="alert alert-danger text-center">
 	Are you sure you want to remove <strong><?php echo $name; ?></strong> from the <strong><?php echo $description; ?></strong> meeting.<br><br>
 
 <div class="action-btns">
@@ -21,11 +21,11 @@ $user_meta = get_user_meta($_GET['user']);
 		<div class="col-xs-6">
 		
 			<?php if ( isset($_GET['user_key']) ) { ?>
-			<a href="<?php the_permalink(); ?>?action=remove_yes&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-danger btn-block remove_yes action-btn"><i class="fa fa-check fa-lg"></i> Yes</a>
+			<a href="?action=delete_attendee&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-check fa-lg"></i> Yes</a>
 			<?php }  ?>
 			
 			<?php if ( isset($_GET['external_key']) ) { ?>
-			<a href="<?php the_permalink(); ?>?action=remove_yes&external_key=<?php echo $_GET['external_key']; ?>" class="btn btn-danger btn-block action-btn"><i class="fa fa-check fa-lg"></i> Yes</a>
+			<a href="?action=delete_attendee&external_key=<?php echo $_GET['external_key']; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-check fa-lg"></i> Yes</a>
 			<?php }  ?>
 		
 		</div>

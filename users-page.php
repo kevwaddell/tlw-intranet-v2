@@ -7,26 +7,41 @@ Template Name: Users list page
 <?php get_header(); ?>
 
 <?php 
+$excluded_users = array(1, 60);
+
+$all_users 	= get_users();
+
+foreach ($all_users as $u) {
+//print_r($u->caps);echo '<br>';
+	if (empty($u->roles)) {
+	//print_r($u->ID);echo '<br>';
+	array_push($excluded_users, $u->ID);
+	}
+}
+
 $number 	= 20;
 $paged 		= (get_query_var('paged')) ? get_query_var('paged') : 1;
 $offset 	= ($paged - 1) * $number;
+
 $users_args = array(
-'exclude'	=> array(1, 60)
+'exclude'	=> $excluded_users
 );
-$users 		= get_users($users_args);
+$users 	= get_users($users_args);
+
 $query_args = array(
 'offset'	=> $offset,
 'number'	=> $number,
-'exclude'	=> array(1, 60),
+'exclude'	=> $excluded_users,
 'meta_key'	=> 'last_name',
 'orderby'	=> 'meta_value'
 );
+
 $query 		= new WP_User_Query($query_args);
 $total_users = count($users);
-$total_query = count($query);
+$total_query = count($query->total_users);
 $total_pages = intval($total_users / $number) + 1;
 $user_counter = 0;
-//echo '<pre>';print_r($total_users);echo '</pre>';
+//echo '<pre>';print_r($users);echo '</pre>';
 $icon = get_field('icon');
 $color = get_field('col');
 ?>
@@ -60,6 +75,7 @@ $color = get_field('col');
 		
 		<?php foreach ($query->results as $user) { 
 		$user_counter++;	
+		//echo '<pre>';print_r($query);echo '</pre>';
 		?>
 		
 		<div class="col-xs-5ths">

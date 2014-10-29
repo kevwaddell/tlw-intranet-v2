@@ -1,4 +1,4 @@
-<?php if ( isset($_POST['userid']) ) { 
+<?php if ( isset($_POST['add_meeting']) ) { 
 
 $current_user = get_user_by('id', $_POST['userid']);
 //echo '<pre>';print_r($_POST);echo '</pre>';
@@ -53,33 +53,27 @@ if (count($errors) == 0) {
 	
 	//echo '<pre>';print_r($post_args);echo '</pre>';
 	
-	$post_id = wp_insert_post($post_args);
+	$m_id = wp_insert_post($post_args);
 	
 	/* SET ROOM TAX */
-	wp_set_post_terms( $post_id, array($meeting_room), 'tlw_rooms_tax');
+	wp_set_post_terms( $m_id, array($meeting_room), 'tlw_rooms_tax');
 	
-	update_post_meta($post_id, '_meeting_description', 'field_5395d707861af'); 
-	update_post_meta($post_id, 'meeting_description', $description); 
-	update_post_meta($post_id, '_meeting_date', 'field_533be32c54fbc');  
-	update_post_meta($post_id, 'meeting_date', $meeting_date);  
-	update_post_meta($post_id, '_start_time', 'field_533be5353ffec');  
-	update_post_meta($post_id, 'start_time', $start_time);  
-	update_post_meta($post_id, '_end_time', 'field_533be5d13ffed'); 
-	update_post_meta($post_id, 'end_time', $end_time); 
+	update_post_meta($m_id, '_meeting_description', 'field_5395d707861af'); 
+	update_post_meta($m_id, 'meeting_description', $description); 
+	update_post_meta($m_id, '_meeting_date', 'field_533be32c54fbc');  
+	update_post_meta($m_id, 'meeting_date', $meeting_date);  
+	update_post_meta($m_id, '_start_time', 'field_533be5353ffec');  
+	update_post_meta($m_id, 'start_time', $start_time);  
+	update_post_meta($m_id, '_end_time', 'field_533be5d13ffed'); 
+	update_post_meta($m_id, 'end_time', $end_time); 
 	
 }
 
 ?>
 
-<?php if (count($errors) == 0) { 
-if (is_page()) {
-$page_id = $post->ID;	
-} else {
-$page_id = $meetings->ID;
-}	
-?>
+<?php if (count($errors) == 0) { ?>
 
-<div class="alert alert-success">
+<div class="alert alert-success text-center">
 	Please confirm your meeting details below.<br><br>
 	
 	<strong class="caps">Meeting details:</strong><br>
@@ -94,10 +88,10 @@ $page_id = $meetings->ID;
 	<div class="action-btns">
 		<div class="row">
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=add_booking&meetingid=<?php echo $post_id; ?>" class="btn btn-success btn-block action-btn"><i class="fa fa-check fa-lg"></i>Confirm</a>
+			<a href="?action=add_meeting&meetingid=<?php echo $m_id; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i>Confirm</a>
 		</div>
 		<div class="col-xs-6">
-			<a href="<?php echo get_permalink($page_id); ?>?action=cancel_booking&meetingid=<?php echo $post_id; ?>" class="btn btn-danger btn-block action-btn"><i class="fa fa-times fa-lg"></i>Cancel</a>
+			<a href="?action=cancel_add_meeting&meetingid=<?php echo $m_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
 		</div>
 	</div>
 	

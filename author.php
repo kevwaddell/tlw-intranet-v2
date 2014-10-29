@@ -11,6 +11,11 @@
 <?php include (STYLESHEETPATH . '/_/inc/user/user-profile-info.php'); ?>
 <!-- USER PROFILE INFO END -->
 
+<div class="alerts">
+	<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/alerts.php'); ?>
+</div>
+
+
 <!-- MEETINGS DATA LIST -->
 
 <?php if ($current_user->ID == $user_id || current_user_can("administrator") ) { ?>

@@ -1,4 +1,4 @@
-<div class="page-section section-open" style="margin-top: 10px;">
+<div class="page-section section-open">
 	
 	<h3 class="section-header"><i class="fa fa-plane fa-lg"></i>Out of office</h3>
 	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
@@ -130,7 +130,9 @@
 		</div>
 
 		
-		<?php endif; ?>
+		<?php endif; 
+		wp_reset_query();	
+		?>
 			
 		</div><!-- Section inner wrap -->
 		

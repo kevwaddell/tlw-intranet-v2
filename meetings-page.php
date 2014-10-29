@@ -17,10 +17,10 @@ $color = get_field('col', $meetings->ID);
 $today = date('Ymd');
 $today_start = strtotime("Today 08:00");
 $today_end = strtotime("Today 18:00");
-$ics_options = get_option('ICSAdminOptions');
-$ics_files = unserialize($ics_options[ics_files]);
 $rooms = get_terms('tlw_rooms_tax', 'hide_empty=0');
 $rb_admin = get_field('rb_admin', 'options');
+$ical_page = get_page_by_title("Cal feed");
+$ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 /*
 echo '<pre>';
 print_r($today_start."<br>");
@@ -52,13 +52,18 @@ echo '</pre>';
 						
 	<div class="rule"></div>
 	
-	<?php if (isset($_GET['request']) && $_GET['request'] == "booking_request") { ?>
+	<?php if (isset($_GET['admin_request']) && $_GET['admin_request'] == "booking_request") { ?>
 	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/booking-request-action.php'); ?>
+	<?php include (STYLESHEETPATH . '/_/inc/admin/notifications/admin-meeting-request.php'); ?>
 	
 	<div class="rule"></div>
 
 	<?php } ?>
+	
+	<!-- REQUEST AND ACTION ALERTS -->
+	<div class="alerts">
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/alerts.php'); ?>
+	</div>
 	
 	<section class="page-section">
 		<div class="lists-wrap">
@@ -73,34 +78,6 @@ echo '</pre>';
 	</section>
 	
 	
-	<div class="alerts alerts-off">
-		<div class="alerts-wrap">
-	<!-- NOTIFICATION ALERTS -->
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-request.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-action.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-approval.php'); ?>
-				
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/approve-meeting-request.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/approve-meeting-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/reject-meeting-request.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/reject-meeting-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/cancel-meeting-request.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/cancel-meeting-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/notify-attendees-cancel-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/delete-meeting-request.php'); ?>
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/delete-meeting-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/edit-meeting-action.php'); ?>
-	
-	<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/update-meeting-action.php'); ?>
-		<!-- NOTIFICATION ALERTS -->
-		</div>
-	</div>
-
 
 </article>
 

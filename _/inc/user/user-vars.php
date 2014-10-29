@@ -66,4 +66,5 @@ $user_id = get_the_author_meta( "ID", $curauth->ID );
 $user_email = get_the_author_meta( "user_email", $curauth->ID );
 //echo '<pre>';print_r($user_id);echo '</pre>';
 $rb_admin = get_field('rb_admin', 'options');
+$hb_admin = get_field('hb_admin', 'options');
 ?>

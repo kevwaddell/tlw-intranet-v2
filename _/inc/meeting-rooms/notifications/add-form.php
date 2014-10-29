@@ -1,14 +1,8 @@
 <?php 
-if (is_page()) {
-$send_id = $post->ID;	
-} else {
-$send_id = $meetings->ID;
-}
+$form_url = explode("?", $_SERVER['REQUEST_URI']);
+?>
 
-//echo '<pre>';print_r($send_id);echo '</pre>';
- ?>
-
-<form action="<?php echo get_permalink($send_id); ?>" method="post" class="meeting-form" id="add_meeting_form">
+<form action="<?php echo get_option('home'); ?><?php echo $form_url[0]; ?>" method="post" class="meeting-form" id="add_meeting_form">
 
 	<input type="hidden" name="userid" id="userid" value="<?php echo $_GET['userid']; ?>">
 	
@@ -72,7 +66,7 @@ $send_id = $meetings->ID;
 		<div class="row">
 			<div class="col-xs-6">
 				<?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
-				<input type="submit" value="Send request" class="btn btn-info btn-block">
+				<input type="submit" value="Send request" name="add_meeting" class="btn btn-info btn-block">
 			</div>
 			<div class="col-xs-6">
 			<a href="<?php echo get_permalink($send_id); ?>" class="btn btn-info btn-block cancel-btn" title="Cancel">Cancel</a>

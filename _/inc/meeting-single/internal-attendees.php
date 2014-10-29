@@ -29,7 +29,9 @@
 							<tr id="internal_attendee_<?php echo $key; ?>" class="info-tr">
 								<?php if (is_user_logged_in()) { ?>
 								<td class="settings">
+									<?php if ( current_user_can("administrator") || $post->post_author == $current_user_ID || $staff_attendee['attendee_staff']['ID'] == $current_user_ID) { ?>
 									<a href="#" id="view-btn-<?php echo $key; ?>"class="btn btn-default settings"><i class="fa fa-cogs"></i></a>
+									<?php } ?>
 								</td>
 								<?php } ?>
 								<td class="marker <?php echo $staff_attendee['status'];?>">
@@ -61,21 +63,21 @@
 										<?php if ( current_user_can("administrator") || $post->post_author == $current_user_ID) { ?>
 										
 										<?php if ( $start_time > $now && $staff_attendee['status'] == "pending" ) { ?>
-										<a href="<?php the_permalink(); ?>?action=notify&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default notify action-btn"><i class="fa fa-bullhorn"></i> Notify staff member</a>
+										<a href="?action=notify_attendee&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default notify action-btn"><i class="fa fa-bullhorn"></i> Notify staff member</a>
 										<?php } ?>
 										
-										<a href="<?php the_permalink(); ?>?action=remove&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
+										<a href="?action=remove_attendee&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o"></i> Delete</a>
 										
 										<?php } ?>
 										
 										<?php if ($start_time > $now ) { ?>
 										
-										<?php if ( ( $current_user_ID == $staff_attendee['attendee_staff']['ID'] || current_user_can("administrator") ) && ( $staff_attendee['status'] == "pending" || $staff_attendee['status'] == "rejected") ) { ?>	
-										<a href="<?php the_permalink(); ?>?action=accept&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default accept action-btn"><i class="fa fa-thumbs-o-up"></i> Accept invite</a>
+										<?php if ( $current_user_ID == $staff_attendee['attendee_staff']['ID'] && ( $staff_attendee['status'] == "pending" || $staff_attendee['status'] == "rejected") ) { ?>	
+										<a href="?action=attendee_accept&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default accept action-btn"><i class="fa fa-thumbs-o-up"></i> Accept invite</a>
 										<?php } ?>
 										
-										<?php if (( $current_user_ID == $staff_attendee['attendee_staff']['ID'] || current_user_can("administrator") ) && ( $staff_attendee['status'] == "accepted" || $staff_attendee['status'] == "pending") ) { ?>	
-										<a href="<?php the_permalink(); ?>?action=reject&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject invite</a>
+										<?php if ( $current_user_ID == $staff_attendee['attendee_staff']['ID'] && ( $staff_attendee['status'] == "accepted" || $staff_attendee['status'] == "pending") ) { ?>	
+										<a href="?action=attendee_reject&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject invite</a>
 										<?php } ?>
 										
 										<?php } ?>

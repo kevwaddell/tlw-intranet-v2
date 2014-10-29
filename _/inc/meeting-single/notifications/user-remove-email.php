@@ -1,5 +1,5 @@
 <!-- REJECT NOTIFICATION -->
-<?php if (isset($_GET['action']) && $_GET['action'] == 'remove_yes') { 
+<?php if (isset($_GET['action']) && $_GET['action'] == 'delete_attendee') { 
 $user = get_user_by('id', $_GET['user']);
 $user_meta = get_user_meta($_GET['user']);
 $from_name = $booked_by->data->display_name;
@@ -12,13 +12,7 @@ $attendees_staff_total = $total_int;
 	$name = $user->data->display_name;
 	$field_staff = get_post_meta(get_the_ID(), '_attendees_staff_'.$_GET['user_key'].'_attendee_staff', true);
 	$field_status = get_post_meta(get_the_ID(), '_attendees_staff_'.$_GET['user_key'].'_status', true);
-	
-		if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
-		$send_to = 	$user->data->user_email;
-		} else {
-		$send_to = 	"kwaddelltlw@icloud.com";
-		}
-		
+			
 		if ($attendees_staff_total > 1 ) {
 			
 			//echo '<pre>';
@@ -65,11 +59,10 @@ $attendees_staff_total = $total_int;
 			delete_post_meta(get_the_ID(), "_attendees_staff_".$_GET['user_key']."_status");
 		}
 		
-	update_post_meta(get_the_ID(), 'attendees_staff', $attendees_staff_total-1);
+		update_post_meta(get_the_ID(), 'attendees_staff', $attendees_staff_total-1);
 	
 	    if ($start_time > $today_time ) {
 		
-			$to = $send_to;
 			$subject = "TLW Solicitors meeting notification from ".$from_name;
 			$message = "<h3>This is a notification from ".$from_name.".</h3>";
 			$message .= "You do not need to attend the <strong>'". $description ."'</strong> meeting ";
@@ -82,7 +75,11 @@ $attendees_staff_total = $total_int;
 				
 			add_filter( 'wp_mail_content_type','wps_set_content_type' );
 			
-			wp_mail( $to, $subject, $message, $headers );
+				if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
+				wp_mail( $user->data->user_email, $subject, $message, $headers );
+				} else {
+				wp_mail( "kwaddelltlw@icloud.com", $subject, $message, $headers );
+				}
 			
 			remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 		
@@ -127,7 +124,7 @@ $attendees_staff_total = $total_int;
 	}
 
 ?>
-<div class="alert alert-danger">
+<div class="alert alert-danger text-center">
 	
 	<strong><?php echo $name; ?></strong> has been removed from the attendee list.<br>
 	
@@ -140,7 +137,7 @@ $attendees_staff_total = $total_int;
 	<?php } ?>
 	
 	<div class="action-btns">
-	<a href="<?php the_permalink(); ?>" class="btn btn-danger btn-block refresh"><i class="fa fa-refresh fa-lg"></i>Refresh attendees list</a>
+	<a href="<?php the_permalink(); ?>" class="btn btn-danger btn-block">Continue</a>
 	</div>
 </div>
 <?php } ?>

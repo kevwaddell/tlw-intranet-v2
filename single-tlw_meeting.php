@@ -13,7 +13,7 @@
 						<a href="<?php echo get_permalink($meetings->ID); ?>" class="btn btn-default btn-block no-arrow"><i class="fa fa-angle-double-left fa-lg"></i>Back to <?php echo $meetings->post_title; ?></a>		
 					</div>	
 					<div class="col-xs-6">
-						<a href="<?php echo get_permalink($calendar->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>View calendar</a>
+						<a href="<?php echo get_permalink($ical_page->ID); ?>?meetingid=<?php echo get_the_ID(); ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>Add to calendar</a>
 					</div>
 				</div>	
 			</div>
@@ -35,24 +35,20 @@
 
 			<div class="rule"></div>
 			
-			<!-- NOTIFICATION ALERTS -->
-			<div class="alerts alerts-off">
-				<div class="alerts-wrap">
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/enter-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/add-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/added-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/remove-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/notify-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/attendee-approval-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-accept-email.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-reject-email.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-remove-email.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/errors-attendee-action.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/cancel-meeting-request.php'); ?>
-					<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-add-to-favourites.php'); ?>
-				</div>
+			<!-- EXTERNAL REQUEST ALERTS -->
+			<?php if (isset($_GET['user_request']) && $_GET['user_request'] == "user_approval") { ?>
+	
+			<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/external-alerts.php'); ?>
+	
+			<div class="rule"></div>
+
+			<?php } ?>
+
+			
+			<!-- REQUEST AND ACTION ALERTS -->
+			<div class="alerts">
+				<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/alerts.php'); ?>
 			</div>
-			<!-- NOTIFICATION ALERTS -->
 			
 			<section id="attendees-section" class="page-section">
 			

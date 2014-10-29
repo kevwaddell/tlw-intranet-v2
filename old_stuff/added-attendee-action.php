@@ -19,7 +19,7 @@ $user_meta = get_user_meta($_GET['user']);
 	<?php if ($start_time > $now) { ?>
 	<div class="row">
 		<div class="col-xs-6">
-			<a href="<?php the_permalink(); ?>?action=notify&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-success btn-block notify action-btn"><i class="fa fa-bullhorn fa-lg"></i> Notify now</a>
+			<a href="?action=notify_attendee&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-success btn-block notify btn-action"><i class="fa fa-bullhorn fa-lg"></i> Notify now</a>
 		</div>
 		<div class="col-xs-6">
 			<a href="<?php the_permalink(); ?>" class="btn btn-success btn-block"><i class="fa fa-clock-o fa-lg"></i> Notify later</a>

@@ -30,14 +30,9 @@ $extra_content = get_field('extra_content');
 			<div class="rule"></div>
 			<?php } ?>
 			
-			<div class="alerts alerts-off">
-				<div class="alerts-wrap">
-				<!-- NOTIFICATION ALERTS -->
-				<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-request.php'); ?>
-				<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-action.php'); ?>
-				<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-meeting-approval.php'); ?>
-				<!-- NOTIFICATION ALERTS -->
-				</div>
+			<!-- REQUEST AND ACTION ALERTS -->
+			<div class="alerts">
+				<?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/alerts.php'); ?>
 			</div>
 			
 			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:""; ?>">

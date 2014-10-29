@@ -1,10 +1,18 @@
-<?php if (isset($_GET['request']) && $_GET['request'] == "add_attendee") { 
-
+<?php 
 //array_push($excluded_staff, 1);
-$excluded_staff[] = 1;
+$excluded_staff = array(1);
 
 if ($rb_admin['ID'] == '60') {
-$excluded_staff[] = $rb_admin['ID'];	
+array_push($excluded_staff, $rb_admin['ID']);	
+}
+
+$all_users 	= get_users();	
+
+foreach($all_users as $au) {
+	if (empty($au->roles)) {
+	//print_r($u->ID);echo '<br>';
+	array_push($excluded_staff, $au->ID);
+	}
 }
 
 $users_args = array(
@@ -20,8 +28,11 @@ $client_field_key = "field_539878dcfecd9";
 $client_attendees_total = $total_ext;
 ?>
 
-<a name="add-attendee" id="add-attendee"></a>
-<div class="alert alert-info">
+<!--
+<?php echo ($_POST['staff_member'] == $user->data->ID) ? ' selected':''; ?>
+<?php echo ($_POST['attendee_type'] == "internal") ? ' external':''; ?>
+<?php echo ($_POST['attendee_type'] == "internal") ? ' selected':''; ?>
+-->
 
 <form action="<?php the_permalink(); ?>" method="post" id="add_attendee_form">
 	
@@ -29,14 +40,14 @@ $client_attendees_total = $total_ext;
 	
 		<select class="form-control" id="attendee_type" name="attendee_type">
 			<option value="0">Choose the type of attendee</option>
-			<option value="internal">Internal</option>
-			<option value="external">External</option>
+			<option value="internal"<?php echo ($_POST['attendee_type'] == "internal") ? ' selected':''; ?>>Internal</option>
+			<option value="external"<?php echo ($_POST['attendee_type'] == "external") ? ' selected':''; ?>>External</option>
 		</select>
 		<span class="help-block">Choose either internal staff or external client.</span>
 		
 	</div>
 	
-	<div id="internal_attendee" class="form-group hidden">
+	<div id="internal_attendee" class="form-group<?php echo (isset($_POST['attendee_type']) && $_POST['attendee_type'] != "0") ? '':' hidden'; ?>">
 			
 		<input type="hidden" value="<?php echo $staff_attendees_total; ?>" name="staff_key">
 		<input type="hidden" value="<?php echo $staff_field_key; ?>" name="staff_field_key">
@@ -47,7 +58,7 @@ $client_attendees_total = $total_ext;
 			<option value="0">Choose staff member</option>
 			
 			<?php foreach ($users as $user) { ?>
-			<option value="<?php echo $user->data->ID; ?>"><?php echo $user->data->display_name; ?></option>
+			<option value="<?php echo $user->data->ID; ?>"<?php echo ($_POST['staff_member'] == $user->data->ID) ? ' selected':''; ?>><?php echo $user->data->display_name; ?></option>
 			<?php } ?>
 		</select>
 		<span class="help-block">Choose an internal staff member.</span>
@@ -69,13 +80,13 @@ $client_attendees_total = $total_ext;
 		
 			<div class="col-xs-6">
 				<?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
-				<input type="submit" id="submit-attendee" value="Add Attendee" class="btn btn-info btn-block">
+				<input type="submit" id="submit-attendee" name="add_attendee" value="Add Attendee" class="btn btn-info btn-block">
 			
 			</div>
 			
 			<div class="col-xs-6">
 	
-				<a href="<?php the_permalink(); ?>" class="btn btn-info btn-block"><i class="fa fa-times fa-lrg"></i>Cancel</a>
+				<button class="btn btn-info btn-block close-btn"><i class="fa fa-times fa-lrg"></i>Cancel</button>
 			
 			</div>
 	
@@ -84,12 +95,3 @@ $client_attendees_total = $total_ext;
 	</div>
 
 </form>
-
-</div>
-
-<div class="rule"></div>
-
-
-
-
-<?php }  ?>

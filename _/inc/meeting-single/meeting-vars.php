@@ -22,13 +22,14 @@ $now = strtotime("today ".sprintf('%02d', $now_local[tm_hour]).":".sprintf('%02d
 date_default_timezone_set($default_tz);
 $icon = get_field('icon', $meetings->ID);
 $color = get_field('col', $meetings->ID);
+$today_time = time();
+$ical_page = get_page_by_title("Single ical event");
+$ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 
 /*
 echo '<pre>';
-print_r($start_time."<br>");
-print_r(gmdate("D jS F Y H:i", $start_time)."<br>");
-print_r(date("D jS F Y H:i", $today_time)."<br>");
-print_r($today_time);
+print_r($today_time."<br>");
+print_r($start_time);
 echo '</pre>';
 */
 

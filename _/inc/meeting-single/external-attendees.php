@@ -41,7 +41,7 @@
 									
 							<tr class="actions-tr actions-tr-closed" id="external-actions-tr-<?php echo $key; ?>">
 								<td colspan="3">
-									<a href="<?php the_permalink(); ?>?action=remove&external_key=<?php echo $key; ?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o fa-lg"></i> Delete</a>
+									<a href="<?php the_permalink(); ?>?action=remove_attendee&external_key=<?php echo $key; ?>" class="btn btn-default delete action-btn"><i class="fa fa-trash-o fa-lg"></i> Delete</a>
 								</td>
 							</tr>
 									
