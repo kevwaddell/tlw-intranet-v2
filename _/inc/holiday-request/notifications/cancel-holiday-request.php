@@ -4,7 +4,7 @@
 	$holiday_id = $_GET['holidayid'];
 	
 ?>
-<div class="alert alert-danger">
+<div class="alert alert-danger text-center">
 	Are you sure you want to cancel your holiday booking.<br><br>
 	<div class="action-btns">
 		<div class="row">

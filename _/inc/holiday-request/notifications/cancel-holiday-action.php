@@ -6,7 +6,7 @@
 	wp_delete_post( $holiday_id, true );
 	
 ?>
-<div class="alert alert-danger">
+<div class="alert alert-danger text-center">
 	<?php if (!($end_date < date('Ymd'))) { ?>
 	Your holiday request has been canceled.<br><br>
 	<?php } else { ?>

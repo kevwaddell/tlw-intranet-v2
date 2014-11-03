@@ -28,7 +28,7 @@
         alwaysVisible: true
     });
     
-    if ( $('input.date-picker').length == 1) {
+    if ( $('input.date-picker').length > 0) {
 	    $('input.date-picker').datepicker({
         // Consistent format with the HTML5 picker
         format: 'DD d MM yyyy',
@@ -310,6 +310,46 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 		 return false;
 	});
 */
+
+	/* HOLIDAY FORM ALL DAY SELECT MENUS */
+	$('body').on('change', 'input[name="day_amount"]', function(e){
+		var end_date_input = $('input#holiday_end_date').parents('.form-group');
+		var am_pm_radio = $('input[name="day_time"]').parent();
+		var start_half_day = $('input[name="start_half_day"]');
+		var val = $(this).val();
+		//console.log(val);
+		
+		if (val=='multiple') {
+		end_date_input.removeClass('hidden');
+			
+			if ( am_pm_radio.is(':visible') || start_half_day.is(':checked') ) {
+			am_pm_radio.addClass('hidden');		
+			}	
+			
+		}
+		
+		if (val=='single') {
+		end_date_input.addClass('hidden');	
+			
+			if (start_half_day.is(':checked')) {
+			am_pm_radio.removeClass('hidden');		
+			}
+		}	
+		
+	});
+	
+	$('body').on('change', 'input[name="start_half_day"]', function(e){
+		var am_pm_radio = $('input[name="day_time"]').parent();
+		var day_amount = $('input#day_amount_single');
+		//console.log(e);
+		
+		if ( am_pm_radio.is(':hidden') && day_amount.is(':checked')) {
+		am_pm_radio.removeClass('hidden');	
+		} else {
+		am_pm_radio.addClass('hidden');		
+		}
+		
+	});
 	
 	/* TABLE LOADER BUTTON */
 	 $('body').on(event_type,'tr.actions-tr a.action-btn', function(e){
@@ -327,7 +367,7 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
 	     $('.loader').fadeOut('fast');
 	     
-	      if ( $(this).find('input.date-picker').length == 1) {
+	      if ( $(this).find('input.date-picker').length > 0) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
@@ -358,7 +398,7 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
 	     $('.loader').fadeOut('fast');
 	     
-	     if ( $(this).find('input.date-picker').length == 1) {
+	     if ( $(this).find('input.date-picker').length > 0) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
@@ -442,7 +482,7 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	     $(this).find('.meeting-details-wrap').hide().fadeIn('slow');
 	     $('.loader').fadeOut('fast');
 	     
-	     if ( $(this).find('input#meeting_date').length == 1) {
+	     if ( $(this).find('input#meeting_date').length > 0) {
 		    $('input#meeting_date').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
@@ -478,17 +518,13 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 		 $('.loader').fadeOut('fast');
 		 $(this).hide().fadeIn('fast');
 	     
-	      if ( $(this).find('input.date-picker').length == 1) {
+	      if ( $(this).find('input.date-picker').length > 0) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
 	        todayHighlight: true
 			});
-		 }
-		 
-		 if ($(this).find('input.timepicker').length == 1) {
-			 $('input.timepicker').timepicker();
 		 }
      
 	 	}
@@ -510,7 +546,7 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	     
 	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
 	     
-	     if ( $(this).find('input.date-picker').length == 1) {
+	     if ( $(this).find('input.date-picker').length > 0) {
 		    $('input.date-picker').datepicker({
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',

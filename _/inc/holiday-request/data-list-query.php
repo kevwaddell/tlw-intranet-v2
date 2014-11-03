@@ -3,14 +3,14 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $posts_per_page = 10;
 $today = date('Ymd', strtotime("today"));
 $tomorrow = date('Ymd', strtotime("tomorrow"));
-$this_wk_strt = date('Ymd', strtotime("Monday this week"));
-$this_wk_end = date('Ymd', strtotime("Friday this week"));
-$next_wk_strt = date('Ymd', strtotime("Monday next week"));
-$next_wk_end = date('Ymd', strtotime("Friday next week"));
-$this_month_strt = date('Ymd', strtotime("first day of this month"));
-$this_month_end = date('Ymd', strtotime("last day of this month"));
-$next_month_strt = date('Ymd', strtotime("first day of next month"));
-$next_month_end = date('Ymd', strtotime("last day of next month"));
+$this_wk_strt = strtotime("Monday this week");
+$this_wk_end = strtotime("Friday this week");
+$next_wk_strt = strtotime("Monday next week");
+$next_wk_end = strtotime("Friday next week");
+$this_month_strt = strtotime("first day of this month");
+$this_month_end = strtotime("last day of this month");
+$next_month_strt = strtotime("first day of next month");
+$next_month_end = strtotime("last day of next month");
 
 //echo '<pre>';print_r($this_month_end);echo '</pre>';
 

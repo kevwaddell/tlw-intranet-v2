@@ -14,10 +14,10 @@ $number_of_days = get_field('number_of_days', $holiday->ID);
 $from_name = $hb_admin['display_name'];
 $from_email = $hb_admin['user_email'];
 
-$subject = "Holiday booking rejected";
-$message = "<h3><font style=\"color: red;\">$from_name</font> has rejected your holiday request.</h3>";
-$message .= "Please contact <a href=\"mailto:".$hb_admin['user_email']."\">".$hb_admin['dispaly_name']."</a> for more details on your rejected request.<br><br>";
-$headers = "From: $from_name <$from_email>";
+$subject = 'Holiday booking rejected';
+$message = '<h3><font style="color: red;">'.$from_name.'</font> has rejected your holiday request.</h3>';
+$message .= 'Please contact <a href="mailto:'.$hb_admin['user_email'].'">'.$hb_admin['dispaly_name'].'</a> for more details on your rejected request.<br><br>';
+$headers = 'From:' .$from_name. '<' .$from_email. '>';
 
 //echo '<pre>';print_r($message);echo '</pre>';
 

@@ -24,7 +24,7 @@
 		
 		<?php } else { ?>
 		
-		<a href="#log-in-alert" id="login" class="user-btn" data-toggle="modal"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
+		<a href="<?php echo wp_login_url(); ?>" id="login" class="user-btn" data-toggle="modal"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
 			
 		<?php } ?>
 		

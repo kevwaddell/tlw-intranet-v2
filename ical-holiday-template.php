@@ -8,7 +8,11 @@ header('Content-type: text/calendar; charset=utf-8');
 header('Content-Disposition: inline; filename="holidays_ical_feed.ics"'); 
 $eol = "\r\n";
 function dateToCal($timestamp) {
-  return date('Ymd\THi00', $timestamp);
+	if (date('H', $timestamp) == 0) {
+	return date('Ymd', $timestamp);
+	} else {
+	return date('Ymd\THi00', $timestamp);	
+	}
 }
 function escapeString($string) {
   return preg_replace('/([\,;])/','\\\$1', $string);
@@ -69,8 +73,8 @@ $room = wp_get_post_terms( $post->ID, 'tlw_rooms_tax');
 BEGIN:VEVENT<?php echo $eol; ?>
 UID: <?php echo uniqid(); ?><?php echo $eol; ?>
 SUMMARY:<?php echo escapeString($description); ?><?php echo $eol; ?>
-DTSTART;TZID="Europe/London":<?php echo dateToCal(strtotime($start.' 00:00')); ?><?php echo $eol; ?>
-DTEND;TZID="Europe/London":<?php echo dateToCal(strtotime($end. ' +1 day 00:00')); ?><?php echo $eol; ?>
+DTSTART;TZID="Europe/London":<?php echo dateToCal($start); ?><?php echo $eol; ?>
+DTEND;TZID="Europe/London":<?php echo (date('H', $end) == "00") ? dateToCal( strtotime( date('Ymd', $end). " +1 day" ) ): dateToCal( $end ); ?><?php echo $eol; ?>
 CLASS:PRIVATE<?php echo $eol; ?>
 END:VEVENT<?php echo $eol; ?>
 <?php endforeach; ?>

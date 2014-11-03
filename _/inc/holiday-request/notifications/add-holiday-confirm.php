@@ -3,23 +3,25 @@
 	$cur_url = explode("?", $_SERVER['REQUEST_URI']);
 	$holiday_id = $_GET['holidayid'];
 	$holiday = get_post($holiday_id);
-	$start_date = get_field('holiday_start_date', $holiday_id);
-	$end_date = get_field('holiday_end_date', $holiday_id);
+	$start_date = strtotime( get_field('holiday_start_date', $holiday_id));
+	$end_date = strtotime(get_field('holiday_end_date', $holiday_id));
 	$numdays = get_field('number_of_days', $holiday_id);
 	$booked_by = get_user_by('id', $holiday->post_author);
 	
 	//echo '<pre>';print_r(date("Ymd"));echo '</pre>';
 	
 	/* SET POST META */
-	if ( $end_date > date("Ymd") ) {
+	if ( $end_date > strtotime("now") ) {
 	include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-email.php');
 	}
 
 ?>
 
-<div class="alert alert-success">
+<div class="alert alert-success text-center">
 
-	<?php if ( $end_date > date("Ymd") ) { ?>
+	<h4>Holiday Request</h4>
+
+	<?php if ( $end_date > strtotime("now") ) { ?>
 	Your holiday request has been sent to<br><strong>Office Administration</strong> for approval.<br>
 	You will receive an email when your request has been approved.<br><br>
 	<?php } else { ?>
@@ -28,8 +30,26 @@
 	
 	<strong class="caps">Holiday details:</strong><br>
 	<p>
-		<span class="bold">Start date:</span> <?php echo date( 'D jS F Y', strtotime($start_date) ); ?><br>
-		<span class="bold">End date:</span> <?php echo date( 'D jS F Y', strtotime($end_date) ); ?><br>
+		<span class="bold">Date:</span> 
+		<?php echo date( 'D jS F Y', $start_date ); ?>
+		<?php if (date("H", $start_date) != "00") { ?>
+		<?php echo ' at '. date( 'g:ia',  $start_date); ?>
+		<?php } ?>
+		<?php if (date("Ymd", $start_date) == date("Ymd", $end_date) && date("H", $end_date) != "00") { ?>
+		<?php echo ' - '.date( 'g:ia',  $end_date); ?>
+		<?php } ?>
+		<br>
+	
+		<?php if (date("Ymd", $end_date) > date("Ymd", $start_date)) { ?>
+		<span class="bold">Last day:</span> 
+		<?php echo date( 'D jS F Y', $end_date ); ?>
+		
+		<?php if (date("H", $end_date) != "00") { ?>
+		<?php echo ' at '. date( 'g:ia',  $end_date); ?>
+		<?php } ?>
+		
+		<br>
+		<?php } ?>
 		<span class="bold">Number of days:</span>  <?php echo $numdays; ?><br>
 	</p>
 	<br>

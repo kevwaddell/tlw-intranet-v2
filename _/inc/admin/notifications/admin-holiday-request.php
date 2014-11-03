@@ -4,8 +4,28 @@
 
 	<h4>Do you want to approve the holiday request for:</h4>
 	<strong><?php echo $booked_by->data->display_name; ?></strong><br>
-	Start date: <strong><?php echo date('D jS F Y', $start_date); ?></strong><br>
-	Return date: <strong><?php echo date('D jS F Y', $end_date ); ?></strong><br>
+	Date: <strong>
+	<?php echo date('D jS F Y', $start_date); ?>
+	
+	<?php if (date("H", $start_date) != "00") { ?>
+	<?php echo ' at '. date( 'g:ia',  $start_date); ?>
+	<?php } ?>
+	
+	<?php if (date("Ymd", $start_date) == date("Ymd", $end_date) && date("H", $end_date) != "00") { ?>
+	<?php echo ' - '.date( 'g:ia',  $end_date); ?>
+	<?php } ?>
+	</strong><br>
+	
+	<?php if (date("Ymd", $end_date) > date("Ymd", $start_date)) { ?>
+	Last day: <strong>
+	<?php echo date('D jS F Y', $end_date ); ?>
+	
+	<?php if (date("H", $end_date) != "00") { ?>
+	<?php echo ' at '. date( 'g:ia', $end_date); ?>
+	<?php } ?>
+	</strong><br>
+	<?php } ?>
+
 	Number of days: <strong><?php echo $number_of_days; ?></strong>
 	<br><br>
 

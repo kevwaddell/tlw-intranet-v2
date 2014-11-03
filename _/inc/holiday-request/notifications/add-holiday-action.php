@@ -5,44 +5,92 @@
 	/* VARS */
 	$user_id = $_POST['userid'];
 	$current_user = get_user_by('id', $user_id);
+	$numdays = 0;
+	$day_amount = $_POST['day_amount'];
 	$hol_start_date_raw = trim($_POST['holiday_start_date']);
 	$start_year = date("Y", strtotime($hol_start_date_raw));
-	//echo '<pre>';print_r( strtotime($hol_start_date_raw) );echo '</pre>';
-	$s_date = new DateTime($hol_start_date_raw);
-	$e_date = new DateTime();
-	$sts = $s_date->getTimestamp();
-	$ts = $s_date->getTimestamp();
-	$numdays = trim($_POST['num_days']);
-	$addDay = 86400;
+	//echo '<pre>';print_r( $s_date );echo '</pre>';
+	//$addDay = 86400;
+	//echo '<pre>';print_r($_POST);echo '</pre>';
 	
 	/* ERRORS CHECK */
 	if ( $hol_start_date_raw == "") {
 	$errors[] = "Please select a start date.";
 	}
 	
-	if ( $numdays == "") {
-	$errors[] = "Please enter the number of days.";
-	}
+	if ($day_amount == 'single') {
+		$s_date = new DateTime($hol_start_date_raw);
+		$e_date = new DateTime($hol_start_date_raw);
 		
-	/* CHECK FOR WEEKEND DAYS */
-	for($i=1; $i<$numdays; $i++){
-
-	    // get what day it is next day
-	    $nextDay = date('w', ($ts+$addDay));
+		$numdays = 1;
 	
-	    // if it's Saturday or Sunday get $i-1
-	    if($nextDay == 0 || $nextDay == 6) {
-	        $i--;
-	    }
+		if (isset($_POST['start_half_day'])) {
+		$day_time = $_POST['day_time'];
+			
+			if ($day_time == 'am') {
+			$s_date->modify('9:00am');	
+			$e_date->modify('1:30pm');	
+			}
+			
+			if ($day_time == 'pm') {
+			$s_date->modify('12:30pm');		
+			$e_date->modify('5:00pm');	
+			}
+			
+			$numdays = 0.5;
+		}
+		
 	
-	    // modify timestamp, add 1 day
-	    $ts = $ts+$addDay;
 	}
-
-	$e_date->setTimestamp($ts);
 	
-	if ($s_date->format( 'Y' ) < $e_date->format( 'Y' )) {
-	$errors[] = "Your end date <strong>(".$e_date->format( 'l jS F' ).")</strong> falls into the <strong>".$e_date->format( 'Y' )."</strong> holiday quota.<br><small>*Please book <strong>". $e_date->format( 'Y' ) ."</strong> dates separately.</small>";
+	if ($day_amount == 'multiple') {
+	
+		$hol_end_date_raw = trim($_POST['holiday_end_date']);
+	
+		$s_date = new DateTime($hol_start_date_raw);
+		$s_ts = $s_date->getTimestamp();
+		$e_date = new DateTime($hol_end_date_raw);
+		$datediff = $e_date->diff($s_date);
+		$addDay = 86400;
+	
+		/* Count number of days */
+		for ($i = 0; $i <= $datediff->days; $i++) {
+			$numdays++;
+		}
+		
+		/* Check if it a day is a weekend */
+		for($d = 1; $d < $numdays; $d++){
+
+		    // get what day it is next day
+		    $nextDay = date('w', ($s_ts+$addDay));
+		
+		    // if it's Saturday or Sunday get $i-1
+		    if($nextDay == 0 || $nextDay == 6) {
+		        $numdays--;
+		    }
+		    
+			$s_ts = $s_ts+$addDay;
+	     
+		}
+		
+		if (isset($_POST['start_half_day'])) {
+			
+			$s_date->modify('1:30pm');	
+						
+			$numdays -= 0.5;	
+		}
+		
+		if (isset($_POST['end_half_day'])) {
+			
+			$e_date->modify('1:30pm');	
+			
+			$numdays -= 0.5;	
+		}
+	
+		if ( $hol_end_date_raw == "") {
+		$errors[] = "Please select an end date.";
+		}
+	
 	}
 	
 	/* IF NO ERRORS ADD POST */
@@ -51,7 +99,7 @@
 		$post_title = $current_user->data->display_name;
 		
 		$post_args = array(
-		'post_name' => sanitize_title($post_title. ' ' .$s_date->format( 'Ymd' ). ' '.$e_date->format( 'Ymd' )),
+		'post_name' => sanitize_title($post_title. ' ' .$s_date->getTimestamp(). ' '.$e_date->getTimestamp()),
 		'post_title' => $post_title,
 		'post_status'   => 'pending',
 		'post_author'   => $user_id,
@@ -68,9 +116,9 @@
 		
 		/* SET META */
 		update_post_meta($h_id, '_holiday_start_date', 'field_53c67357805e5'); 
-		update_post_meta($h_id, 'holiday_start_date', $s_date->format( 'Ymd' )); 
+		update_post_meta($h_id, 'holiday_start_date', $s_date->getTimestamp()); 
 		update_post_meta($h_id, '_holiday_end_date', 'field_53c673b0805e6');  
-		update_post_meta($h_id, 'holiday_end_date', $e_date->format( 'Ymd' ));  
+		update_post_meta($h_id, 'holiday_end_date', $e_date->getTimestamp());  
 		update_post_meta($h_id, '_number_of_days', 'field_53c673d9805e7');  
 		update_post_meta($h_id, 'number_of_days', $numdays);  
 	
@@ -81,13 +129,27 @@
 //echo '<pre>';print_r($cur_url);echo '</pre>';
 ?>
 
-<div class="alert alert-success">
-	Please confirm your holiday details below.<br><br>
+<div class="alert alert-success text-center">
+
+	<h4>Holiday Request</h4>
 	
-	<strong class="caps">Holiday details:</strong><br>
+	<strong>Please confirm your holiday details below</strong><br><br>
 	<p>
-		<span class="bold">Start date:</span> <?php echo $s_date->format( 'D jS F Y' ) ?><br>
-		<span class="bold">End date:</span> <?php echo $e_date->format( 'D jS F Y' ); ?><br>
+		<span class="bold">Date:</span> 
+		<?php echo $s_date->format( 'D jS F Y' ) ?>
+		
+		<?php if (isset($_POST['start_half_day'])) { ?>
+		<?php echo ' at '.$s_date->format( 'g:ia' ); ?>
+		<?php } ?>
+		
+		<?php if (isset($_POST['start_half_day']) && $_POST['day_amount'] == 'single') { ?>
+		<?php echo ' - '.$e_date->format( 'g:ia' ); ?>
+		<?php } ?>
+		<br>
+		<?php if ($day_amount == 'multiple') { ?>
+		<span class="bold">Last day:</span> <?php echo $e_date->format( 'D jS F Y' ); ?><?php echo (isset($_POST['end_half_day'])) ? ' at '.$e_date->format( 'g:ia' ):'' ?><br>
+		<?php } ?>
+		
 		<span class="bold">Number of days:</span>  <?php echo $numdays; ?><br>
 	</p>
 	<br>

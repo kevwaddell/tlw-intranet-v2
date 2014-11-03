@@ -6,10 +6,12 @@ $user_meta = get_user_meta($curauth->ID);
 $user_start_date_raw = get_field('user_start_date', 'user_'.$curauth->ID);
 $user_start_date = date("l jS F Y", strtotime($user_start_date_raw));
 $user_holidays = get_the_author_meta( "number_of_holidays", $curauth->ID );
-$start_of_year = date( 'Ymd', strtotime( "01/01".date("Y") ) );
-$end_of_year = date( 'Ymd', strtotime( $start_of_year." +1 year" ) );
-$end_of_nxt_year = date( 'Ymd', strtotime( $end_of_year." +1 year" ) );
-$today = date('Ymd', strtotime("today"));
+$start_of_year = strtotime( "01/01/".date("Y") );
+$end_of_year = strtotime( date('d/m/Y', $start_of_year)." +1 year" );
+$end_of_nxt_year = strtotime( date('d/m/Y', $end_of_year)." +1 year" );
+$today = strtotime("today");
+
+//echo '<pre>';print_r(date("d M Y", $start_of_year));echo '</pre>';
 
 $holidays_check_args = array(
 'post_type' => 'tlw_holiday',

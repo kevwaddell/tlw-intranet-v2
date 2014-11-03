@@ -158,7 +158,7 @@ pre {
   position: fixed;
   z-index: 1000;
   height: 50%;
-  width: 50%;
+  width: 30%;
   overflow: auto;
   background-color: black;
   color: white;
@@ -3467,6 +3467,8 @@ body#user-page {
   margin-right: -0.25em;
 }
 .alerts .alert {
+  border: 2px solid #4b4b4b;
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   width: 80%;
@@ -3475,6 +3477,34 @@ body#user-page {
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.alerts .alert small.required {
+  display: block;
+  width: 100px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #d9534f;
+  color: #ffffff;
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 10px;
+  margin-top: -15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+.alerts .alert h4 {
+  text-align: center;
+  width: 50%;
+  margin: -35px auto 10px auto;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  text-transform: uppercase;
+  background-color: #4b4b4b;
+  color: #ffffff;
 }
 .alerts .alert.text-center {
   text-align: center;
@@ -3755,6 +3785,23 @@ body#user-page {
 /* --------------------------- */
 .search-form input.search-query {
   margin-bottom: 10px;
+}
+.form-group .input-group-addon {
+  position: relative;
+}
+.form-group .input-group-addon.required:before {
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #d9534f;
 }
 .form-group #wp-addpost-wrap {
   background-color: #e9e9e9;

@@ -31,6 +31,35 @@
 	}
 	
 	.alert {
+	.border(@grayDk; 0.2);
+	.rel;
+	
+		small.required {
+		.block;
+		.w(10);
+		.rounded(4px);	
+		.bg-col(@danger);
+		.col(white);
+		.pad(.5;1;.5;1);
+		.mag-bot(1);
+		.mag-top(-1.5);
+		.font-size(1.2);
+		.bold;
+		text-align: center;
+		}
+	
+		h4 {
+		text-align: center;
+		width: 50%;
+		margin: -35px auto 10px auto;
+		.rounded(4px);	
+		.h(4);
+		.line-h(4);
+		.caps;
+		.bg-col(@grayDk);
+		.col(white);
+		}
+		
 		.in-block;
 		vertical-align: middle;
 		width: 80%;
