@@ -3,7 +3,7 @@
 	
 	<a href="?request=add_holiday&userid=<?php echo $current_user_ID ; ?>" class="btn btn-default btn-block btn-action"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>
 	<?php } else { ?>
-	<a href="#log-in-alert" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>
+	<a href="<?php echo wp_login_url(); ?>" class="btn btn-default btn-block" data-toggle="modal"><i class="fa fa-check fa-lg"></i>Make a holiday request</a>
 	<?php } ?>
 	
 	<?php if (current_user_can("administrator") || $current_user_ID == $rb_admin['ID'] || $current_user_ID == $hb_admin['ID']) { ?>

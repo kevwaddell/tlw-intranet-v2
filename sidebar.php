@@ -2,6 +2,19 @@
 <?php
 global $slug;
 global $feat_img;
+global $content;
+
+if (is_home() || is_date()) {
+$feat_img_url = $feat_img[0];	
+$feat_img_title = "TLW Solicitors";
+}
+
+if (is_category()){
+//echo '<pre>';print_r($feat_img['title']);echo '</pre>';
+$feat_img_url = $feat_img['sizes']['img-4-col-crop'];
+$feat_img_title = $feat_img['title'];
+}
+
 global $color;
 global $cat_id;
 $categories = get_categories();
@@ -10,7 +23,7 @@ $categories = get_categories();
 
 <?php if ($feat_img) { ?>
 	<figure class="feat-img">
-		<img src="<?php echo $feat_img['sizes']['img-4-col-crop']; ?>" alt="<?php $feat_img['title']; ?>" width="100%" height="auto">
+		<img src="<?php echo $feat_img_url; ?>" alt="<?php echo $feat_img_title; ?>" width="100%" height="auto">
 	</figure>
 <?php } ?>
 
@@ -21,7 +34,15 @@ $categories = get_categories();
 <div class="rule"></div>
 <?php endif; ?>
 
-<?php if (is_user_logged_in()) : ?>
+<?php if (is_home() || is_archive() && $content) : ?>
+<div class="lead">
+	<?php echo $content; ?>
+</div>
+<div class="rule"></div>
+<?php endif; ?>
+
+
+<?php if (is_user_logged_in() && is_category()) : ?>
 <div class="sidebar-actions">
 	<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 <?php include (STYLESHEETPATH . '/_/inc/category-page/btn-actions.php'); ?>
@@ -40,16 +61,6 @@ $categories = get_categories();
 
 <?php if ($categories) { ?>
 <h3 class="sb-label">
-	<i class="fa fa-calendar"></i>
-	News Calendar
-</h3>
-<div class="sb-box">
-<?php get_calendar(); ?>
-</div>
-<?php } ?>
-
-<?php if ($categories) { ?>
-<h3 class="sb-label">
 	<i class="fa fa-thumb-tack"></i>
 	Categories
 </h3>
@@ -60,5 +71,13 @@ $categories = get_categories();
 
 </div>
 <?php } ?>
+
+<h3 class="sb-label">
+	<i class="fa fa-calendar"></i>
+	News Calendar
+</h3>
+<div class="sb-box">
+<?php get_calendar(); ?>
+</div>
 
 </aside>

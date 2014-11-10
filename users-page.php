@@ -19,7 +19,7 @@ foreach ($all_users as $u) {
 	}
 }
 
-$number 	= 20;
+$number 	= 15;
 $paged 		= (get_query_var('paged')) ? get_query_var('paged') : 1;
 $offset 	= ($paged - 1) * $number;
 

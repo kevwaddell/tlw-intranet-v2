@@ -24,7 +24,7 @@
 		
 		<?php } else { ?>
 		
-		<a href="<?php echo wp_login_url(); ?>" id="login" class="user-btn" data-toggle="modal"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
+		<a href="<?php echo wp_login_url(); ?>" id="login" class="user-btn"><span>Login</span><i class="fa fa-lock fa-lg"></i></a>
 			
 		<?php } ?>
 		
@@ -38,7 +38,6 @@
 		<div class="user-title">
 
 			<?php 
-			$profile_page = get_page_by_title('Your Profile');
 			$avatar = get_avatar( $current_user->ID, 40 );
 			//echo '<pre>';print_r($current_user);echo '</pre>';
 			 ?>

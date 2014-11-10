@@ -33,7 +33,8 @@
         // Consistent format with the HTML5 picker
         format: 'DD d MM yyyy',
         weekStart: 1,
-        todayHighlight: true
+        todayHighlight: true,
+        daysOfWeekDisabled: "0,6"
 		});
     }
     
@@ -267,7 +268,8 @@ $('body').on('submit', 'form#add_meeting_form', function() {
 			    $('input.date-picker').datepicker({
 		        // Consistent format with the HTML5 picker
 		        format: 'DD d MM yyyy',
-		        weekStart: 1
+		        weekStart: 1,
+		        daysOfWeekDisabled: "0,6"
 				});
 			}
 
@@ -300,7 +302,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 			    $('input.date-picker').datepicker({
 		        // Consistent format with the HTML5 picker
 		        format: 'DD d MM yyyy',
-		        weekStart: 1
+		        weekStart: 1,
+		        daysOfWeekDisabled: "0,6"
 				});
 			}
 
@@ -372,7 +375,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
-	        todayHighlight: true
+	        todayHighlight: true,
+	        daysOfWeekDisabled: "0,6"
 			});
 		 }
 	     	
@@ -403,7 +407,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
-	        todayHighlight: true
+	        todayHighlight: true,
+	        daysOfWeekDisabled: "0,6"
 			});
 		 }
 	     	
@@ -487,7 +492,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
-	        todayHighlight: true
+	        todayHighlight: true,
+	        daysOfWeekDisabled: "0,6"
 			});
 		 }
 	     	
@@ -523,7 +529,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
-	        todayHighlight: true
+	        todayHighlight: true,
+	        daysOfWeekDisabled: "0,6"
 			});
 		 }
      
@@ -551,7 +558,8 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	        // Consistent format with the HTML5 picker
 	        format: 'DD d MM yyyy',
 	        weekStart: 1,
-	        todayHighlight: true
+	        todayHighlight: true,
+	        daysOfWeekDisabled: "0,6"
 			});
 		 }
 
@@ -661,6 +669,52 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 		}
 		
 		return false;
+	});
+	
+	/* SET MEETING ROOM */
+	$('body').on(event_type, '#meeting-room-select > li > a', function(){
+	
+	var room = $(this).attr('id');
+	var room_id = room.split('room-');
+	var room_title = $(this).text();
+	$('input#meeting_room').val(room_id[1]);
+	$('input#meeting_room_name').val(room_title);
+		
+	return false;
+	});
+	
+	/* SET START MINS+HOURS */
+	$('body').on(event_type, '#start-meeting-hr-select > li > a', function(){
+	
+	var hr = $(this).text();
+	$('input#start_hrs').val(hr);
+		
+	return false;
+	});
+	
+	$('body').on(event_type, '#start-meeting-min-select > li > a', function(){
+	
+	var min = $(this).text();
+	$('input#start_mins').val(min);
+		
+	return false;
+	});
+	
+	/* SET END MINS+HOURS */
+	$('body').on(event_type, '#end-meeting-hr-select > li > a', function(){
+	
+	var hr = $(this).text();
+	$('input#end_hrs').val(hr);
+		
+	return false;
+	});
+	
+	$('body').on(event_type, '#end-meeting-min-select > li > a', function(){
+	
+	var min = $(this).text();
+	$('input#end_mins').val(min);
+		
+	return false;
 	});
       
 	/* DOCUMENT READY FUNCTIONS */

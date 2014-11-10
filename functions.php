@@ -195,4 +195,11 @@ function my_current_screen($screen) {
 if(function_exists('acf_add_options_page')) { 
 	acf_add_options_page();
 }
+
+function floorToFraction($number, $denominator = 1) {
+    $x = $number * $denominator;
+    $x = floor($x);
+    $x = $x / $denominator;
+    return $x;
+}
  ?>

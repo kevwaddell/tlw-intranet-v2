@@ -11,7 +11,7 @@
 	//echo '<pre>';print_r(date("Ymd"));echo '</pre>';
 	
 	/* SET POST META */
-	if ( $end_date > strtotime("now") ) {
+	if ( $end_date > strtotime("now") || !in_array_r($current_user->ID, $partners) || $current_user->ID == $hb_admin['ID']) {
 	include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/add-holiday-email.php');
 	}
 
@@ -21,7 +21,7 @@
 
 	<h4>Holiday Request</h4>
 
-	<?php if ( $end_date > strtotime("now") ) { ?>
+	<?php if ( $end_date > strtotime("now") || !in_array_r($current_user->ID, $partners) || $current_user->ID == $hb_admin['ID']) { ?>
 	Your holiday request has been sent to<br><strong>Office Administration</strong> for approval.<br>
 	You will receive an email when your request has been approved.<br><br>
 	<?php } else { ?>

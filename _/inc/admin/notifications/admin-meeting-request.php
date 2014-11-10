@@ -28,7 +28,7 @@ $end_time = get_field('end_time', $meeting->ID);
 </div>
 
 <?php } else { ?>
-<div class="alert alert-success">
+<div class="alert alert-success text-center">
 	Approve or reject booking request by <strong><?php echo $booked_by->data->display_name; ?></strong><br><br>
 	<span class="caps">Meeting Details:</span><br>
 	<span class="bold">Description:</span> <?php echo $desc; ?><br>

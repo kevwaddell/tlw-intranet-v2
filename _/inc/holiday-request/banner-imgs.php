@@ -3,20 +3,20 @@
 	
 		<div class="col-xs-4">
 			<figure class="img">
-				<img src="http://www.todayifoundout.com/wp-content/uploads/2013/09/calendar.jpg" width="100%">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/_/img/holiday_img1.jpg" width="100%">
 			</figure>
 			
 		</div>
 		
 		<div class="col-xs-4">
 			<figure class="img">
-				<img src="http://www.todayifoundout.com/wp-content/uploads/2013/09/calendar.jpg" width="100%">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/_/img/holiday_img3.jpg" width="100%">
 			</figure>
 		</div>
 		
 		<div class="col-xs-4">
 			<figure class="img">
-				<img src="http://www.todayifoundout.com/wp-content/uploads/2013/09/calendar.jpg" width="100%">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/_/img/holiday_img2.jpg" width="100%">
 			</figure>
 		</div>
 	

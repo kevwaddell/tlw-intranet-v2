@@ -97,7 +97,7 @@ include (STYLESHEETPATH . '/_/inc/category-page/cats-query.php');
 			<section class="page-section section-open">
 			<?php if (count($exclude_posts) > 0) { ?>
 			<h3 class="section-header"><?php echo ($slug == 'events') ? 'Past':'More'; ?> <?php single_cat_title(); ?></h3>
-			<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>	
+			<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>	
 			<?php }  ?>
 				
 				<div id="post-section-wrap" class="section-wrap">

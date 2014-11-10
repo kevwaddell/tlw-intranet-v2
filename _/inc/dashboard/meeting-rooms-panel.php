@@ -4,7 +4,8 @@ $today_end = strtotime("Today 18:00");
 $args = array( 'hide_empty' => 0 );
 $rooms = get_terms('tlw_rooms_tax', $args);
 $meetings_pg = get_page_by_title('Meetings');
-$calendar_pg = get_page_by_title('Calendar');
+$ical_page = get_page_by_title("Cal feed");
+$ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 //echo '<pre>';print_r($rooms);echo '</pre>';
  ?>
 
@@ -100,6 +101,6 @@ $calendar_pg = get_page_by_title('Calendar');
 </div>
 
 <div class="panel-btns">
-	<a href="<?php echo get_permalink($meetings_pg->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-check fa-lg"></i>Book a room</a>
-	<a href="<?php echo get_permalink($calendar_pg->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>View calendar</a>
+	<a href="<?php echo get_permalink($meetings_pg->ID); ?>" class="btn btn-default btn-block"><i class="fa fa-check fa-lg"></i>Book a meeting room</a>
+	<a href="webcal://<?php echo $ical_page_split_url[1]; ?>" class="btn btn-default btn-block"><i class="fa fa-calendar fa-lg"></i>Download <?php echo $meetings_pg->post_title; ?> calendar</a>
 </div>

@@ -147,14 +147,86 @@ table#wp-calendar {
 		tr {
 		.bg-col(@gray);
 		.col(white);	
+		.border-bot(@grayLt; 0.1);
 		}	
 		th {
 		text-align: center;	
 		.border-right(@grayLt; 0.1);
+		.h(4.5);
 			&[title="Sunday"] {
 			.no-border;	
 			}
 		}
+	}
+	
+	tbody {
+		tr {
+		.border-bot(@grayLt; 0.1);	
+		}
+		td {
+		text-align: center;	
+		.bg-col(white);
+		.h(4.5);
+		.border-right(@grayLt; 0.1);
+		}	
+		
+		td.pad {
+		.bg-col(lighten(@gray, 30%));	
+		}
+		
+		a {
+		.block;
+		height: 100%;
+		.bg-col(lighten(@gray, 10%));
+		.col(white);
+		.line-h(4.5);
+			&:hover {
+			.bg-col(@grayDk);
+				&:after {
+				content: none;
+				}
+			}	
+		}
+		
+		td#today {
+		.bg-col(@grayDk);
+		.col(white);
+		.bold;	
+		
+			a {
+			.bg-col(@grayDk);	
+			
+				&:hover {
+				.bg-col(@gray);
+				}
+			}
+		}
+		
+	}
+	
+	tfoot {
+		a {
+		.block;
+		height: 100%;
+		.bg-col(lighten(@gray, 10%));
+		.col(white);
+		.line-h(4.5);
+			&:hover {
+			.bg-col(@grayDk);
+				&:after {
+				content: none;
+				}
+			}	
+		}
+		
+		td {
+		text-align: center;	
+		}
+		
+		td.pad {
+		.bg-col(lighten(@gray, 30%));	
+		}
+
 	}
 	
 }

@@ -1,7 +1,7 @@
 <?php if ( isset($_POST['add_meeting']) ) { 
 
 $current_user = get_user_by('id', $_POST['userid']);
-//echo '<pre>';print_r($_POST);echo '</pre>';
+echo '<pre>';print_r($_POST);echo '</pre>';
 
 /* POST VARS */
 $user_id = $_POST['userid'];

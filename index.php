@@ -3,32 +3,92 @@
 <?php
 $news_page = get_page( get_option('page_for_posts') );
 $icon = get_field('icon', $news_page->ID);
-$feat_img = get_field('feat_img', $news_page->ID);
+$post_thumbnail_id = get_post_thumbnail_id( $news_page->ID );
+$feat_img = wp_get_attachment_image_src($post_thumbnail_id, 'img-4-col-crop' );
+$content = apply_filters('the_content', $news_page->post_content );
 $color = get_field('col', $news_page->ID);
-
+//echo '<pre>';print_r($feat_img[0]);echo '</pre>';
 ?>
 
 <article class="page">
-<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo $news_page->post_title; ?></h1>
+	<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo $news_page->post_title; ?></h1>
+	
+	<div class="row">
+	
+		<div class="col-xs-4">
 
-<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>		
-		<article>
-			<h1><a href="<?php esc_url( the_permalink() ); ?>" title="Permalink to <?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-			<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?> <?php the_time(); ?></time>
-			<?php the_excerpt(); ?>
-		</article>
-<?php endwhile; ?>
+		<?php get_sidebar(); ?>
 		
-		<div class="pagination-links">
+		</div>
 		
-		<?php wp_pagenavi(); ?>		
+		<div class="col-xs-8">
 		
-		</div>	
-		
-<?php else: ?>
-<h2>No posts to display</h2>
-<?php endif; ?>
+			<section class="page-section section-open">
+			
+			<div id="post-section-wrap" class="section-wrap">
+				
+				<div id="post-section-inner" class="section-inner">
+					
+					<div class="pagination-links pagination-actions top">
+						<?php wp_pagenavi(); ?>						
+					</div>
+					
+					<?php if ( have_posts() ): ?>	
+					
+					<?php while ( have_posts() ) : the_post(); ?>	
+					<?php 
+					$post_categories = wp_get_post_categories( get_the_ID() );
+					$post_category = get_category($post_categories[0]);
+					$cat_slug = $post_category->slug;
+					$cat_title = $post_category->name;
+					//echo '<pre>';print_r($post_category);echo '</pre>';
+					
+					if ($cat_slug == 'events') {
+					$event_date = get_field('event_date');
+					$event_time_from = get_field('event_time');
+					$event_time_end = get_field('event_time_end');	
+					}
+					 ?>	
+					<div class="list-item">
+						<header class="list-item-header">
+							<span class="label label-default"><?php echo $cat_title; ?></span>
+							<h2><a href="<?php esc_url( the_permalink() ); ?>" title="Permalink to <?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+						</header>
+						<?php the_excerpt(); ?>
+						<footer class="list-item-footer">
+							<?php if ($cat_slug == 'events' && $event_date) { ?>
+							<time><i class="fa fa-calendar"></i> <?php echo date('F j, Y', strtotime($event_date)); ?> - <?php echo $event_time_from; ?>
+							<?php echo ($event_time_end) ? " to ".$event_time_end : ""; ?></time>
+							<?php } else { ?>
+							<time><i class="fa fa-calendar"></i> <?php echo get_the_date(); ?> - <?php the_time(); ?></time>
+							<?php } ?>
+							<span><i class="fa fa-user"></i> <?php the_author(); ?></span>
+							
+							<a href="<?php esc_url( the_permalink() ); ?>" title="View details"><span class="sr-only">View details</span></a>
+						</footer>
+					</div>
+					<?php endwhile; ?>
+			
+					<?php else: ?>
+					<div class="well text-center">
+						No more news at the moment.
+					</div>
+					<?php endif; ?>
+					
+					<div class="pagination-links pagination-actions top">
+						<?php wp_pagenavi(); ?>						
+				</div>
+				
+				</div>
+				
+			</div>
+	
+			</section>
 
-</div>
+		</div>
+		
+	</div>
+
+</article>
 
 <?php get_footer(); ?>

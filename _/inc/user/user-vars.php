@@ -3,59 +3,35 @@ $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : g
 global $current_user;
 get_currentuserinfo();
 $user_meta = get_user_meta($curauth->ID);
+//echo '<pre>';print_r($current_user);echo '</pre>';
+$now_date = new DateTime(date('l jS F Y'));
 $user_start_date_raw = get_field('user_start_date', 'user_'.$curauth->ID);
 $user_start_date = date("l jS F Y", strtotime($user_start_date_raw));
-$user_holidays = get_the_author_meta( "number_of_holidays", $curauth->ID );
+$user_s_date = new DateTime($user_start_date);
+$user_allocated_holidays = get_the_author_meta( "allocated_holidays", $curauth->ID );
+$user_crossover_holidays = get_the_author_meta( "crossover_holidays", $curauth->ID );
+$user_total_holidays = get_the_author_meta( "total_holidays", $curauth->ID );
+
 $start_of_year = strtotime( "01/01/".date("Y") );
 $end_of_year = strtotime( date('d/m/Y', $start_of_year)." +1 year" );
 $end_of_nxt_year = strtotime( date('d/m/Y', $end_of_year)." +1 year" );
 $today = strtotime("today");
 
-//echo '<pre>';print_r(date("d M Y", $start_of_year));echo '</pre>';
+//echo '<pre>';print_r($user_allocated_holidays);echo '</pre>';
 
-$holidays_check_args = array(
-'post_type' => 'tlw_holiday',
-'posts_per_page' => -1,
-'post_status'	=> 'publish',
-'author'	=> $curauth->ID,
-'meta_query'	=> array(
-		
-		'relation' => 'AND',
-		array(
-			'key' => 'holiday_start_date',
-			'value' => $start_of_year,
-			'compare' => '>'
-		),
-		array(
-			'key' => 'holiday_end_date',
-			'value' => $end_of_year,
-			'compare' => '<'
-		)
-	)
-);
+/* USER HOLIDAYS CHECK */
+if (current_user_can("subscriber") || current_user_can("editor") || current_user_can("administrator") || $current_user->ID == $hb_admin['ID']) {
 
-$holidays_check = get_posts($holidays_check_args);
-$holidays_used = 0;
-$holidays_booked = 0;
+include (STYLESHEETPATH . '/_/inc/user/holidays-check-init.php');
 
-if (count($holidays_check) > 0) {
+include (STYLESHEETPATH . '/_/inc/user/extra_days_code.php');
 
-	foreach ($holidays_check as $holiday) {
-	$start = get_field('holiday_start_date', $holiday->ID);
-	$end = get_field('holiday_end_date', $holiday->ID);
-	$numdays = get_field('number_of_days', $holiday->ID);
-		
-		if ($end < $today) {
-		$holidays_used += $numdays;	
-		}
-		
-		if ($start > $today) {
-		$holidays_booked += $numdays;	
-		}
-	}
+include (STYLESHEETPATH . '/_/inc/user/holidays-check.php');
+
+//echo '<pre>';print_r($extra_days);echo '</pre>';
+
 }
-
-$holidays_left = $user_holidays - ($holidays_used + $holidays_booked);
+/* END OF USER HOLIDAYS CHECK */
 
 $user_job_title = get_the_author_meta( "job_title", $curauth->ID );
 $user_department = get_the_author_meta( "department", $curauth->ID );
@@ -69,4 +45,11 @@ $user_email = get_the_author_meta( "user_email", $curauth->ID );
 //echo '<pre>';print_r($user_id);echo '</pre>';
 $rb_admin = get_field('rb_admin', 'options');
 $hb_admin = get_field('hb_admin', 'options');
+$partners = get_field('tlw_partners', 'options');
+//echo '<pre>';print_r($hb_admin);echo '</pre>';
+/*
+if (in_array_r($current_user->ID, $partners)) {
+echo '<pre>';print_r($partners);echo '</pre>';	
+}
+*/
 ?>

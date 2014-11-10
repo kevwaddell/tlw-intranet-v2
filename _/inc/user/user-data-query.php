@@ -24,8 +24,7 @@ if (!isset($_GET['holiday_sortby'])) {
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => $end_of_year
-			,
+			'value' => $end_of_year,
 			'compare' => '<'
 		)
 	);
@@ -62,8 +61,7 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "pending") {
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => $end_of_nxt_year
-			,
+			'value' => $end_of_nxt_year,
 			'compare' => '<'
 		)
 	);
@@ -82,8 +80,7 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "canceled") {
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => $end_of_nxt_year
-			,
+			'value' => $end_of_nxt_year,
 			'compare' => '<'
 		)
 	);
@@ -101,15 +98,14 @@ if (isset($_GET['holiday_sortby']) && $_GET['holiday_sortby'] == "all") {
 		),
 		array(
 			'key' => 'holiday_end_date',
-			'value' => $end_of_nxt_year
-			,
+			'value' => $end_of_nxt_year,
 			'compare' => '<'
 		)
 	);
 }
 
 $holidays = get_posts($holidays_args);
-//echo '<pre>';print_r($holidays);echo '</pre>';
+//echo '<pre>';print_r($holidays_args);echo '</pre>';
 
 
 /* MEETINGS QUERY */

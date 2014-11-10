@@ -32,6 +32,30 @@
 		.bg-col(#f2dede);
 		}
 	}
+	
+	.input-group-btn:first-child>.btn {
+	.border-radius(0, 0, 4px, 4px);	
+	.border(#ccc; 0.1);
+	.bg-col(#eee);
+	}
+	
+	.input-group-btn {
+		&.required {
+			&:before {
+			.abs;
+			.left(-0.5);
+			top: 50%;
+			.mag-top(-0.5);
+			content: "";
+			.block;
+			.w(1);
+			.h(1);
+			.rounded(4px);
+			.bg-col(@danger);	
+			z-index: 10;
+			}		
+		}
+	}
 }
 
 .gform_wrapper ul {

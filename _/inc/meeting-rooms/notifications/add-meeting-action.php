@@ -23,7 +23,7 @@
 
 ?>
 
-<div class="alert alert-success">
+<div class="alert alert-success text-center">
 	Your room booking request has been sent to<br><strong>Office Administration</strong> for approval.<br>
 	You will receive an email when your request has been approved.<br><br>
 	
