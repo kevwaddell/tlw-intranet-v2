@@ -95,9 +95,9 @@
 		<?php if (is_author()) { 
 			$auth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
 			?>
-	 		<a title="Go to Dashboard" href="http://tlw-intranet.dev" class="home"><span class="fa fa-home"></span> Dashboard</a>
+	 		<a title="Go to Dashboard" href="<?php echo get_option('home'); ?>" class="home"><span class="fa fa-home"></span> Dashboard</a>
 	 		<i class="fa fa-angle-double-right"></i>
-	 		<a title="Go to Staff Members." href="http://tlw-intranet.dev/staff-members/" class="post post-page">Staff Members</a>
+	 		<a title="Go to Staff Members." href="<?php echo get_option('home'); ?>/staff-members/" class="post post-page">Staff Members</a>
 	 		<i class="fa fa-angle-double-right"></i>
 	 		<span><?php echo $auth->display_name; ?></span>
 	 	<?php } else { ?>

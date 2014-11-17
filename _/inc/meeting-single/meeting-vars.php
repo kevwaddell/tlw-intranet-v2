@@ -25,6 +25,7 @@ $color = get_field('col', $meetings->ID);
 $today_time = time();
 $ical_page = get_page_by_title("Single ical event");
 $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
+$user_favs = unserialize(get_user_meta($current_user->ID, 'user_favourites', true));
 
 /*
 echo '<pre>';

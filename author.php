@@ -11,20 +11,24 @@
 <?php include (STYLESHEETPATH . '/_/inc/user/user-profile-info.php'); ?>
 <!-- USER PROFILE INFO END -->
 
+<!--
 <div class="alerts">
 	<?php include (STYLESHEETPATH . '/_/inc/holiday-request/notifications/alerts.php'); ?>
 </div>
+-->
 
 
 <!-- MEETINGS DATA LIST -->
 
-<?php if ($current_user->ID == $user_id || current_user_can("administrator") ) { ?>
+<?php if (!current_user_can("administrator") ) { ?>
+
+<?php if ($current_user->ID == $user_id ) { ?>
 <section class="page-section">
 	<div class="lists-wrap">
 		
 	<?php include (STYLESHEETPATH . '/_/inc/user/user-meetings.php'); ?>	
 	
-	<?php include (STYLESHEETPATH . '/_/inc/user/user-holidays.php'); ?>
+	<?php //include (STYLESHEETPATH . '/_/inc/user/user-holidays.php'); ?>
 	
 	<?php include (STYLESHEETPATH . '/_/inc/user/user-news.php'); ?>	
 	
@@ -34,6 +38,23 @@
 		
 	</div>
 </section>
+<?php } else { ?>
+<section class="page-section">
+	<h3 class="block-header"><i class="fa fa-group fa-lg"></i>Send a message to <?php echo $user_meta['first_name'][0]; ?></h3>
+	<div class="message-wrap">
+	
+	</div>
+</section>	
+<?php } ?>
+
+<?php } else { ?>
+
+<?php if ($curauth->ID == 1 ) { ?>
+<section class="page-section">	
+	<?php include (STYLESHEETPATH . '/_/inc/admin/admin-links.php'); ?>
+</section>
+<?php } ?>
+
 <?php } ?>
 
 </article>

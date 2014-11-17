@@ -11,14 +11,30 @@
 		<?php if (is_user_logged_in()) { 
 		global $current_user;
 		$favs = unserialize( get_user_meta($current_user->ID, 'user_favourites', true) );	
-		//echo '<pre>';print_r(get_user_meta($current_user->ID, 'user_favourites', true));echo '</pre>';
+		$original_favs = $favs;
+		
+		foreach ($favs as $key => $fav) {
+		$item = get_post($fav['post_id']);
+			if (!$item) {
+				unset($favs[$key]);
+			}
+		
+		}
+		
+		$diff_favs = array_diff($original_favs, $favs);
+	
+		if (count($diff_favs) > 0) {
+		$user_meta_update = update_user_meta( $current_user->ID, 'user_favourites', serialize($favs) );	
+		$favs = unserialize( get_user_meta($current_user->ID, 'user_favourites', true) );
+		}
+		//echo '<pre>';print_r($favs);echo '</pre>';
 		?>
 		
 		<a href="<?php echo wp_logout_url(); ?>" class="user-btn"><span>Logout</span><i class="fa fa-unlock-alt fa-lg"></i></a>
 		
 		<button id="user-links" class="user-btn"><span>User links</span><i class="fa fa-user fa-lg"></i></button>
 		
-		<?php if ($favs) { ?>	
+		<?php if ($favs && !is_author()) { ?>	
 		<button id="favourites" class="user-btn"><span>favorites</span><i class="fa fa-star fa-lg"></i></button>
 		<?php }  ?>
 		
@@ -55,7 +71,7 @@
 		</ul>
 	</div>
 	
-	<?php if ($favs) { ?>
+	<?php if ($favs && !is_author()) { ?>
 	<div id="favourites-box" class="user-actions-wrap">
 		<h3>Your favourites</h3>
 		

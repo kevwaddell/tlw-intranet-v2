@@ -6,10 +6,14 @@ $rooms = get_terms('tlw_rooms_tax', $args);
 
 <div class="banner-imgs">
 	<div class="row">
-		<?php foreach ($rooms as $room) { ?>
+		<?php foreach ($rooms as $room) { 
+		$feat_img = get_field('img', $room->taxonomy.'_'.$room->term_id);	
+		$img_url = $feat_img['sizes']['img-4-col-crop'];
+		//echo '<pre>';print_r($img_url);echo '</pre>';
+		?>
 		<div class="col-xs-4">
 			<figure class="img">
-				<img src="http://www.abbeyoffices.com/_images/assets/locations/image-gallery-full/Meeting-room_8.jpg" width="100%">
+				<img src="<?php echo $img_url; ?>" width="100%">
 				<figcaption><?php echo $room->name; ?></figcaption>
 			</figure>
 			

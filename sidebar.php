@@ -3,8 +3,9 @@
 global $slug;
 global $feat_img;
 global $content;
+global $found_posts;
 
-if (is_home() || is_date()) {
+if (is_home() || is_date() || is_tag()) {
 $feat_img_url = $feat_img[0];	
 $feat_img_title = "TLW Solicitors";
 }
@@ -34,7 +35,7 @@ $categories = get_categories();
 <div class="rule"></div>
 <?php endif; ?>
 
-<?php if (is_home() || is_archive() && $content) : ?>
+<?php if (is_home() || is_archive() || is_tag() && $content) : ?>
 <div class="lead">
 	<?php echo $content; ?>
 </div>
@@ -42,7 +43,7 @@ $categories = get_categories();
 <?php endif; ?>
 
 
-<?php if (is_user_logged_in() && is_category()) : ?>
+<?php if (is_user_logged_in() && is_category() && current_user_can("administrator")) : ?>
 <div class="sidebar-actions">
 	<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 <?php include (STYLESHEETPATH . '/_/inc/category-page/btn-actions.php'); ?>
@@ -72,6 +73,7 @@ $categories = get_categories();
 </div>
 <?php } ?>
 
+<?php if ($found_posts > 0) { ?>
 <h3 class="sb-label">
 	<i class="fa fa-calendar"></i>
 	News Calendar
@@ -79,5 +81,6 @@ $categories = get_categories();
 <div class="sb-box">
 <?php get_calendar(); ?>
 </div>
+<?php } ?>
 
 </aside>

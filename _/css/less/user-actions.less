@@ -179,10 +179,11 @@ z-index: 100;
 	.border-bot(white, 0.2);
 	text-align: left;
 	.pad-all(0);
-	.h(3);
+	.h(3.2);
 	.line-h(3);
 	.bg-col(@gray);
 	.col(white);
+	.rel;
 		
 		&:hover, &:active, &:focus {
 		.bg-col(@grayDk);
@@ -201,10 +202,11 @@ z-index: 100;
 		}
 		
 		&:after {
+		.abs;
+		.right(0);
+		.top(0);
 		content: "\f055";
 		font-family: FontAwesome;	
-		.fright;
-		.in-block;
 		.font-size(1.6);
 		.pad-right(1);	
 		}
@@ -233,22 +235,22 @@ z-index: 100;
 		}
 	}
 }
-
+#favourites-box {
+	.list-closed {
+	.h(0);
+	overflow: hidden;
+	}	
+	
+	.list-open {
+	.max-h(40);
+	}	
+}
 
 .user-favs-list {
 .transition(0.3s, ease);
-overflow: hidden;
-
-	&.list-closed {
-	.h(0);
-	}	
-	
-	&.list-open {
-	.max-h(50);
-	}	
+.max-h(40);
 	
 	.user-favs-list-outer {
-	.max-h(50);
 	overflow-y: auto;
 	}
 

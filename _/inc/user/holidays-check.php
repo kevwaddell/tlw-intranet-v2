@@ -1,4 +1,9 @@
 <?php 
+/* 
+Check to see how many holidays 
+a user has for current year 
+*/
+
 $holidays_check_args = array(
 'post_type' => 'tlw_holiday',
 'posts_per_page' => -1,
@@ -24,8 +29,10 @@ $holidays_check = get_posts($holidays_check_args);
 $holidays_used = 0;
 $holidays_booked = 0;
 
-//echo '<pre>';
-
+/* 
+Loop through holidays and check
+the amount of days used
+*/
 if (count($holidays_check) > 0) {
 
 	foreach ($holidays_check as $holiday) {
@@ -43,22 +50,46 @@ if (count($holidays_check) > 0) {
 		$holidays_booked += $numdays;	
 		}
 		
-		/*
-print_r($start);
-		echo '<br>';
-*/
 	}
+	
+	
+}
+$holidays_check = get_posts($holidays_check_args);
+
+/* 
+Add the total of used and booked days together
+-----
+Add the total user holidays, extra days and
+carried over days together
+*/
+$total_holidays_added = ($holidays_used + $holidays_booked);
+$total_holidays = ($user_total_holidays + $extra_days) + $user_crossover_holidays;
+
+/* 
+Check to see if total holidays is greater
+that database user holidays.
+If not update total holidays in database
+*/
+if ($total_holidays > $user_total_holidays) {
+update_user_meta( $curauth->ID, 'total_holidays', $total_holidays, $user_total_holidays);
+$user_total_holidays = get_the_author_meta( "total_holidays", $curauth->ID );		
 }
 
-//echo '</pre>';
+/* 
+Check to see if total holidays added is not equal to 
+number of holidays in the database.
 
-if (($holidays_used + $holidays_booked) > 0) {
-$number_of_holidays = $user_holidays - ($holidays_used + $holidays_booked);
-update_user_meta( $curauth->ID, 'number_of_holidays', $number_of_holidays);		
+If not update number of holidays in the database
+*/
+if ($total_holidays_added != $total_holidays) {
+update_user_meta( $curauth->ID, 'number_of_holidays', ($total_holidays - $total_holidays_added), $user_holidays);	
 $user_holidays = get_the_author_meta( "number_of_holidays", $curauth->ID );
 }
 
-//echo '<pre>';print_r($user_holidays);echo '</pre>';
+
+$holidays_left = ($user_total_holidays - $total_holidays_added);
+
+//echo '<pre>';print_r($holidays_left);echo '</pre>';
 
 /* NEXT YEARS HOLIDAYS */
 $xty_holidays_check_args = array(

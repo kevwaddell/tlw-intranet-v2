@@ -17,29 +17,10 @@ $extra_days = $start_datediff->y;
 $first_change_date = new DateTime($user_s_date->format('jS F Y')." 1 year");
 $change_date = new DateTime($first_change_date->format('jS F Y')." +". ($extra_year) ." year");
 
-/*
-print_r($extra_days);
-echo '<br>';
-echo '<br>';
-print_r($first_change_date->format('jS F Y'));
-echo '<br>';
-print_r($change_date->format('jS F Y'));
-echo '<br>';
-echo '<br>';
-*/
-
 if ($user_s_date->format('n') != 1) {
 $first_change_date = $first_change_date->modify("00:00 01/01". $first_change_date->format('Y') . " +1 year");	
 $change_date = $change_date->modify("00:00 01/01". $first_change_date->format('Y') ."+". ($extra_year) ." year");	
 }
-
-/*
-print_r($first_change_date);
-echo '<br>';
-print_r($change_date);
-
-echo '</pre>';
-*/
 
 $change_datediff = $user_s_date->diff($change_date);
 $datediff = $now_date->diff($change_date);
@@ -61,7 +42,7 @@ if ($datediff->invert == 1) {
 }
 
 if (($user_allocated_holidays + $extra_days) > 28) {
-$change_extra_days = ($user_allocated_holidays + $extra_days) - 23;
+$change_extra_days = ($user_allocated_holidays + $extra_days) - $user_allocated_holidays;
 $update_extra = update_user_meta( $curauth->ID, 'extra_holidays', $change_extra_days, $extra_days);
 $extra_days = get_the_author_meta('extra_holidays', $curauth->ID);	
 }

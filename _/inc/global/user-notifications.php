@@ -64,22 +64,6 @@ $user_room_args = array(
 );
 $user_rooms = get_posts($user_room_args);
 
-$user_holiday_args = array(
-'post_status'	=> 'pending',
-'post_type'	=> 'tlw_holiday',
-'posts_per_page'	=> -1,
-'author'	=> $current_user->ID,
-'meta_query'	=> array(
-	array(
-		'key' => 'holiday_start_date',
-		'value' => $today,
-		'compare' => '>',
-		'type' => 'NUMERIC'
-	)
-)
-);
-$user_holidays = get_posts($user_holiday_args);
-
 if ($meetings_count > 0) {
 $all_count += $meetings_count;
 }
@@ -87,11 +71,6 @@ $all_count += $meetings_count;
 if (count($user_rooms) > 0) {
 $room_count = count($user_rooms);
 $all_count += $room_count;
-}
-
-if (count($user_holidays) > 0) {
-$holiday_count = count($user_holidays);
-$all_count += $holiday_count;
 }
 
 //echo '<pre>';print_r($user_meetings);echo '</pre>';
@@ -110,10 +89,6 @@ date_default_timezone_set($default_tz);
 		
 		<?php if ($room_count > 0) { ?>
 		<a href="<?php echo get_author_posts_url( $current_user->ID, $current_user->user_nicename); ?>?sortby=pending">Room bookings<span class="badge pull-right"><?php echo $room_count; ?></span></a>
-		<?php } ?>
-		
-		<?php if ($holiday_count > 0) { ?>
-		<a href="<?php echo get_author_posts_url( $current_user->ID, $current_user->user_nicename); ?>?holiday_sortby=pending">Holiday requests<span class="badge pull-right"><?php echo $holiday_count; ?></span></a>
 		<?php } ?>
 		
 	</div>

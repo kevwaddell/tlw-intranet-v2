@@ -108,7 +108,7 @@
 											<a href="<?php echo get_author_posts_url($user_id);?>?request=edit_holiday&holidayid=<?php echo get_the_ID();?>" class="btn btn-default edit action-btn"><i class="fa fa-pencil"></i> Edit</a>
 											<?php } ?>
 											
-											<a href="<?php echo get_author_posts_url($user_id);?>?request=cancel_holiday&holidayid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>	
+											<a href="<?php echo get_author_posts_url($user_id);?>?request=cancel_holiday&num_days=<?php echo $num_days;?>&holidayid=<?php echo get_the_ID();?>" class="btn btn-default cancel action-btn"><i class="fa fa-times"></i> Cancel</a>	
 										<?php } ?>		
 												
 										<?php if ( $end_date < $today || $post->post_status == "draft") { ?>

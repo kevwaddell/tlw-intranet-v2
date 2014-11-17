@@ -12,6 +12,8 @@ Template Name: Department page
 $icon = get_field('icon');
 $color = get_field('col');
 $team_members = get_field('team');
+$parent = get_page($post->post_parent);
+$children = get_pages('parent='.$parent->ID.'&sort_column=menu_order');
 ?>	
 		<article <?php post_class(); ?>>
 			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
@@ -20,6 +22,37 @@ $team_members = get_field('team');
 			
 			<?php if ($team_members) { ?>
 			<div class="rule"></div>
+			
+			<?php if ($children) { ?>
+			<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
+				<div id="department-links" class="links-dropdown inactive">
+					
+					<div class="links-dropdown-inner">
+						
+						<button id="links-dropdown-btn" class="btn btn-default btn-block no-arrow"><?php echo $parent->post_title;  ?>
+						<i class="fa fa-plus-circle fa-lg"></i><i class="fa fa-minus-circle fa-lg"></i></button>
+						
+						<ul class="list-unstyled clearfix">
+							<?php foreach ($children as $child) { 
+							$child_icon = get_field('icon', $child->ID);
+							$child_col = get_field('col', $child->ID);
+							?>
+							<li>
+								<a href="<?php echo get_permalink($child->ID);  ?>" class="col-<?php echo $child_col;  ?>" title="View: <?php echo $child->post_title;  ?> ">
+								<i class="fa <?php echo $child_icon;  ?>"></i>
+								<?php echo $child->post_title;  ?>
+								</a>
+							</li>
+							<?php } ?>
+						</ul>
+					
+					</div>	
+					
+				</div>
+			</div>
+			
+			<div class="rule"></div>
+			<?php } ?>
 		
 			<section id="department-list" class="grid-list">
 			

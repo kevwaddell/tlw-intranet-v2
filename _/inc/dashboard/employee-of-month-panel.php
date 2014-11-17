@@ -10,6 +10,7 @@
 		<div class="col-xs-8">
 			<div class="info">
 				<h3>Marc Davison</h3>
+				<p class="date">September 2014</p>
 				<p>Reason for employee of the month, reason for employee of the month. Reason for employee of the month, reason for employee of the month.</p>
 				<p>Congratulations Marc!</p>
 			</div>
@@ -19,5 +20,5 @@
 </div>
 
 <div class="panel-btns">
-	<a href="#" class="btn btn-default btn-block"><i class="fa fa-check fa-lg"></i>Vote for next Months</a>	
+	<a href="#" class="btn btn-default btn-block"><i class="fa fa-check fa-lg"></i>Vote for this Months</a>	
 </div>

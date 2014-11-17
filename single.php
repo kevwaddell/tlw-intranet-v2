@@ -13,7 +13,7 @@ $cat_id = $cat[0]->term_id;
 $tags = implode( ", ", wp_get_post_terms($post->ID, 'post_tag', array("fields" => "names") ) ) ; 
 $icon = get_field('icon', 'category_'.$cat_id);
 $color = get_field('color', 'category_'.$cat_id);
-//$favs = get_user_meta($current_user->ID, 'user_favourites', true);
+$user_favs = unserialize(get_user_meta($current_user->ID, 'user_favourites', true));
 /*
 if ($cat[0]->slug == 'events') {
 $icon = 'fa-calendar';	
@@ -24,7 +24,7 @@ $icon = 'fa-bullhorn';
 }
 */
 
-//echo '<pre>';print_r($favs);echo '</pre>';
+//echo '<pre>';print_r($user_favs);echo '</pre>';
 ?>	
 		<article <?php post_class('page'); ?>>
 
@@ -107,10 +107,8 @@ $icon = 'fa-bullhorn';
 			
 		</article>
 		
-		<div class="alerts alerts-off">
-			<div class="alerts-wrap">
-			<?php include (STYLESHEETPATH . '/_/inc/single-post/notifications/action-add-to-favourites.php'); ?>
-			</div>
+		<div class="alerts">
+			<?php include (STYLESHEETPATH . '/_/inc/single-post/notifications/alerts.php'); ?>
 		</div>
 		
 		

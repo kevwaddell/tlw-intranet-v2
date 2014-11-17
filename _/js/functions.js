@@ -1,6 +1,7 @@
 (function($){
 	
 	var event_type;
+	var ajaxLoading = false;
 	
 	if (Modernizr.touch){
 	
@@ -23,10 +24,12 @@
         railVisible: true
     });
     
-    $('.user-favs-list-outer').slimScroll({
-    	 height: '500px',
+    /*
+$('.user-favs-list-outer').slimScroll({
+    	 height: 'auto',
         alwaysVisible: true
     });
+*/
     
     if ( $('input.date-picker').length > 0) {
 	    $('input.date-picker').datepicker({
@@ -76,6 +79,15 @@
 		}
 		
 	});
+	
+	$('body').on(event_type,'button#links-dropdown-btn', function(e){
+    
+    var parent = $(this).parents('.links-dropdown');
+    
+    parent.toggleClass('inactive active');
+    
+   	return false;
+    });
     
     $('body').on(event_type,'button.close-panel-btn', function(e){
     
@@ -171,12 +183,20 @@
     $('body').on(event_type,'button.favs-btn', function(e){
     
     var list = $(this).next();
+    var height = list.find('.user-favs-list').height();
     
     $('button.favs-btn').not(this).removeClass('active');
-    $('.user-favs-list').not(list).removeClass('list-open').addClass('list-closed');
+    $('.list-open').not(list).removeClass('list-open').addClass('list-closed');
     
     $(this).toggleClass('active'); 
     $(list).toggleClass('list-open list-closed'); 
+    
+    console.log(height);
+    
+    $(list).find('.user-favs-list-outer').slimScroll({
+    	 height: height+'px',
+        alwaysVisible: true
+    });
     
     return false;
     });
@@ -506,6 +526,7 @@ $('body').on('submit', 'form#add_holiday_form', function() {
       /* ACTION BUTTONS */
       
       $('body').on(event_type,'.action-btns a.btn-action', function(e){
+      
      	
      	var params = $(this).attr("href");
      	var href = window.location.href;
@@ -513,16 +534,17 @@ $('body').on('submit', 'form#add_holiday_form', function() {
      	//console.log(href+params);
      	
      	$('.loader').fadeIn('fast');
-     		    
-	 	$('.alerts').load(href+params+" .actions-wrap", function(data, status, xhr){
+     	$('.alerts').empty();
+     	
+     	console.log($('.alerts').length);
+	    
+	 	$('.alerts').hide().load(href+params+" .actions-wrap", function(data, status, xhr){
 	 	
-	 	//console.log(status);
-	 	//console.log($(this));
+	 	//alert(status);
+	 	$(this).fadeIn('fast');
 	 	
 	 	if (status == "success") {
-		 
 		 $('.loader').fadeOut('fast');
-		 $(this).hide().fadeIn('fast');
 	     
 	      if ( $(this).find('input.date-picker').length > 0) {
 		    $('input.date-picker').datepicker({
@@ -548,19 +570,28 @@ $('body').on('submit', 'form#add_holiday_form', function() {
      	
      	var params = $(this).attr("href");
      	var href = window.location.href;
-     		    
-	 	$('.alerts').load(href+params+" .actions-wrap", function(data){
+     	
+     	$('.loader').fadeIn('fast');	
+     	$('.alerts').empty();
+     	    
+	 	$('.alerts').hide().load(href+params+" .actions-wrap", function(data, status, xhr){
 	     
-	     $(this).find('.alerts-wrap').hide().fadeIn('slow');
+	    $(this).fadeIn('fast');
 	     
-	     if ( $(this).find('input.date-picker').length > 0) {
-		    $('input.date-picker').datepicker({
-	        // Consistent format with the HTML5 picker
-	        format: 'DD d MM yyyy',
-	        weekStart: 1,
-	        todayHighlight: true,
-	        daysOfWeekDisabled: "0,6"
-			});
+	     if (status == "success") {
+	     
+	     $('.loader').fadeOut('fast');
+	     
+		     if ( $(this).find('input.date-picker').length > 0) {
+			    $('input.date-picker').datepicker({
+		        // Consistent format with the HTML5 picker
+		        format: 'DD d MM yyyy',
+		        weekStart: 1,
+		        todayHighlight: true,
+		        daysOfWeekDisabled: "0,6"
+				});
+			 }
+		 
 		 }
 
      	});   
@@ -686,13 +717,33 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	/* SET START MINS+HOURS */
 	$('body').on(event_type, '#start-meeting-hr-select > li > a', function(){
 	
-	var hr = $(this).text();
+	var hr = parseInt($(this).text(), 10);
 	$('input#start_hrs').val(hr);
+	$('input#end_hrs').val((hr)+1);
+		
+	return false;
+	});
+	
+	$('body').on(event_type, '#start-hr-select > li > a', function(){
+	
+	var hr = parseInt($(this).text(), 10);
+	
+	//console.log(hr+1);
+	$('input#start_hrs').val(hr);
+	$('input#end_hrs').val(hr+1);
 		
 	return false;
 	});
 	
 	$('body').on(event_type, '#start-meeting-min-select > li > a', function(){
+	
+	var min = $(this).text();
+	$('input#start_mins').val(min);
+		
+	return false;
+	});
+	
+	$('body').on(event_type, '#start-min-select > li > a', function(){
 	
 	var min = $(this).text();
 	$('input#start_mins').val(min);
@@ -709,6 +760,14 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 	return false;
 	});
 	
+	$('body').on(event_type, '#end-hr-select > li > a', function(){
+	
+	var hr = $(this).text();
+	$('input#end_hrs').val(hr);
+		
+	return false;
+	});
+	
 	$('body').on(event_type, '#end-meeting-min-select > li > a', function(){
 	
 	var min = $(this).text();
@@ -716,6 +775,15 @@ $('body').on('submit', 'form#add_holiday_form', function() {
 		
 	return false;
 	});
+	
+	$('body').on(event_type, '#end-min-select > li > a', function(){
+	
+	var min = $(this).text();
+	$('input#end_mins').val(min);
+		
+	return false;
+	});
+
       
 	/* DOCUMENT READY FUNCTIONS */
 	$(document).ready(function (){	

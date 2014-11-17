@@ -33,7 +33,7 @@
 
 		<div class="row">
 			<div class="col-xs-6">
-				<a href="?holiday_approval=yes&holidayid=<?php echo $holiday->ID;?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i> Yes</a>
+				<a href="?holiday_approval=yes&num_days=<?php echo $number_of_days; ?>&holidayid=<?php echo $holiday->ID;?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i> Yes</a>
 			</div>
 			<div class="col-xs-6">
 				<a href="?holiday_approval=no&holidayid=<?php echo $holiday->ID;?>" class="btn btn-danger btn-block"><i class="fa fa-times fa-lg"></i> No</a>

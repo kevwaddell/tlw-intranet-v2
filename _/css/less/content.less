@@ -28,6 +28,34 @@ max-width: 1130px;
 //.min-h(60);
 .mag-auto;
 
+	.uc-message, .no-posts-message {
+	.bg-col(@grayLt);
+	.mag-bot(0);
+		i {
+		.block;
+		.w(10);
+		.h(10);
+		.line-h(9);
+		text-align: center;
+		.rounded(50px);
+		margin: 0px auto 20px auto;
+		.bg-col(@grayLt);
+		.inner-shadow(0, 0, 5px,0.5);
+		.col( darken(@grayLt, 10%) );	
+		.border(white; 0.5);
+		}	
+		
+		h3 {
+		.col(@red);
+		.font-size(3);
+		.caps;	
+		}
+		
+		p:last-child {
+		.mag-bot(0);	
+		}
+	}
+
 	.banner-imgs {
 	.pad-top(1);
 	.pad-bot(2);
@@ -128,6 +156,30 @@ max-width: 1130px;
 			.bg-col(darken(@blue, 20%));
 			.col(@blue);	
 			}
+		}
+	}
+	
+	h3.block-header {
+	.bg-col(@gray);
+	.col(white);
+	.h(4);
+	.caps;
+	.font-lite;
+	.line-h(4);
+	.font-size(1.6);
+	.indent(2);
+	.mag-bot(1.5);	
+	
+		i {
+		.block;
+		.fleft;
+		.h(4);
+		.w(4);	
+		.line-h(4);
+		text-align: center;
+		.indent(0);
+		.bg-col(darken(@gray, 20%));
+		.col(lighten(@gray, 5%));
 		}
 	}
 	
@@ -274,7 +326,7 @@ max-width: 1130px;
 	.details-box {
 	.mag-bot(2);	
 		h3 {
-		.bg-col(@aqua);
+		.bg-col(@red);
 		.col(white);
 		.font-size(1.6);
 		.mag-top(0);
@@ -289,10 +341,10 @@ max-width: 1130px;
 			.fleft;
 			.h(3);
 			.w(3);
-			.bg-col(darken(@aqua, 20%))	;
+			.bg-col(darken(@red, 20%))	;
 			text-align: center;
 			.mag-right(1); 
-			.col(@aqua);
+			.col(@red);
 			.line-h(3);
 			}
 		}
@@ -308,14 +360,14 @@ max-width: 1130px;
 			&.info-label {
 			text-align: right;	
 			.pad-right(1);
-			.bg-col(lighten(@aqua, 10%));
+			.bg-col(lighten(@redMid, 10%));
 			.bold;
-			.col(darken(@aqua, 20%));
+			.col(white);
 			}	
 			&.info-details {
 			.mag-left(-2.8);
 			.pad-left(1);
-			.bg-col(lighten(@aqua, 20%));	
+			.bg-col(@grayLt);	
 			}
 		}
 		
@@ -521,6 +573,21 @@ max-width: 1130px;
 				}
 				&:hover, &:active, &:focus {
 				.bg-col(darken(@aqua, 20%));	
+				}
+			}
+		}
+		
+		/* AQUA */
+		&.col-purple {
+		.border-top(@purple; 0.2);
+			a {
+			.bg-col(@purple);
+				i {
+				.bg-col(darken(@purple, 20%));
+				.col(@purple);	
+				}
+				&:hover, &:active, &:focus {
+				.bg-col(darken(@purple, 20%));	
 				}
 			}
 		}

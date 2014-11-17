@@ -1,7 +1,7 @@
 <div class="page-section section-closed" style="margin-top: 10px;">
 	
 	<h3 class="section-header"><i class="fa fa-calendar fa-lg"></i>Your Events</h3>
-	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
+	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
 	
 	<div id="events-section-inner" class="section-inner">
 	

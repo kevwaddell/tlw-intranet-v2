@@ -1,12 +1,32 @@
 <?php 
 $form_url = explode("?", $_SERVER['REQUEST_URI']);
+//echo '<pre>';print_r($_GET);echo '</pre>';
 ?>
 
 <form action="<?php echo get_option('home'); ?><?php echo $form_url[0]; ?>" method="post" class="meeting-form" id="add_meeting_form">
-
-	<input type="hidden" name="userid" id="userid" value="<?php echo $_GET['userid']; ?>">
 	
 	<small class="required">Required</small>
+	
+	<?php if (current_user_can("administrator") ) { 
+	$users = get_users();
+	?>
+	
+	<div class="form-group">
+		<select name="userid" class="form-control">
+			<option value="0">Select a user</option>
+		<?php foreach ($users as $u) { 
+		//echo '<pre>';print_r($u);echo '</pre>';
+		?>
+			<option value="<?php echo $u->ID; ?>"<?php echo ($_REQUEST['userid'] == $u->ID) ? ' selected="selected"':''; ?>> <?php echo $u->data->display_name; ?></option>
+		<?php } ?>
+		</select>
+	</div>
+	
+	<?php } else { ?>
+	
+	<input type="hidden" name="userid" id="userid" value="<?php echo $_GET['userid']; ?>">	
+		
+	<?php } ?>
 	
 	<div class="form-group">
 		<div class="input-group">
@@ -16,19 +36,6 @@ $form_url = explode("?", $_SERVER['REQUEST_URI']);
 		</div>
 		<p class="help-block">e.g (Weekly team meeting).</p>
 	</div>
-	
-<!--
-	<div class="form-group form-inline">
-		<label for="meeting_room"><span class="required">*</span>Room</label>
-		<select class="form-control" id="meeting_room" name="meeting_room">
-			<option value="0">Choose a room</option>
-	<?php foreach ($rooms as $room) { ?>
-			<option value="<?php echo $room->term_id; ?>"<?php echo (isset($_POST['meeting_room']) && $_POST['meeting_room'] == $room->term_id) ? " selected":""; ?>><?php echo $room->name; ?></option>
-	<?php } ?>
-	
-		</select>
-	</div>
--->
 	
 	<div class="form-group">
 		<div class="input-group">
@@ -53,40 +60,6 @@ $form_url = explode("?", $_SERVER['REQUEST_URI']);
 		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	</div>
 	</div>
-		
-	<!--
-<div class="form-group form-inline">
-		<label for="meeting_room">Start time</label>
-		<select class="form-control" id="start_hrs" name="start_hrs">
-			<?php for($h = 8 ; $h <= 16; $h++) { ?>
-			<option value="<?php echo sprintf('%02d', $h); ?>"<?php echo (isset($_POST['start_hrs']) && $_POST['start_hrs'] == sprintf('%02d', $h)) ? " selected":""; ?>><?php echo sprintf('%02d', $h); ?></option>
-			<?php } ?>
-		</select>
-		<span>:</span>
-		<select class="form-control" id="start_mins" name="start_mins">
-			<?php for($m = 0 ; $m <= 55; $m++) { ?>
-				<?php if(($m % 5) == 0) { ?>
-			<option value="<?php echo sprintf('%02d', $m); ?>"<?php echo (isset($_POST['start_mins']) && $_POST['start_mins'] == sprintf('%02d', $m)) ? " selected":""; ?>><?php echo sprintf('%02d', $m); ?></option>
-				<?php } ?>
-			<?php } ?>
-		</select>
-		&nbsp;&nbsp;
-		<label>End time</label>
-		<select class="form-control" id="end_hrs" name="end_hrs">
-			<?php for($h = 9 ; $h <= 17; $h++) { ?>
-			<option value="<?php echo sprintf('%02d', $h); ?>"<?php echo (isset($_POST['end_hrs']) && $_POST['end_hrs'] == sprintf('%02d', $h)) ? " selected":""; ?>><?php echo sprintf('%02d', $h); ?></option>
-			<?php } ?>
-		</select>
-		<span>:</span>
-		<select class="form-control" id="end_mins" name="end_mins">
-			<?php for($m = 0 ; $m <= 55; $m++) { ?>
-				<?php if(($m % 5) == 0) { ?>
-			<option value="<?php echo sprintf('%02d', $m); ?>"<?php echo (isset($_POST['end_mins']) && $_POST['end_mins'] == sprintf('%02d', $m)) ? " selected":""; ?>><?php echo sprintf('%02d', $m); ?></option>
-				<?php } ?>
-			<?php } ?>
-		</select>
-	</div>
--->
 	
 	<div class="form-group">
 		<div class="row">

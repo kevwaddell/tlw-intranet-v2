@@ -8,6 +8,8 @@ $feat_img = wp_get_attachment_image_src($post_thumbnail_id, 'img-4-col-crop' );
 $content = apply_filters('the_content', $news_page->post_content );
 $color = get_field('col', $news_page->ID);
 //echo '<pre>';print_r($feat_img[0]);echo '</pre>';
+$found_posts = $wp_query->found_posts;
+//echo '<pre>';print_r($found_posts);echo '</pre>';
 ?>
 
 <article class="page">
@@ -29,10 +31,12 @@ $color = get_field('col', $news_page->ID);
 				
 				<div id="post-section-inner" class="section-inner">
 					
+					<?php if ($found_posts > 0) { ?>
 					<div class="pagination-links pagination-actions top">
 						<?php wp_pagenavi(); ?>						
 					</div>
-					
+					<?php } ?>
+	
 					<?php if ( have_posts() ): ?>	
 					
 					<?php while ( have_posts() ) : the_post(); ?>	
@@ -70,14 +74,18 @@ $color = get_field('col', $news_page->ID);
 					<?php endwhile; ?>
 			
 					<?php else: ?>
-					<div class="well text-center">
-						No more news at the moment.
+					<div class="well well-lg no-posts-message text-center" style="margin-top: 10px;">
+						<i class="fa fa-rss fa-3x"></i>
+						<h3>Sorry</h3>
+						<p>There is no news at the moment.</p>
 					</div>
 					<?php endif; ?>
 					
+					<?php if ($found_posts > 0) { ?>
 					<div class="pagination-links pagination-actions top">
 						<?php wp_pagenavi(); ?>						
-				</div>
+					</div>
+					<?php } ?>
 				
 				</div>
 				

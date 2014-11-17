@@ -162,7 +162,7 @@
 		//.mag-bot(2);
 		
 			.nav-tabs {
-			border-color: @aqua;	
+			border-color: @red;	
 			
 				li {
 					a {
@@ -170,16 +170,16 @@
 					.font-size(1.4);
 					.no-rounded;
 						&:hover {
-						.bg-col(@aqua);	
-						.border-col(@aqua);	
+						.bg-col(@red);	
+						.border-col(@red);	
 						.col(white);
 						}	
 					}
 					
 					&.active {
 						a {
-						.border-col(@aqua);	
-						.bg-col(@aqua);
+						.border-col(@red);	
+						.bg-col(@red);
 						.col(white);
 						}
 					}
@@ -189,7 +189,7 @@
 			.tab-content {
 			//.h(20);
 			.pad-all(2);
-			.border(@aqua; 0.1);	
+			.border(@red; 0.1);	
 			border-top: none;
 			}
 			
@@ -315,6 +315,14 @@
 		
 		.eotm-content {
 		.mag-bot(2);	
+		
+			p.date {
+			.caps;
+			.block;
+			.font-size(1.2);
+			.col(@gray);
+			.mag-bot(1);
+			}
 		
 			p {
 			.font-size(1.4);
@@ -664,6 +672,16 @@
 				}
 				
 			}	
+		}
+		
+		.carousel-indicators {
+				
+			li {
+			.border-col(@red);	
+				&.active {
+				.bg-col(@redMid);	
+				}
+			}
 		}
 	}
 	

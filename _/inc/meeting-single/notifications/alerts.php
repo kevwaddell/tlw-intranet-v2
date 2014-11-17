@@ -12,7 +12,11 @@
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-remove-email.php'); ?>
 		
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/cancel-meeting-request.php'); ?>
+		
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/request-add-to-favourites.php'); ?>
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/request-remove-favourite.php'); ?>
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-add-to-favourites.php'); ?>
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-remove-favourite.php'); ?>
 	</div>
 
 </div>

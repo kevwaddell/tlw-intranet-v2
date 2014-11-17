@@ -6,9 +6,11 @@
 	$user_id = $_POST['userid'];
 	$current_user = get_user_by('id', $user_id);
 	$numdays = 0;
+	$totaldays = 0;
 	$day_amount = $_POST['day_amount'];
 	$hol_start_date_raw = trim($_POST['holiday_start_date']);
 	$start_year = date("Y", strtotime($hol_start_date_raw));
+	$bank_hols = calculateBankHolidays(date("Y"));
 	//echo '<pre>';print_r( $s_date );echo '</pre>';
 	//$addDay = 86400;
 	//echo '<pre>';print_r($_POST);echo '</pre>';
@@ -16,10 +18,24 @@
 	/* ERRORS CHECK */
 	if ( $hol_start_date_raw == "") {
 	$errors[] = "Please select a start date.";
+	} else {
+	$s_date = new DateTime($hol_start_date_raw);	
+	}
+	
+	$get_start_holidays_args = array(
+	'post_type' => 'tlw_holiday',
+	'author'	=> $user_id,
+	'meta_key'	=> 'holiday_start_date',
+	'meta_value' => $s_date->getTimestamp(),
+	);
+	
+	$get_start_holidays = get_posts($get_start_holidays_args);
+	
+	if (!empty($get_start_holidays)) {
+	$errors[] = "You already have this start day booked.";	
 	}
 	
 	if ($day_amount == 'single') {
-		$s_date = new DateTime($hol_start_date_raw);
 		$e_date = new DateTime($hol_start_date_raw);
 		
 		$numdays = 1;
@@ -46,26 +62,51 @@
 	if ($day_amount == 'multiple') {
 	
 		$hol_end_date_raw = trim($_POST['holiday_end_date']);
-	
-		$s_date = new DateTime($hol_start_date_raw);
+		
+		if ( $hol_end_date_raw == "") {
+		$errors[] = "Please select an end date.";
+		} else {
+		$e_date = new DateTime($hol_end_date_raw);	
+		}
+		
+		$get_end_holidays_args = array(
+		'post_type' => 'tlw_holiday',
+		'author'	=> $user_id,
+		'meta_key'	=> 'holiday_end_date',
+		'meta_value' => $e_date->getTimestamp(),
+		);
+		
+		$get_end_holidays = get_posts($get_end_holidays_args);
+		
+		if (!empty($get_end_holidays)) {
+		$errors[] = "You already have this last day booked.";	
+		}
+		
+		
+		if (count($errors) == 0) {
 		$s_ts = $s_date->getTimestamp();
-		$e_date = new DateTime($hol_end_date_raw);
 		$datediff = $e_date->diff($s_date);
 		$addDay = 86400;
 	
 		/* Count number of days */
 		for ($i = 0; $i <= $datediff->days; $i++) {
 			$numdays++;
+			$totaldays++;
 		}
 		
 		/* Check if it a day is a weekend */
-		for($d = 1; $d < $numdays; $d++){
+		for($d = 0; $d < $totaldays; $d++){
 
 		    // get what day it is next day
-		    $nextDay = date('w', ($s_ts+$addDay));
+		    $day = date('w', $s_ts);
+		    $dayDate = date('Y-m-d', $s_ts);
 		
 		    // if it's Saturday or Sunday get $i-1
-		    if($nextDay == 0 || $nextDay == 6) {
+		    if($day == 0 || $day == 6) {
+		        $numdays--;
+		    }
+		    
+		    if(in_array($dayDate, $bank_hols)) {
 		        $numdays--;
 		    }
 		    
@@ -86,16 +127,14 @@
 			
 			$numdays -= 0.5;	
 		}
-	
-		if ( $hol_end_date_raw == "") {
-		$errors[] = "Please select an end date.";
+		
 		}
 	
 	}
 	
 	/* IF NO ERRORS ADD POST */
 	if ( count($errors) == 0 ) {
-
+	
 		$post_title = $current_user->data->display_name;
 		
 		$post_args = array(
@@ -107,12 +146,16 @@
 		);
 		
 		if ( $e_date->format( 'Ymd' ) < date('Ymd') ) {
+		$user_holidays = get_the_author_meta( "number_of_holidays", $user_id );
 		$post_args['post_status'] = 'publish';
+		update_user_meta( $user_id, 'number_of_holidays', ($user_holidays - $numdays));	
 		}
 		
 		//echo '<pre>';print_r($post_args);echo '</pre>';
 		
 		$h_id = wp_insert_post($post_args);
+		
+		
 		
 		/* SET META */
 		update_post_meta($h_id, '_holiday_start_date', 'field_53c67357805e5'); 
@@ -160,7 +203,7 @@
 			<a href="?action=confirm_holiday&holidayid=<?php echo $h_id; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i>Confirm</a>
 		</div>
 		<div class="col-xs-6">
-			<a href="?request=cancel_holiday&holidayid=<?php echo $h_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
+			<a href="?request=cancel_holiday&num_days=<?php echo $numdays; ?>&holidayid=<?php echo $h_id; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-times fa-lg"></i>Cancel</a>
 		</div>
 	</div>
 	

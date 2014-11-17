@@ -1,7 +1,7 @@
 <div class="page-section <?php echo (isset($_GET['sortby']) || isset($_GET['view'])) ? 'section-open':'section-closed'; ?>">
 
 	<h3 class="section-header"><i class="fa fa-clock-o fa-lg"></i>Your Meetings</h3>
-	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-chevron-circle-down fa-lg"></i></button>
+	<button class="close-section-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
 	
 	<div id="meetings-section-inner" class="section-inner">
 	

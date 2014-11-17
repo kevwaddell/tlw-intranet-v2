@@ -2,7 +2,13 @@
 	
 	$cur_url = explode("?", $_SERVER['REQUEST_URI']);
 	$holiday_id = $_GET['holidayid'];
+	$numdays = $_GET['num_days'];
+	$holiday = get_post($holiday_id);
 	$end_date = get_field('holiday_end_date', $holiday_id);
+	$user_holidays = get_the_author_meta( "number_of_holidays", $holiday->post_author );
+	
+	update_user_meta( $holiday->post_author , 'number_of_holidays', ($user_holidays + $numdays));	
+	
 	wp_delete_post( $holiday_id, true );
 	
 ?>

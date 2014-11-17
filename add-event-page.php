@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Add article page
+Template Name: Add event page
 */
 ?>
 
@@ -24,8 +24,8 @@ $return_url = urldecode($_GET['httpref']);
 		<div class="actions-wrap">
 			<div class="alerts-wrap">
 				
-			<?php include (STYLESHEETPATH . '/_/inc/add-item/add-post/notifications/add-post-action.php'); ?>	
-			<?php include (STYLESHEETPATH . '/_/inc/add-item/add-post/notifications/confirm-post-action.php'); ?>	
+			<?php include (STYLESHEETPATH . '/_/inc/add-item/add-event/notifications/add-event-action.php'); ?>	
+			<?php include (STYLESHEETPATH . '/_/inc/add-item/add-event/notifications/confirm-event-action.php'); ?>	
 			
 			</div>
 		</div>
@@ -46,7 +46,7 @@ $return_url = urldecode($_GET['httpref']);
 		<div class="editor-form-wrap">
 			<div class="row">
 				<div class="col-xs-11">
-					<?php include (STYLESHEETPATH . '/_/inc/add-item/add-post/add-post-form.php'); ?>
+					<?php include (STYLESHEETPATH . '/_/inc/add-item/add-event/add-event-form.php'); ?>
 				</div>
 				<div class="col-xs-1">
 					<?php include (STYLESHEETPATH . '/_/inc/add-item/btn-actions.php'); ?>

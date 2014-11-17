@@ -1,13 +1,34 @@
 <?php
 $form_url = explode("?", $_SERVER['REQUEST_URI']);
 //echo '<pre>';print_r(explode("?", $_SERVER['REQUEST_URI']));echo '</pre>';
+//echo '<pre>';print_r($_REQUEST);echo '</pre>';
  ?>
 
 <form action="<?php echo get_option('home'); ?><?php echo $form_url[0]; ?>" method="post" class="holiday-form" id="add_holiday_form">
 
-	<input type="hidden" name="userid" id="userid" value="<?php echo $_GET['userid']; ?>">
 	
 	<small class="required">Required</small>
+	
+	<?php if (current_user_can("administrator") ) { 
+	$users = get_users();
+	?>
+	
+	<div class="form-group">
+		<select name="userid" class="form-control">
+			<option value="0">Select a user</option>
+		<?php foreach ($users as $u) { 
+		//echo '<pre>';print_r($u);echo '</pre>';
+		?>
+			<option value="<?php echo $u->ID; ?>"<?php echo ( $_REQUEST['userid'] == $u->ID ) ? ' selected="selected"':''; ?>> <?php echo $u->data->display_name; ?></option>
+		<?php } ?>
+		</select>
+	</div>
+	
+	<?php } else { ?>
+	
+	<input type="hidden" name="userid" id="userid" value="<?php echo $_GET['userid']; ?>">	
+		
+	<?php } ?>
 	
 	<div class="form-group">
 		<div class="input-group">
@@ -41,7 +62,7 @@ $form_url = explode("?", $_SERVER['REQUEST_URI']);
 	<div class="action-btns">
 		<div class="row">
 			<div class="col-xs-6">
-				<input type="submit" value="Send request" name="add_holiday" class="btn btn-info btn-block">
+				<input type="submit" value="Add Holiday" name="add_holiday" class="btn btn-info btn-block">
 			</div>
 			<div class="col-xs-6">
 			<a href="<?php echo get_option('home'); ?><?php echo $form_url[0]; ?>" class="btn btn-info btn-block cancel-btn" title="Cancel">Cancel</a>
