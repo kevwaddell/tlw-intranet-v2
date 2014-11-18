@@ -156,7 +156,7 @@ pre {
   top: 0px;
   left: 0px;
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   height: 50%;
   width: 30%;
   overflow: auto;
@@ -1605,6 +1605,14 @@ article.page .uc-message p:last-child,
 article.page .no-posts-message p:last-child {
   margin-bottom: 0px;
 }
+article.page .uc-message.col-gray h3,
+article.page .no-posts-message.col-gray h3 {
+  color: #918f8f;
+}
+article.page .uc-message.col-purple h3,
+article.page .no-posts-message.col-purple h3 {
+  color: #b975da;
+}
 article.page .banner-imgs {
   padding-top: 10px;
   padding-bottom: 20px;
@@ -2480,6 +2488,9 @@ figure.feat-img a:focus span.zoom-mask {
 .page-section table thead.data-list-header th.time {
   width: 15%;
 }
+.page-section table thead.data-list-header th.type {
+  width: 15%;
+}
 .page-section table thead.data-list-header th.date {
   width: 15%;
 }
@@ -2630,6 +2641,9 @@ figure.feat-img a:focus span.zoom-mask {
   border: 3px solid #918f8f;
 }
 .page-section .data-list-table .table td.time {
+  width: 15%;
+}
+.page-section .data-list-table .table td.type {
   width: 15%;
 }
 .page-section .data-list-table .table td.date {
@@ -4091,7 +4105,8 @@ body#user-page {
   border-radius: 4px;
   background-color: #d9534f;
 }
-.form-group #wp-addpost-wrap {
+.form-group #wp-addpost-wrap,
+.form-group #wp-message-wrap {
   background-color: #e9e9e9;
   padding: 10px 20px 20px 20px;
 }

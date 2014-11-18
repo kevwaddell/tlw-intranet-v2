@@ -13,11 +13,7 @@
 		
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/cancel-meeting-request.php'); ?>
 		
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/request-add-to-favourites.php'); ?>
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/request-remove-favourite.php'); ?>
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-add-to-favourites.php'); ?>
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/action-remove-favourite.php'); ?>
-	</div>
-
+		<?php include (STYLESHEETPATH . '/_/inc/global/notifications/add-favourite-alerts.php'); ?>
+		<?php include (STYLESHEETPATH . '/_/inc/global/notifications/remove-favourite-alerts.php'); ?>
 </div>
 <?php } ?>

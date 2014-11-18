@@ -1,4 +1,6 @@
-<?php if ( isset($_GET['action']) && $_GET['action'] == 'add_to_favs') {  
+<?php if ( $_GET['action'] == 'add_to_favs') {  
+	
+	$page_url = explode("?", $_SERVER['REQUEST_URI']);
 	
 	$favs = unserialize(get_user_meta($current_user->ID, 'user_favourites', true));
 	$fav_info = array('post_id' => $_GET['postid'], 'post_type'	=> $_GET['type']);
@@ -26,7 +28,7 @@
 <strong><?php echo $post->post_title; ?></strong><br>has been added to your favourites.<br><br>
 	
 	<div class="action-btns">
-		<a href="<?php the_permalink(); ?>" class="btn btn-success btn-block">Continue</a>
+		<a href="<?php echo $page_url[0]; ?>" class="btn btn-success btn-block">Continue</a>
 	</div>
 
 </div>
@@ -41,7 +43,7 @@
 	<br>
 	
 	<div class="action-btns">
-		<a href="<?php the_permalink(); ?>" class="btn btn-danger btn-block">Continue</a>
+		<a href="<?php echo $page_url[0]; ?>" class="btn btn-danger btn-block">Continue</a>
 	</div>
 
 </div>

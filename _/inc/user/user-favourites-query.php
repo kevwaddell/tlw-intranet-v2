@@ -18,32 +18,61 @@ $favs = unserialize( get_user_meta($current_user->ID, 'user_favourites', true) )
 }
 
 $fav_ids = array();
+$fav_types = array();
+
+$fav_args = array(
+'posts_per_page'	=> -1,
+'order'	=> 'DESC',
+'orderby' => 'date'
+);
 
 foreach ($favs as $fav) {
 	
 	if (!in_array($fav['post_id'], $fav_ids)) {
-	array_push($fav_ids, $fav['post_id']);
+		
+		if (!isset($_GET['fav_sortby'])) {
+		array_push($fav_ids, $fav['post_id']);	
+		} else {
+			
+			if ($_GET['fav_sortby'] == $fav['post_type'] && $_GET['fav_sortby'] == 'tlw_meeting') {
+			array_push($fav_ids, $fav['post_id']);		
+			}	
+			
+			if ($_GET['fav_sortby'] == $fav['post_type'] && $_GET['fav_sortby'] == 'post') {
+			$cats = wp_get_post_categories( $fav['post_id'], 'fields=slugs' );
+			
+				if (in_array($_GET['cat'], $cats)) {
+				array_push($fav_ids, $fav['post_id']);	
+				}
+				
+			}	
+		}
+	}
+	
+	if (!in_array($fav['post_type'], $fav_types)) {
+	array_push($fav_types, $fav['post_type']);
 	}	
 }
 
-echo '<pre>';
-print_r($favs);
-echo '<br>';
-echo '<br>';
-echo '<br>';
-print_r($fav_ids);
-echo '<br>';
-echo '<br>';
+//echo '<pre>';print_r($fav_ids);echo '</pre>';
+	
+$your_fav_ids = $fav_ids;
 
-if (!empty($fav_ids)) {
+if (!isset($_GET['fav_sortby'])) {
+$fav_args['post_type'] = $fav_types;
+}
+
+if (isset($_GET['fav_sortby'])) {
+
+	if ($_GET['fav_sortby'] == 'tlw_meeting') {
+	$fav_args['post_type'] = 'tlw_meeting';	
+	}
 	
-$fav_args = array(
-'posts_per_page'	=> -1,
-'order'	=> 'DESC',
-'orderby' => 'date',
-);
-	
-$user_favs = get_posts($fav_args);
+	if ($_GET['fav_sortby'] == 'post') {
+	$fav_args['post_type'] = 'post';
+	$fav_args['category_name'] = $_GET['cat'];
+	}
+}
 
 if (!empty($fav_ids)) {
 $favs_max_num_pages = ceil( count($fav_ids)/10);
@@ -58,8 +87,5 @@ $favs_max_num_pages = ceil( count($fav_ids)/10);
 $fav_args['post__in' ] = $fav_ids;
 }
 $favs_query = new WP_Query( $fav_args );
-print_r($favs_query);
-echo '</pre>';
-}
-
+//echo '<pre>';print_r($favs_query);echo '</pre>';
  ?>

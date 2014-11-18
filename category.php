@@ -104,7 +104,7 @@ include (STYLESHEETPATH . '/_/inc/category-page/cats-query.php');
 				
 					<div id="post-section-inner" class="section-inner">
 					
-						<?php if (count($exclude_posts) == 0 ) { ?>
+						<?php if (count($exclude_posts) == 0 && $found_posts > 0) { ?>
 						<div class="pagination-links pagination-actions top">
 							<?php wp_pagenavi(); ?>						
 						</div>
@@ -141,14 +141,18 @@ include (STYLESHEETPATH . '/_/inc/category-page/cats-query.php');
 						<?php endwhile; ?>
 						
 						<?php else: ?>
-						<div class="well text-center">
-							No more <strong><?php single_cat_title(); ?></strong> at the moment.
+						<div class="well well-lg no-posts-message text-center<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>" style="margin-top: 10px;">
+						<i class="fa fa-rss fa-3x"></i>
+						<h3>Sorry</h3>
+						<p>There is no <strong><?php single_cat_title(); ?></strong> at the moment.</p>
 						</div>
 						<?php endif; ?>
 						
+						<?php if ($found_posts > 0) { ?>
 						<div class="pagination-links pagination-actions">
 							<?php wp_pagenavi(); ?>							
 						</div>	
+						<?php } ?>
 				
 					</div>
 				

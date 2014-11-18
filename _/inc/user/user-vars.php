@@ -3,7 +3,7 @@ $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : g
 global $current_user;
 get_currentuserinfo();
 $user_meta = get_user_meta($curauth->ID);
-//echo '<pre>';print_r($user_meta['first_name'][0]);echo '</pre>';
+//echo '<pre>';print_r($curauth);echo '</pre>';
 $now_date = new DateTime(date('l jS F Y'));
 $user_start_date_raw = get_field('user_start_date', 'user_'.$curauth->ID);
 $user_start_date = date("l jS F Y", strtotime($user_start_date_raw));

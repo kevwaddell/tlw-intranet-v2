@@ -35,7 +35,7 @@ $categories = get_categories();
 <div class="rule"></div>
 <?php endif; ?>
 
-<?php if (is_home() || is_archive() || is_tag() && $content) : ?>
+<?php if (is_home() || is_date() || is_tag() && $content) : ?>
 <div class="lead">
 	<?php echo $content; ?>
 </div>

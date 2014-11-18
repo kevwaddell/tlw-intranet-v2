@@ -66,7 +66,7 @@ foreach ($fav_posts as $fav_post) {
 ?>
 
 <?php if (!empty($news)) { ?>
-<button id="news-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-rss"></i>News</button>
+<button id="news-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-rss"></i>News <span class="badge"><?php echo count($news); ?></span></button>
 
 <div class="list-closed">
 
@@ -100,7 +100,7 @@ foreach ($fav_posts as $fav_post) {
 <?php } ?>
 
 <?php if (!empty($events)) { ?>
-<button id="events-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-calendar"></i>Events</button>
+<button id="events-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-calendar"></i>Events <span class="badge"><?php echo count($events); ?></span></button>
 
 <div class="list-closed">
 
@@ -135,7 +135,7 @@ foreach ($fav_posts as $fav_post) {
 <?php } ?>
 
 <?php if (!empty($announcments)) { ?>
-<button id="announcments-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-bullhorn"></i>Announcments</button>
+<button id="announcments-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-bullhorn"></i>Announcments <span class="badge"><?php echo count($announcments); ?></span></button>
 
 <div class="list-closed">
 
@@ -165,7 +165,7 @@ foreach ($fav_posts as $fav_post) {
 <?php } ?>
 
 <?php if ($fav_meetings) { ?>
-<button id="meetings-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-clock-o"></i>Meetings</button>
+<button id="meetings-favs-btn" class="btn btn-default btn-block favs-btn"><i class="fa fa-clock-o"></i>Meetings <span class="badge"><?php echo count($fav_meetings); ?></span></button>
 
 <div class="list-closed">
 

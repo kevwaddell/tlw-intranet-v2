@@ -45,7 +45,7 @@
 													<?php echo $avatar; ?> 
 												</td>
 												<td>
-													<a href="<?php echo get_author_posts_url($staff_attendee['attendee_staff']['ID']);?>"><?php echo $staff_attendee['attendee_staff']['display_name']; ?></a>
+													<?php echo $staff_attendee['attendee_staff']['display_name']; ?>
 												</td>
 											</tr>
 										</tbody>
@@ -81,6 +81,8 @@
 										<?php } ?>
 										
 										<?php } ?>
+										
+										<a href="<?php echo get_author_posts_url($staff_attendee['attendee_staff']['ID']);?>" class="btn btn-default"><i class="fa fa-user"></i> View user profile</a>
 									</td>
 								</tr>
 								
