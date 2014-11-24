@@ -78,6 +78,19 @@ if ( function_exists( 'register_sidebar' ) ) {
 	);
 	
 	register_sidebar( $login_sb_args );	
+	
+	$dashboard_pan_args = array(
+	'name'          => "Dashboard question of the day",
+	'id'            => "dashboard-poll",
+	'description'   => 'Panel for dashboard question of the day',
+	'class'         => 'dash-panel',
+	'before_widget' => '',
+	'after_widget'  => '',
+	'before_title'  => '',
+	'after_title'   => '' 
+	);
+	
+	register_sidebar( $dashboard_pan_args );	
 }
 
 // Use shortcodes in text widgets.
@@ -132,7 +145,7 @@ function add_gravityforms_style() {
 add_action('wp_print_styles', 'add_gravityforms_style');
 
 function custom_excerpt_length( $length ) {
-	return 20;
+	return 30;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
@@ -159,6 +172,7 @@ require_once(STYLESHEETPATH . '/_/functions/change-meta-box-title.php');
 /* AFC FUNCTIONS */
 require_once(STYLESHEETPATH . '/_/functions/afc_save_post.php');
 require_once(STYLESHEETPATH . '/_/functions/afc_relationship_filter.php');
+require_once(STYLESHEETPATH . '/_/functions/afc_options_functions.php');
 
 /* CUSTOM ROW ACTIONS */
 require_once(STYLESHEETPATH . '/_/functions/post_row_actions.php');
@@ -191,10 +205,6 @@ function my_current_screen($screen) {
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) return $screen;
     //echo '<pre>';print_r($screen);echo '</pre>';
     return $screen;
-}
-
-if(function_exists('acf_add_options_page')) { 
-	acf_add_options_page();
 }
 
 function floorToFraction($number, $denominator = 1) {

@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<?php 
 				if ($_POST['addpost']) {
-				$content = $_POST['addpost'];	
+				$content = apply_filters('the_content', $_POST['addpost'] );	
 				} else {
 				$content = "";	
 				}

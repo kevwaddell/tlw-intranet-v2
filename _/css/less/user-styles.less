@@ -46,6 +46,98 @@ width: 100%;
 	}
 }
 
+.eotm-banner {
+.bg-col(darken(@green, 10%));
+.col(white);
+.caps;
+.mag-bot(4);
+.mag-left(-4);
+.mag-right(-4);
+.rel;
+.h(6);
+.top(1);
+
+	h3 {
+	width: 60%;
+	.h(7);
+	.line-h(6);
+	.bg-col(@green);
+	.rel;
+	.top(-1);
+	margin: auto;
+	.border-bot(white; 1);
+		
+		&:before {
+		content: "";
+		.block;
+		.abs;	
+		.left(0);
+		.bottom(-1);
+		.h(1);
+		.w(1);
+		.border-right(darken(@green, 20%); 1);
+		.border-bot(darken(@green, 10%); 1);
+		}
+		
+		&:after {
+		content: "";
+		.block;
+		.abs;	
+		.right(0);
+		.bottom(-1);
+		.h(1);
+		.w(1);
+		.border-left(darken(@green, 20%); 1);
+		.border-bot(darken(@green, 10%); 1);
+		}
+	
+		i {
+		.abs;
+		.top(-1);
+		.w(8);
+		.h(8);
+		.bg-col(white);	
+		.line-h(7);
+		.rounded(40px);
+		.font-size(4);
+		.col(darken(@green, 10%));
+		.border(darken(@green, 20%); 0.5);
+		
+			&.left {
+			.left(1);	
+			}
+			
+			&.right {
+			.right(1);	
+			}
+		}
+	}
+	
+	&:before {
+	content: "";
+	.block;
+	.abs;
+	.bottom(-2);
+	.left(0);
+	.h(2);
+	.w(2);
+	.border-right(darken(@green, 20%); 2);
+	.border-bot(transparent; 2);
+	}
+	
+	&:after {
+	content: "";
+	.block;
+	.abs;
+	.bottom(-2);
+	.right(0);
+	.h(2);
+	.w(2);
+	.border-left(darken(@green, 20%); 2);
+	.border-bot(transparent; 2);
+	}
+}
+
 .user-wrapper {
 .rel;
 height: 100%;	
@@ -194,6 +286,54 @@ background-position: center center;
 	.h(5);
 	.line-h(5);	
 	.mag-bot(1);
+	}
+	
+	a.edit-profile {
+	.abs;
+	.right(0);
+	.top(0);
+	.w(4.3);
+	.h(4.3);
+	.line-h(4.3);
+	.pad-all(0);
+	text-align: center;
+	height: 100%;	
+	.col(white);
+	.bg-col(@red);
+	.no-text-dec;
+		&:hover, &:active, &:focus {
+		.bg-col(@gray);
+		}
+	}
+	
+	.text {
+	.rel;	
+	}
+	
+	.edit-input {
+	.mag-left(-2.8);
+	.h(4.3);
+		input {
+		height: 100%;	
+		}	
+	}
+	
+	p.message {
+	.bg-col( lighten(@warning, 30%) );
+	.border(@warning; 0.1);
+	.pad-all(1);
+	.col( @warning );
+	.bold;
+	text-align: center;
+	}
+	
+	p.error {
+	.bg-col( lighten(@danger, 30%) );
+	.border(@danger; 0.1);	
+	.pad-all(1);
+	.bold;
+	text-align: center;
+	.col(@danger);
 	}
 
 }

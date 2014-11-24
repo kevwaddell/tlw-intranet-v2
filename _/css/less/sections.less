@@ -590,6 +590,7 @@
 	.mag-bot(2);
 	.pad-top(2);
 	.no-text-dec;
+	.rel;
 	
 		&.last-link {
 		.mag-bot(0);		
@@ -599,6 +600,27 @@
 		.block;	
 		}
 		
+		span.eotm-tag {
+		.abs;
+		.w(10);
+		.left(-2.5);
+		.top(1);
+		.border-bot(@green; 3);
+		.border-left(transparent; 3);
+		.border-right(transparent; 3);
+		.rotation(-45deg);
+			&:after {
+			.abs;
+			width: 100%;
+			content: "\f091";
+			font-family: FontAwesome;
+			text-align: center;
+			.h(3);	
+			.line-h(3);
+			.col(@grayDk);
+			.font-size(2);
+			}
+		}
 		span.user-avatar {
 		.border(@gray; 0.1);
 		.mag(0;2;2;2);
@@ -624,6 +646,7 @@
 		.bg-col(@grayDk);	
 		.drop-shadow(0, 0, 10px,0.5);
 		}
+		
 	}
 	
 }
@@ -665,7 +688,7 @@
 
 /* DEPARTMENTS LISTS */
 
-#departments-list {
+#departments-list, #recources-list {
 .border-bot(@gray; 0.1);	
 	.list-item {
 	.mag-bot(2);

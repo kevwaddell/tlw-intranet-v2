@@ -1,5 +1,5 @@
 <?php if ($post->post_author == $current_user_ID || current_user_can("administrator") ) { ?>
-<div class="action-btns col-purple">
+<div class="action-btns <?php echo (!empty($color)) ? "col-".$color:"col-grey"; ?>">
 	<a href="?request=add_attendee" id="add_attendee" class="btn btn-default btn-block btn-action"><i class="fa fa-plus fa-lg"></i>Add Attendee</a>
 </div>
 

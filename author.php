@@ -18,7 +18,13 @@
 
 <!-- MEETINGS DATA LIST -->
 
-<?php if (!current_user_can("administrator") ) { ?>
+<?php if ($curauth->ID == 1 && $current_user->ID == 1 && is_user_logged_in()) { ?>
+
+<section class="page-section">	
+	<?php include (STYLESHEETPATH . '/_/inc/admin/admin-links.php'); ?>
+</section>
+
+<?php } else { ?>
 
 <?php if ($current_user->ID == $user_id) { ?>
 <section class="page-section">
@@ -40,23 +46,13 @@
 </section>
 <?php } else { ?>
 
-<?php if ( is_user_logged_in() ) { ?>
 <section class="page-section">
 	<h3 class="block-header" style="margin-top:0px;"><i class="fa fa-group fa-lg"></i>Send a message to <?php echo $curauth->data->display_name; ?></h3>
 	<div class="message-wrap">
-	<?php include (STYLESHEETPATH . '/_/inc/user/user-message-form.php'); ?>
+	<?php include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-form.php'); ?>
 	</div>
 </section>	
-<?php } ?>
 
-<?php } ?>
-
-<?php } else { ?>
-
-<?php if ($curauth->ID == 1 ) { ?>
-<section class="page-section">	
-	<?php include (STYLESHEETPATH . '/_/inc/admin/admin-links.php'); ?>
-</section>
 <?php } ?>
 
 <?php } ?>

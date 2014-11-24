@@ -1,8 +1,21 @@
 <?php
 $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+$emp_otm_user = get_field('employee_otm', 'options');
 global $current_user;
+/*
+echo '<pre>';
+print_r($curauth);
+echo '</pre>';
+*/
 get_currentuserinfo();
 $user_meta = get_user_meta($curauth->ID);
+$nickname = $user_meta['nickname'][0];
+$firstname = $user_meta['first_name'][0];
+/*
+echo '<pre>';
+print_r($user_meta['nickname'][0]);
+echo '</pre>';
+*/
 //echo '<pre>';print_r($curauth);echo '</pre>';
 $now_date = new DateTime(date('l jS F Y'));
 $user_start_date_raw = get_field('user_start_date', 'user_'.$curauth->ID);

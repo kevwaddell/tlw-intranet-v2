@@ -4,6 +4,8 @@ $rooms = get_terms('tlw_rooms_tax', $args);
 //echo '<pre>';print_r($rooms);echo '</pre>';
  ?>
 
+<?php if ($rooms) { ?>
+
 <div class="banner-imgs">
 	<div class="row">
 		<?php foreach ($rooms as $room) { 
@@ -22,3 +24,5 @@ $rooms = get_terms('tlw_rooms_tax', $args);
 			
 	</div>
 </div>
+
+<?php } ?>

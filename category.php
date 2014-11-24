@@ -144,7 +144,7 @@ include (STYLESHEETPATH . '/_/inc/category-page/cats-query.php');
 						<div class="well well-lg no-posts-message text-center<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>" style="margin-top: 10px;">
 						<i class="fa fa-rss fa-3x"></i>
 						<h3>Sorry</h3>
-						<p>There is no <strong><?php single_cat_title(); ?></strong> at the moment.</p>
+						<p>There is no <?php echo(count($exclude_posts) > 0)?' more ':''; ?><strong><?php single_cat_title(); ?></strong> at the moment.</p>
 						</div>
 						<?php endif; ?>
 						

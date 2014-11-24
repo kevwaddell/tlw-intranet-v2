@@ -5,11 +5,19 @@ Theme My Login will always look in your theme's directory first, before using th
 */
 ?>
 <div class="profile" id="theme-my-login<?php $template->the_instance(); ?>">
+	<?php //echo '<pre>';print_r($profileuser);echo '</pre>'; ?>
 	<?php $template->the_action_template_message( 'profile' ); ?>
 	<?php $template->the_errors(); ?>
+	<form id="your-profile" action="<?php $template->the_action_url( 'profile' ); ?>" method="post">
+	<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
+		
+	<input type="hidden" name="from" value="profile" />
+	<input type="hidden" name="checkuser_id" value="<?php echo $current_user->ID; ?>" />
+	<input type="hidden" name="email" value="<?php echo esc_attr( $profileuser->user_email ); ?>">
+		
 	<div class="row">	
 				
-	<div class="col-xs-5">
+		<div class="col-xs-5">
 			<div class="info-label">Name:</div> 
 		</div>
 		<div class="col-xs-7">
@@ -17,22 +25,34 @@ Theme My Login will always look in your theme's directory first, before using th
 		</div>
 	
 	</div>
-	
+	<?php if (esc_attr( $profileuser->nickname ) != esc_attr( $profileuser->user_login )) { ?>
 	<div class="row">	
+				
+		<div class="col-xs-5">
+			<div class="info-label">Nickname:</div> 
+		</div>
+		<div class="col-xs-7">
+			<div class="form-group edit-input hidden" style="margin-bottom: 0px;">
+				<input type="text" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ); ?>" class="form-control">
+			</div>
+			<div class="text visible"><?php echo esc_attr( $profileuser->nickname ); ?> <a href="#" class="btn btn-default pull-right edit-profile"><i class="fa fa-pencil fa-lg"></i></a></div>
+		</div>
+	
+	</div>
+	<?php } ?>
+
+	<div class="row">
+			
 		<div class="col-xs-5">
 			<div class="info-label">Username:</div> 
 		</div>
 		<div class="col-xs-7">
 			<div class="text"><?php echo esc_attr( $profileuser->user_login ); ?></div>
 		</div>
+		
 	</div>
 
-	<form id="your-profile" action="<?php $template->the_action_url( 'profile' ); ?>" style="margin-top: 20px;" method="post">
-		<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
-		<input type="hidden" name="from" value="profile" />
-		<input type="hidden" name="checkuser_id" value="<?php echo $current_user->ID; ?>" />
-		
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="margin-top:20px;">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php _e( 'New Password' ); ?></h3>
 			</div>
@@ -58,6 +78,8 @@ Theme My Login will always look in your theme's directory first, before using th
 				
 			</div>
 		</div>
+		
+		<?php //do_action( 'show_user_profile', $profileuser ); ?>
 		
 		<input type="hidden" name="action" value="profile" />
 		<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />

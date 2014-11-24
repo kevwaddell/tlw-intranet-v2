@@ -11,7 +11,7 @@ $message .= "<tr><td style=\"background-color: #CCC;\">Time:</td><td style=\"bac
 $message .= "<tfoot><tr><td style=\"background-color: #CCC;\">Canceled on:</td><td style=\"background-color: #EEE;\"><strong>". date('D jS F Y', $now) ." at ". date('H:i', $now)  . "</strong></td></tr>";
 $message .= "<tr><td style=\"background-color: #CCC;\">Canceled by:</td><td style=\"background-color: #EEE;\"><strong>". $from_name . "</strong></td></tr></tfoot>";
 $message .= "</table><br><br>";
-$headers = "From: $admin_name <$admin_email>";
+$headers = "From:". $admin_name . "<" .$admin_email. ">";
 
 $am_subject = "Room booking cancelation.";
 $am_message = "<h3>A room booking has been canceled.</h3>";
@@ -25,7 +25,7 @@ $am_message .= "<tr><td style=\"background-color: #CCC;\">Time:</td><td style=\"
 $am_message .= "<tfoot><tr><td style=\"background-color: #CCC;\">Canceled on:</td><td style=\"background-color: #EEE;\"><strong>". date('D jS F Y', $now) ." at ". date('H:i', $now)  . "</strong></td></tr>";
 $am_message .= "<tr><td style=\"background-color: #CCC;\">Canceled by:</td><td style=\"background-color: #EEE;\"><strong>". $from_name . "</strong></td></tr></tfoot>";
 $am_message .= "</table><br><br>";
-$am_headers = "From: $from_name <$from_email>";
+$am_headers = "From:". $from_name . "<" .$from_email. ">";
 
 //echo '<pre>';print_r($message);echo '</pre>';
 

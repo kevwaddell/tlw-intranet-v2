@@ -63,6 +63,16 @@ $icon = 'fa-bullhorn';
 							
 							<div class="hentry-txt<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 								<?php the_content(); ?>
+								
+								<?php 
+									$pag_args = array (
+									'before'	=> '<div class="post-pagination"><span class="pag-label">Pages:</span> ',	
+									'after'	=> '</div>',
+									'link_before'      => '<span class="pg">',
+									'link_after'      => '</span>',
+									);
+								wp_link_pages($pag_args); 
+								?>
 							</div>
 							
 							<?php } ?>

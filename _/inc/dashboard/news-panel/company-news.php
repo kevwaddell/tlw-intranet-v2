@@ -2,11 +2,15 @@
 
 <div id="carousel-company-news" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
+  <?php if (count($comp_news) > 1) { ?>
+ 
   <ol class="carousel-indicators">
   	<?php for ($cn = 0; $cn < count($comp_news); $cn++) { ?>
 	<li data-target="#carousel-company-news" data-slide-to="<?php echo $cn; ?>"<?php echo ($cn == 0) ? ' class="active"':''; ?>></li>
   	<?php } ?>
   </ol>
+
+  <?php } ?>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
@@ -58,7 +62,7 @@
 
 <div class="panel-btns">
 
-	<?php if (is_user_logged_in()) { ?>
+	<?php if (is_user_logged_in() && current_user_can("administrator") || current_user_can("editor") ) { ?>
 	
 	<div class="row">
 		

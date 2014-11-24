@@ -1,4 +1,10 @@
 <div class="user-details">
+	
+	<?php if ($curauth->ID == $emp_otm_user['ID']) { ?>
+	<div class="eotm-banner">
+		<h3 class="text-center"><i class="fa fa-trophy fa-lg left"></i> Employee of the Month <i class="fa fa-trophy fa-lg right"></i></h3>
+	</div>
+	<?php } ?>
 
 	<div class="row">
 		
@@ -31,6 +37,19 @@
 				</div>
 				<div class="col-xs-7">
 					<div class="text"><?php echo $user_name; ?></div>
+				</div>
+			</div>
+			
+			<?php } ?>
+			
+			<?php if ($nickname != $user_name ) { ?>
+			
+			<div class="row">	
+				<div class="col-xs-5">
+					<div class="info-label">Nickname:</div> 
+				</div>
+				<div class="col-xs-7">
+					<div class="text"><?php echo $nickname; ?></div>
 				</div>
 			</div>
 			

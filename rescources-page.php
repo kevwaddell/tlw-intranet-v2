@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Departments list page
+Template Name: Rescources page
 */
 ?>
 
@@ -18,7 +18,9 @@ $child_args = array(
 );
 $children = get_pages($child_args);
 
-//echo '<pre>';print_r($children);echo '</pre>';
+$related_cats = get_field('categories');
+
+//echo '<pre>';print_r($related_cats);echo '</pre>';
 ?>	
 		<article <?php post_class(); ?>>
 			<h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:""; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php the_title(); ?></h1>
@@ -31,7 +33,7 @@ $children = get_pages($child_args);
 
 			<div class="rule"></div>
 			
-			<section id="departments-list" class="grid-list">
+			<section id="recources-list" class="grid-list">
 				<div class="row">
 			
 				<?php foreach ($children as $child) { 
@@ -46,6 +48,24 @@ $children = get_pages($child_args);
 							</a>
 						</div>
 					</div>
+				<?php } ?>
+				
+				<?php if ($related_cats) { ?>
+				
+				<?php foreach ($related_cats as $cat) { 
+				$icon = get_field('icon', 'category_'.$cat->term_id);
+				$col = get_field('color', 'category_'.$cat->term_id);
+				?>
+				<div class="col-xs-6">
+					<div class="list-item">
+						<a href="<?php echo get_category_link($cat->term_id); ?>" class="col-<?php echo $col; ?>" title="View <?php echo $cat->name; ?>">
+							<span class="icon"><i class="fa <?php echo $icon; ?> fa-3x"></i></span>
+							<span class="title"><?php echo $cat->name; ?></span>
+						</a>
+					</div>
+				</div>
+				<?php } ?>
+				
 				<?php } ?>
 				
 				</div>

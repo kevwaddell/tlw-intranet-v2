@@ -22,13 +22,13 @@
 	<a href="?request=add_to_favs&postid=<?php the_ID(); ?>&type=<?php echo $post->post_type; ?>" class="btn" title="Add to Favourites"><span>Add to Favourites</span><i class="fa fa-star fa-lg"></i></a>
 	<?php } ?>
 	
-	<?php if (current_user_can("administrator")) : ?>
+	<?php if (current_user_can("administrator") || current_user_can("editor") ) : ?>
 	<a href="<?php echo get_permalink($add_post_pg->ID); ?>?httpref=<?php urlencode(the_permalink()); ?>" title="Add Post" class="btn"><span><?php echo $add_post_pg->post_title; ?></span><i class="fa fa-plus-circle fa-lg"></i></a>
 	<?php endif; ?>
 	
 	<?php } ?>
 	
-	<?php if ($current_user->ID == $post->post_author || current_user_can("administrator") || current_user_can("editor") ) { ?>
+	<?php if (current_user_can("administrator") || current_user_can("editor") ) { ?>
 	<a href="<?php the_permalink(); ?>?request=edit_post&userid=<?php echo $current_user->ID; ?>" title="Edit Post" class="btn"><span>Edit Post</span><i class="fa fa-pencil fa-lg"></i></a>
 	
 	<?php } ?>

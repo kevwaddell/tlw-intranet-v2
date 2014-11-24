@@ -42,10 +42,14 @@ echo '</pre>';
 		<?php if ($cat) { ?>
 		<h3 class="sb-label">
 			<i class="fa fa-thumb-tack"></i>
-			Category
+			Categories
 		</h3>
 		<div class="sb-box">
-		<a href="<?php echo get_category_link( $cat[0]->term_id ); ?>" title="View posts under <?php echo $cat[0]->name; ?> category"><?php echo $cat[0]->name; ?></a>
+			<ul class="links-list">
+			<?php foreach ($cat as $c) { ?>
+				<li><a href="<?php echo get_category_link( $c->term_id ); ?>" title="View posts under <?php echo $c->name; ?> category"><?php echo $c->name; ?></a></li>
+			<?php } ?>
+			</ul>
 		</div>
 		<?php } ?>
 		
@@ -55,9 +59,9 @@ echo '</pre>';
 			Tags
 		</h3>
 		<div class="sb-box">
-		<ul class="links-list">
+		<div class="tags-list">
 			<?php foreach ($tag_links as $tag_link) { ?>
-			<li><a href="<?php echo get_tag_link($tag_link->term_id); ?>" title="View posts under <?php echo $tag_link->name; ?> tag"><?php echo $tag_link->name; ?></a></li>
+			<a href="<?php echo get_tag_link($tag_link->term_id); ?>" title="View posts under <?php echo $tag_link->name; ?> tag"><?php echo $tag_link->name; ?></a>
 			<?php } ?>
 		</ul>
 		</div>

@@ -1,4 +1,4 @@
-<?php if (isset($_GET['request']) || isset($_GET['action']) ) { ?>
+<?php if ( isset($_GET['request']) || isset($_GET['action']) ) { ?>
 	<div class="actions-wrap">
 
 			<div class="alerts-wrap">

@@ -56,7 +56,10 @@
 	$url = explode('/',$_SERVER['REQUEST_URI']);
 	$dir = $url[1] ? $url[1] : 'dashboard';
 	
-	//echo '<pre>';print_r($post);echo '</pre>';
+	if ( is_singular('post') ) {
+	$dir = $url[4];
+	}
+
 	?>
 	
 	

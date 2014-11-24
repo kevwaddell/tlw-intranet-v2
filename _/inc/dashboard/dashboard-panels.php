@@ -29,7 +29,7 @@
 			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
 			
 			<div class="panel-content">
-			<?php gravity_form(3, false, false, false, '', true, 1); ; ?>
+			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Dashboard question of the day') ) : ?><?php endif; ?>
 			</div>
 		</div>
 		
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		
-		<div class="dash-panel col-green panel-closed">
+		<div id="eotm-panel" class="dash-panel col-green panel-closed">
 			<h2 class="panel-head"><i class="fa fa-trophy fa-lg"></i>Employee of the month</h2>
 			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
 			

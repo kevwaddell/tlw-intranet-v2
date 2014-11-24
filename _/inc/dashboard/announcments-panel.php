@@ -21,6 +21,7 @@ $announcements = get_posts($announcement_args);
   //echo '<pre>';print_r($img_url);echo '</pre>';
   ?>
   <h3><?php the_title(); ?></h3>
+  <?php the_excerpt(); ?>
   <a href="<?php the_permalink(); ?>">View Details</a>		
   
  <?php 
@@ -40,7 +41,7 @@ $announcements = get_posts($announcement_args);
 <div class="panel-btns">
 	<a href="<?php echo get_category_link( $an_cat_id ); ?>" class="btn btn-default btn-block"><i class="fa fa-eye fa-lg"></i>All Announcments</a>
 	
-	<?php if (is_user_logged_in()) { ?>
+	<?php if (is_user_logged_in() && current_user_can("administrator")) { ?>
 	<a href="<?php echo get_permalink($add_announcement_pg->ID); ?>?httpref=<?php echo $home_url; ?>" class="btn btn-default btn-block"><i class="fa fa-plus-circle fa-lg"></i>Submit an Announcment</a>
 	<?php } ?>
 	

@@ -281,9 +281,9 @@
 		.announce-content {
 		
 			h3 {
-			.font-size(4);
-			.line-h(4);
-			.mag-bot(2);	
+			.font-size(3);
+			.line-h(3);
+			.mag-bot(1);	
 			}
 			
 			a {
@@ -314,7 +314,27 @@
 		}
 		
 		.eotm-content {
-		.mag-bot(2);	
+		.mag-bot(0);	
+		
+			.avatar {
+				img {
+				width: 100%;
+				height: auto;	
+				}
+			}
+			
+			.icon {
+			width: 100%;
+			.bg-col(darken(@green, 20%));
+			.col(@green);
+			.h(11);
+			text-align: center;
+			.rounded(10px);
+				i {
+				.line-h(11);	
+				text-shadow: 0px 0px 10px rgba(20, 20, 20, 1);
+				}	
+			}
 		
 			p.date {
 			.caps;
@@ -327,6 +347,31 @@
 			p {
 			.font-size(1.4);
 			.mag-bot(0);	
+			}
+			
+			strong {
+			.col(@gray);	
+			}
+			
+			ul.results {
+			.mag-bot(2);
+			.font-size(1.4);	
+			}
+			
+			.progress {
+			.bg-col(@green);
+			.mag-bot(0.5);	
+			.h(1);
+			}
+			
+			label {
+			.col(@gray);
+			.mag-bot(0);
+			.line-h(1.8);	
+			}
+			
+			.progress-bar-success {
+			.bg-col(darken(@green, 20%));		
 			}
 		}
 		
@@ -490,7 +535,14 @@
 		}
 		
 		h3 {
-		.col(@green);	
+		.col(darken(@green, 20%));	
+			a {
+			.col(darken(@green, 20%));	
+			.no-text-dec;
+				&:hover, &:active, &:focus {
+				.col(@green);		
+				}	
+			}
 		}
 		
 		.panel-btns {
@@ -601,6 +653,60 @@
 				.bg-col(@orange);	
 				}
 			}	
+		}
+		
+		.button {
+		.no-rounded;
+		.no-border;
+		.bg-col(@orange);
+		width: 48%;
+		.font-size(1.6);
+		font-weight: 300;
+			&:hover, &:active, &:focus {
+			.bg-col(darken(@orange, 20%));	
+			}	
+		}
+		
+		.gfield_label {
+		.mag-bot(1);	
+		.col(darken(@orange, 20%));
+		.font-size(1.8);
+		}
+		
+		.gpoll_choice_label {
+		.mag-bot(0.5);	
+		}
+		
+		a.gpoll_button, a.gpoll_back_button {
+		.no-text-dec;
+		.fright;
+		.in-block;
+		width: 48%;
+		.bg-col(@orange);	
+		.col(white);
+		.h(3.2);
+		.line-h(3.2);
+		text-align: center;
+			&:hover, &:active, &:focus {
+			.bg-col(darken(@orange, 20%));	
+			}	
+			
+			&:before {
+			content: "\f105";
+			font-family: FontAwesome;	
+			.fright;
+			.block;
+			.w(3.2);
+			.h(3.2);
+			.bg-col(darken(@orange, 20%));
+			.col(white);	
+			}
+		}
+		
+		a.gpoll_back_button {
+		width: 100%;
+		.block;
+		float: none;	
 		}
 	}
 	

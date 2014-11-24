@@ -1,11 +1,13 @@
 <div id="carousel-office-news" class="carousel slide" data-ride="carousel">
+ 
+  <?php if (count($office_news) > 1) { ?>
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <?php for ($on = 0; $on < count($office_news); $on++) { ?>
 	<li data-target="#carousel-office-news" data-slide-to="<?php echo $on; ?>"<?php echo ($on == 0) ? ' class="active"':''; ?>></li>
   	<?php } ?>
   </ol>
-
+  <?php } ?>
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
   
@@ -56,7 +58,7 @@
 
 <div class="panel-btns">
 	
-	<?php if (is_user_logged_in()) { ?>
+	<?php if (is_user_logged_in() && current_user_can("administrator") || current_user_can("editor") ) { ?>
 	
 	<div class="row">
 		

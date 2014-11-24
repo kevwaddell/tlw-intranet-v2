@@ -47,6 +47,30 @@ $('.user-favs-list-outer').slimScroll({
     
     $('#ooo-carousel').carousel('pause');
     
+   /* EMPLOYEE OF THE MONTH FUNCTION */
+   
+   // VIEW RESULTS BTN
+   $('body').on(event_type, '.panel-btns a.panel-action-btn', function(){
+	console.log($(this));
+	var params = $(this).attr("href");
+    var href = window.location.href;
+    var parent = $(this).parents('.panel-content');
+    
+    	//$('.loader').fadeIn('fast');
+     	
+     	//$('.alerts').empty();
+     	//console.log(href);
+     	
+     	$(parent).load(href+params+" .dash-panel-inner", function(data){
+	     
+	     $(this).find('.dash-panel-inner').hide().fadeIn('slow');
+	     //$('.loader').fadeOut('fast');
+
+     	});
+	   
+   return false;   
+   });
+    
 	/* ATTENDEE FORM ACTION */
 	
 	$('body').on('change', 'select#attendee_type', function(){
@@ -191,7 +215,7 @@ $('.user-favs-list-outer').slimScroll({
     $(this).toggleClass('active'); 
     $(list).toggleClass('list-open list-closed'); 
     
-    console.log(height);
+    //console.log(height);
     
     $(list).find('.user-favs-list-outer').slimScroll({
     	 height: height+'px',
@@ -199,6 +223,22 @@ $('.user-favs-list-outer').slimScroll({
     });
     
     return false;
+    });
+    
+    // EDIT PROFILE BTN
+    
+    $('body').on(event_type,'a.edit-profile', function(){
+    
+    var parent = $(this).parent();
+    var input = $(this).parent().prev();
+    
+    $(parent).toggleClass('visible hidden');
+    $(input).toggleClass('hidden visible');
+   
+    console.log(parent);
+    console.log(input);
+       
+   	return false;
     });
     
     
