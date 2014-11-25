@@ -79,12 +79,17 @@
 					date_default_timezone_set('Europe/London'); 
 					$now_local = localtime(time(), true);
 					$now = strtotime("today ".sprintf('%02d', $now_local[tm_hour]).":".sprintf('%02d', $now_local[tm_min]));
-					/*
-	echo '<pre>';
-					print_r($post->post_author."<br>");
-					print_r($current_user->ID);
-					echo '</pre>';
-	*/
+					$staff_attendees = get_field('attendees_staff');
+					$status = $post->post_status;
+					if ( in_array_r($current_user->ID, $staff_attendees) ) {
+						
+						foreach ($staff_attendees as $staff_attendee) {
+							if ($staff_attendee['attendee_staff']['ID'] == $current_user->ID && $staff_attendee['status'] == 'pending') {
+							$status = $staff_attendee['status'];	
+							}
+						}
+					
+					}
 					date_default_timezone_set($default_tz);
 					 ?>	
 					<tr id="entry-tr-<?php echo $meetings_count; ?>" class="entry-tr<?php echo ( $date_raw == date('Ymd' ,strtotime("today")) && isset($_GET['sortby']) ) ? " col-blue":"" ; ?>">
@@ -96,7 +101,7 @@
 										<td class="settings">
 											<a href="#" id="view-btn-<?php echo get_the_ID(); ?>"class="btn btn-default settings"><i class="fa fa-cogs"></i></a>
 										</td>
-										<td class="marker <?php echo $post->post_status;?>">
+										<td class="marker <?php echo $status;?>">
 											<i class="fa fa-square"></i>
 										</td>
 										<td class="room">

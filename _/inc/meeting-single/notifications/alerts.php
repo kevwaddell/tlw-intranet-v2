@@ -7,8 +7,8 @@
 		
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/remove-attendee-action.php'); ?>
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/notify-attendee-action.php'); ?>
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-accept-email.php'); ?>
-		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-reject-email.php'); ?>
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-accept-action.php'); ?>
+		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-reject-action.php'); ?>
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-remove-email.php'); ?>
 		
 		<?php include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/cancel-meeting-request.php'); ?>

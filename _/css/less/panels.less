@@ -80,58 +80,81 @@
 	}
 	
 	.panel-feeds {
-		.tab-content {
-		.mag-bot(2);
+		.panel {
+		.no-rounded;
+		.no-border;
 		}
 		
 		.well {
 		.no-rounded;
-		.bg-col(@grayLt);
-		border-top: none;
+		.border(@purple; 0.1);
+		.bg-col(white);
 		//.no-border;
-		.border-col(@purple);
 		.font-size(1.4);
+		.mag-bot(0);
 		}
 		
-		.nav-tabs {
+		.panel-heading {
 			.no-border;	
+			.pad-all(0);
 			
-			li {
-			float: none;
-			.mag-bot(0);
-				a {
-				.caps;
-				.bg-col(lighten(@purple, 20%));
-				.col(@purple);
-				.font-size(1.4);
-				.no-rounded;
-				.border-bot(@purple; 0.1);
-				.mag-right(0);
-					&:hover {
-					.bg-col(@purple);	
-					.border-col(@purple);	
-					.col(white);
-					}	
+			h4 {
+			.no-border;		
+			}
+	
+			a {
+			.block;
+			.caps;
+			.bg-col(@purple);
+			.col(white);
+			.font-size(1.4);
+			.no-rounded;
+			.mag-right(0);
+			text-align: center;
+			.pad-all(1);
+			.no-text-dec;
+			.rel;
+				&:after {
+				content: "\f056";
+				font-family: FontAwesome;
+				.fright;
+				.font-size(1.6);
+				}
+				&:hover, &:active, &:focus {
+				.col(darken(@purple, 20%));
 				}
 				
-				&.active {
-					a {
-					.border-col(@purple);	
-					.bg-col(@purple);
+				&.collapsed {
+				.bg-col(lighten(@purple, 20%));				
+				.col(@purple);
+					&:hover, &:active, &:focus {
+					.bg-col(@purple);	
 					.col(white);
 					}
-				}
+					&:after {
+					content: "\f055";
+					}
+				}	
 			}
+
+		}
+		
+		.panel-body {
+		.pad-all(0);	
+		.no-border;	
+		border-top: none !important;
 		}
 			
 		.panel-feed {
 		.border(@purple; 0.1);
-		border-top: none;
-		.max-h(20);
 		//.h(20);
+		height: auto;
+		//.max-h(20);
 		.over-hide;
 		.pad(1;1;1;2);	
 			.panel-feed-wrap {
+				.max-h(20);
+				overflow-y: auto;
 				
 				li {
 				.pad-bot(1);
@@ -140,10 +163,29 @@
 				.border-bot(@gray; 0.1);	
 				}
 				
-				p {
+				a {
+				.block;
+				.no-text-dec;
+				.col(@grayDk);
+				.rel;
+					&:hover, &:active, &:focus {
+						&:after {
+						content: "\f138";
+						font-family: FontAwesome;	
+						.abs;
+						top: 50%;
+						.right(0);
+						.mag-top(-0.7);
+						.col(@purple);
+						}
+					}
+				}
+				
+				span {
+				.block;
 				.mag-bot(0);
 				.font-size(1.4);
-					span {
+					strong {
 					.col(@purple);	
 					}	
 				}

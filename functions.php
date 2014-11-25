@@ -4,11 +4,13 @@ if ( !function_exists(core_mods) ) {
 	function core_mods() {
 		if ( !is_admin() ) {
 			wp_register_style( 'styles', get_stylesheet_directory_uri().'/_/css/styles.css', null, filemtime( get_stylesheet_directory().'/_/css/styles.css' ) );
-			wp_register_style( 'datepicker', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css', null );
+			wp_register_style( 'datepicker-css', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css', null );
+			wp_register_style( 'select-css', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.css', null );
 			/* wp_register_style( 'timepicker', 'http://jdewit.github.io/bootstrap-timepicker/css/bootstrap-timepicker.min.css', null ); */
 			wp_register_script( 'slim-scroll', get_stylesheet_directory_uri() . '/_/js/jquery.slimscroll.min.js', array('jquery'), '1.0.0', true );
 			wp_register_script( 'scroll-to', get_stylesheet_directory_uri() . '/_/js/jquery.scrollTo.min.js', array('jquery'), '1.0.0', true );
 			wp_register_script( 'bootstrap-datepicker', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js', array('jquery', 'bootstrap-all-min'), '1.0.0', true );
+						wp_register_script( 'bootstrap-select', 'http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.js', array('jquery', 'bootstrap-all-min'), '1.0.0', true );
 			/* wp_register_script( 'bootstrap-timepicker', 'http://jdewit.github.io/bootstrap-timepicker/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-all-min'), '1.0.0', true ); */
 			wp_register_script( 'bootstrap-tabs', get_stylesheet_directory_uri() . '/_/js/bootstrap-tabs.js', array('jquery'), '1.0.0', true );
 			wp_register_script( 'bootstrap-tooltip', get_stylesheet_directory_uri() . '/_/js/bootstrap-tooltip.js', array('jquery'), '1.0.0', true );
@@ -16,16 +18,20 @@ if ( !function_exists(core_mods) ) {
 			//wp_register_script( 'img-fit', get_stylesheet_directory_uri() . '/_/js/jquery.imagefit.js', array('jquery'), '1.0.0', true );
 			
 			wp_enqueue_style('styles');
-			wp_enqueue_style('datepicker');
+			wp_enqueue_style('datepicker-css');
+			wp_enqueue_style('select-css');
 			/* wp_enqueue_style('timepicker'); */
 			wp_enqueue_script('slim-scroll');
 			wp_enqueue_script('scroll-to');
 			wp_enqueue_script('bootstrap-datepicker');
+			wp_enqueue_script('bootstrap-select');
 			/* wp_enqueue_script('bootstrap-timepicker'); */
 			wp_enqueue_script('bootstrap-tabs');
 			wp_enqueue_script('bootstrap-tooltip');
 			wp_enqueue_script('functions');
 			//wp_enqueue_script('img-fit');
+			
+			http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.css
 		}
 	}
 	core_mods();

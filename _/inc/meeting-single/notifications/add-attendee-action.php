@@ -108,7 +108,7 @@ if ( $_POST['attendee_type'] == "external" && empty($errors) ) {
 
 	<?php if ( empty($errors) && $_POST['attendee_type'] == "external" ) { ?>
 		
-	<div class="alert alert-success">
+	<div class="alert alert-success text-center">
 		
 		<strong><?php echo $ext_value; ?></strong> has been added to External attendees.<br><br>
 		
@@ -122,7 +122,7 @@ if ( $_POST['attendee_type'] == "external" && empty($errors) ) {
 
 	<?php if ( !empty($errors) ) { ?>
 		
-	<div class="alert alert-danger">
+	<div class="alert alert-danger text-center">
 	
 	<h4>Add Attendee</h4>
 	

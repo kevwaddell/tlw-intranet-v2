@@ -38,7 +38,7 @@ $client_attendees_total = $total_ext;
 	
 	<div class="form-group">
 	
-		<select class="form-control" id="attendee_type" name="attendee_type">
+		<select class="form-control selectpicker" id="attendee_type" name="attendee_type">
 			<option value="0">Choose the type of attendee</option>
 			<option value="internal"<?php echo ($_POST['attendee_type'] == "internal") ? ' selected':''; ?>>Internal</option>
 			<option value="external"<?php echo ($_POST['attendee_type'] == "external") ? ' selected':''; ?>>External</option>
@@ -53,7 +53,7 @@ $client_attendees_total = $total_ext;
 		<input type="hidden" value="<?php echo $staff_field_key; ?>" name="staff_field_key">
 		<input type="hidden" value="<?php echo $status_field_key; ?>" name="status_field_key">
 	
-		<select class="form-control" id="staff_member" name="staff_member">
+		<select class="form-control selectpicker" id="staff_member" name="staff_member">
 			
 			<option value="0">Choose staff member</option>
 			

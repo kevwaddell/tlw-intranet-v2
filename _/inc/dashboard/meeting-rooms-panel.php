@@ -9,23 +9,7 @@ $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 //echo '<pre>';print_r($rooms);echo '</pre>';
  ?>
 
-<div class="panel-feeds">
-
-	<ul class="nav nav-tabs">
-		<?php foreach ($rooms as $room) { ?>
-		
-		<?php if ($room == reset($rooms)) { ?>
-		<li class="active">
-		<?php } else { ?>
-		<li>
-		<?php } ?>
-		
-		<a href="#panel-<?php echo $room->slug; ?>" data-toggle="tab"><?php echo $room->name; ?></a></li>
-		<?php } ?>
-	</ul>
-	
-	<!-- Tab panes -->
-	<div class="tab-content">
+<div class="panel-group panel-feeds" id="accordion" role="tablist" aria-multiselectable="true">
 	
 	<?php foreach ($rooms as $room) { 
 	$meeting_args = array(
@@ -53,12 +37,20 @@ $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 	$meetings = get_posts($meeting_args);	
 	//echo '<pre>';print_r($meetings);echo '</pre>';	
 	?>
-	<?php if ($room == reset($rooms)) { ?>
-	<div class="tab-pane active" id="panel-<?php echo $room->slug; ?>">
-	<?php } else { ?>
-	<div class="tab-pane" id="panel-<?php echo $room->slug; ?>">
-	<?php } ?>
+	
+	<div class="panel panel-default">
 		
+		<div class="panel-heading" role="tab" id="heading-<?php echo $room->slug; ?>">
+			<h4 class="panel-title">
+		        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panel-<?php echo $room->slug; ?>" aria-expanded="false" aria-controls="panel-<?php echo $room->slug; ?>">
+		          <?php echo $room->name; ?>
+		        </a>
+	      	</h4>
+    	</div>
+		
+		<div id="panel-<?php echo $room->slug; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<?php echo $room->slug; ?>">
+		
+		<div class="panel-body">
 		<?php if (!empty($meetings)) { ?>
 		
 		<div class="panel-feed">
@@ -73,9 +65,11 @@ $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 				$booked_by = get_user_by('id', $meeting->post_author);
 				?>
 				<li>
-					<p class="time"><span>Time:</span> <?php echo date('g:ia', $start_time);?> - <?php echo date('g:ia', $end_time);?></p>	
-					<p class="title"><span>Meeting:</span> <?php echo $description; ?></p>
-					<p class="name"><span>Booked by:</span> <?php echo $booked_by->data->display_name; ?></p>
+				<a href="<?php echo get_permalink($meeting->ID); ?>" class="View details">
+					<span class="time"><strong>Time:</strong> <?php echo date('g:ia', $start_time);?> - <?php echo date('g:ia', $end_time);?></span>	
+					<span class="title"><strong>Meeting:</strong> <?php echo $description; ?></span>
+					<span class="name"><strong>Booked by:</strong> <?php echo $booked_by->data->display_name; ?></span>
+				</a>
 				</li>
 				<?php } 
 				$meetings = array();	
@@ -87,16 +81,18 @@ $ical_page_split_url = explode('http://', get_permalink($ical_page->ID));
 		</div>
 		
 		<?php } else { ?>
-		<div class="well">
+		<div class="well text-center">
 		<?php echo $room->name; ?> is available today.
 		</div>
 		<?php } ?>
 		
+		</div>
+		
+	</div>
+	
 	</div>
 	
 	<?php } ?>
-				
-	</div>
 
 </div>
 

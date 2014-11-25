@@ -99,7 +99,7 @@ foreach ($meetings as $meet) {
 	$staff_attendees = get_field('attendees_staff', $meet->ID);
 	
 	foreach ($staff_attendees as $staff_attendee) {
-		if ($staff_attendee[attendee_staff][ID] == $user_id && $staff_attendee[status] == 'accepted') {
+		if ($staff_attendee[attendee_staff][ID] == $user_id && $staff_attendee[status] == 'accepted' || $staff_attendee[status] == 'pending') {
 			if (!in_array($meet->ID, $your_meeting_ids)) {
 				array_push($your_meeting_ids, $meet->ID);	
 			}

@@ -64,6 +64,7 @@ $children = get_pages('parent='.$parent->ID.'&sort_column=menu_order');
 				//print_r($t_member);
 				$job_title = get_user_meta($t_member['team_member']['ID'],'job_title', true);	
 				$avatar = get_avatar( $t_member['team_member']['ID'], 150 );
+				$ext = get_user_meta($t_member['team_member']['ID'],'extension', true);	
 				?>
 					<div class="col-xs-6">
 						<div class="list-item">
@@ -78,7 +79,7 @@ $children = get_pages('parent='.$parent->ID.'&sort_column=menu_order');
 								<div class="col-xs-8">
 									<div class="user-info">
 										<div class="info-text name">
-											<?php echo $t_member['team_member']['display_name']; ?>
+											<?php echo $t_member['team_member']['display_name']; ?> <?php echo ($ext) ? '<span class="pull-right"><i class="fa fa-phone-square"></i> '.$ext.'</span>':''; ?>
 										</div>
 										<div class="info-text position">
 											<?php echo $job_title; ?>

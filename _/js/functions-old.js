@@ -12,6 +12,13 @@
 	 event_type = 'click';	
 	 
 	}
+	
+/*
+	$('.panel-feed-wrap').slimScroll({
+        height: 'auto',
+        alwaysVisible: true
+    });
+*/
     
     $('.scrollable').slimScroll({
         height: 'auto',
@@ -19,7 +26,13 @@
         railVisible: true
     });
     
-      
+    /*
+$('.user-favs-list-outer').slimScroll({
+    	 height: 'auto',
+        alwaysVisible: true
+    });
+*/
+    
     if ( $('input.date-picker').length > 0) {
 	    $('input.date-picker').datepicker({
         // Consistent format with the HTML5 picker
@@ -33,10 +46,6 @@
     if ( $('input.timepicker').length == 1) {
      $('input.timepicker').timepicker();
      }
-     
-     if ($('select.selectpicker').length > 0) {
-	 	$('select.selectpicker').selectpicker({'size': 10}); 
-	 }
     
     $('#ooo-carousel').carousel('pause');
     
@@ -235,6 +244,12 @@
 			});
 		}
 		
+			/*
+$('.panel-feed-wrap').slimScroll({
+			height: 'auto',
+			alwaysVisible: true
+			});
+*/
 	})
     
     // EDIT PROFILE BTN
@@ -254,18 +269,39 @@
     });
     
     
-    /* 
-	 *
-	 *
-	 *
-	 ACTION AND REQUEST FUNCTIONS 
-	 - Alert requests and actions
-	 - Table button requests
-	 - Action button requests
-	 *
-	 *
-	 */
+    /* ACTION AND REQUEST FUNCTIONS */
+     
+     /* ADD ATTENDEE FORM */
+    /*
+ $('body').on('submit', 'form#add_attendee_form', function() {
+		 
+		 var action = $(this).attr('action');
+		 
+		// console.log(action);
+		 
+		 $.post( action, $(this).serialize(), function( data ) {
+		 	
+		 	$('.alerts').empty();
+		 	$('.page-section').empty();
+		 	$('.loader').fadeIn('fast');
+		 	
+		 }).done(function(data){
+			
+			$('.loader').fadeOut('fast');
+			var alert = $( data ).find('.actions-wrap');
+			var lists = $( data ).find('.lists-wrap');
+			
+			$(alert).appendTo('.alerts').hide().fadeIn('slow');
+			$(lists).appendTo('.page-section');
+			
+			 
+		 });
+		 
+		 return false;
+	});
+*/
 	
+		
 	/* MEETING EDIT FORM */
 	$('body').on('submit', 'form#edit_meeting_form', function() {
 		 
@@ -293,6 +329,78 @@
 		 return false;
 	});
 	
+	/* MEETING ADD FORM */
+	/*
+$('body').on('submit', 'form#add_meeting_form', function() {
+		 
+		 var action = $(this).attr('action');
+		 
+		//console.log(action);
+		 
+		 $.post( action, $(this).serialize(), function( data ) {
+		 	
+		 	$('.alerts').empty();
+		 	
+		 }).done(function(data){
+		 
+		 	if ($('.alerts').hasClass('alerts-off')) {
+	     	$('.alerts').removeClass('alerts-off');
+		 	} 
+			
+			var alert = $( data ).find('.alerts-wrap');
+						
+			$(alert).appendTo('.alerts').hide().fadeIn('slow');
+			
+			if (alert.find('input.date-picker').length == 1) {
+			    $('input.date-picker').datepicker({
+		        // Consistent format with the HTML5 picker
+		        format: 'DD d MM yyyy',
+		        weekStart: 1,
+		        daysOfWeekDisabled: "0,6"
+				});
+			}
+
+			 
+		 });
+		 
+		 return false;
+	});
+*/
+	
+	/* HOLIDAY ADD FORM */
+	/*
+$('body').on('submit', 'form#add_holiday_form', function() {
+		 
+		 var action = $(this).attr('action');
+		 
+		console.log($(this).serialize());
+		 
+		 $.post( action, $(this).serialize(), function( data ) {
+		 	
+		 	$('.alerts').empty();
+		 	
+		 }).done(function(data){
+		 
+			var alert = $( data ).find('.alerts-wrap');
+						
+			$(alert).appendTo('.alerts').hide().fadeIn('slow');
+			
+			if (alert.find('input.date-picker').length == 1) {
+			    $('input.date-picker').datepicker({
+		        // Consistent format with the HTML5 picker
+		        format: 'DD d MM yyyy',
+		        weekStart: 1,
+		        daysOfWeekDisabled: "0,6"
+				});
+			}
+
+			 
+		 });
+		 
+		 return false;
+	});
+*/
+
 	/* HOLIDAY FORM ALL DAY SELECT MENUS */
 	$('body').on('change', 'input[name="day_amount"]', function(e){
 		var end_date_input = $('input#holiday_end_date').parents('.form-group');
@@ -603,7 +711,6 @@
 		 //console.log(data);
 		     
 		   $(this).find('#'+section_wrap_id).hide().fadeIn('slow');
-		   
 		     	
 	     });
 	       
@@ -619,30 +726,6 @@
 		 $('.user-list').load(href+" .user-list-inner", function(data){
 		     
 		   $(this).find('.user-list-inner').hide().fadeIn('slow');
-		   
-		    if ($(this).find('select.selectpicker').length > 0) {
-			$(this).find('select.selectpicker').selectpicker({'size': 10}); 
-	 		}
-		     	
-	     });
-    
-	 return false;
- 
-     });
-     
-     /* LIST TYPE BUTTONS */
-     
-     $('body').on(event_type,'.filter-actions a', function(e){
-		 
-		 var href = $(this).attr("href");
-		 
-		 $('.user-list').load(href+" .user-list-inner", function(data){
-		     
-		   $(this).find('.user-list-inner').hide().fadeIn('slow');
-		   
-		    if ($(this).find('select.selectpicker').length > 0) {
-			$(this).find('select.selectpicker').selectpicker({'size': 10}); 
-	 		}
 		     	
 	     });
     

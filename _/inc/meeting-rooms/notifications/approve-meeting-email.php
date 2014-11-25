@@ -7,7 +7,7 @@ $message = '<h3>Your room booking for <font style="color:red;">'.$meeting->post_
 $message .= '<hr><br>';
 $message .= 'This message is to confirm your room booking request has been approved by <strong>'.$from_name.'</strong>.<br>';
 $message .= 'You may now view your meeting details and add or notify meeting attendees.<br><br>';
-$message .= '<a href="'.get_permalink($meeting->ID).'" title="View Meeting details">View Meeting details >></a><br>';
+$message .= '<a href="'.get_permalink($meeting->ID).'" title="View Meeting details">View Meeting details >></a><br><br>';
 $headers = 'From: '.$from_name. '<' .$from_email .'>';
 
 function wps_set_content_type(){ return "text/html";}

@@ -837,7 +837,8 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.post-actions .btn {
+.post-actions .btn,
+.filter-actions .btn {
   padding: 0px;
   display: block;
   float: right;
@@ -852,7 +853,8 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
   outline: 0;
   border: 0;
 }
-.post-actions .btn span {
+.post-actions .btn span,
+.filter-actions .btn span {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -871,7 +873,8 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
   border-radius: 4px;
   z-index: 10;
 }
-.post-actions .btn span:after {
+.post-actions .btn span:after,
+.filter-actions .btn span:after {
   position: absolute;
   right: -10px;
   top: 50%;
@@ -883,19 +886,26 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
   border-bottom: 5px solid transparent;
 }
 .post-actions .btn:hover,
+.filter-actions .btn:hover,
 .post-actions .btn:active,
-.post-actions .btn:focus {
+.filter-actions .btn:active,
+.post-actions .btn:focus,
+.filter-actions .btn:focus {
   background-color: #4b4b4b;
   outline: 0;
 }
 .post-actions .btn:hover span,
+.filter-actions .btn:hover span,
 .post-actions .btn:active span,
-.post-actions .btn:focus span {
+.filter-actions .btn:active span,
+.post-actions .btn:focus span,
+.filter-actions .btn:focus span {
   right: 50px;
   display: block;
   width: 150px;
 }
-.post-actions .btn.active {
+.post-actions .btn.active,
+.filter-actions .btn.active {
   background-color: #4b4b4b;
 }
 .panel-btns .btn {
@@ -1260,52 +1270,81 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
 .dash-panel.panel-open .close-panel-btn i.fa-plus-circle {
   display: none;
 }
-.dash-panel .panel-feeds .tab-content {
-  margin-bottom: 20px;
+.dash-panel .panel-feeds .panel {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border: none;
 }
 .dash-panel .panel-feeds .well {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  background-color: #e9e9e9;
-  border-top: none;
-  border-color: #b975da;
+  border: 1px solid #b975da;
+  background-color: #ffffff;
   font-size: 14px;
-}
-.dash-panel .panel-feeds .nav-tabs {
-  border: none;
-}
-.dash-panel .panel-feeds .nav-tabs li {
-  float: none;
   margin-bottom: 0px;
 }
-.dash-panel .panel-feeds .nav-tabs li a {
+.dash-panel .panel-feeds .panel-heading {
+  border: none;
+  padding: 0px;
+}
+.dash-panel .panel-feeds .panel-heading h4 {
+  border: none;
+}
+.dash-panel .panel-feeds .panel-heading a {
+  display: block;
   text-transform: uppercase;
-  background-color: #e2c5f0;
-  color: #b975da;
+  background-color: #b975da;
+  color: #ffffff;
   font-size: 14px;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  border-bottom: 1px solid #b975da;
   margin-right: 0px;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  position: relative;
 }
-.dash-panel .panel-feeds .nav-tabs li a:hover {
+.dash-panel .panel-feeds .panel-heading a:after {
+  content: "\f056";
+  font-family: FontAwesome;
+  float: right;
+  font-size: 16px;
+}
+.dash-panel .panel-feeds .panel-heading a:hover,
+.dash-panel .panel-feeds .panel-heading a:active,
+.dash-panel .panel-feeds .panel-heading a:focus {
+  color: #8c31b8;
+}
+.dash-panel .panel-feeds .panel-heading a.collapsed {
+  background-color: #e2c5f0;
+  color: #b975da;
+}
+.dash-panel .panel-feeds .panel-heading a.collapsed:hover,
+.dash-panel .panel-feeds .panel-heading a.collapsed:active,
+.dash-panel .panel-feeds .panel-heading a.collapsed:focus {
   background-color: #b975da;
-  border-color: #b975da;
   color: #ffffff;
 }
-.dash-panel .panel-feeds .nav-tabs li.active a {
-  border-color: #b975da;
-  background-color: #b975da;
-  color: #ffffff;
+.dash-panel .panel-feeds .panel-heading a.collapsed:after {
+  content: "\f055";
+}
+.dash-panel .panel-feeds .panel-body {
+  padding: 0px;
+  border: none;
+  border-top: none !important;
 }
 .dash-panel .panel-feeds .panel-feed {
   border: 1px solid #b975da;
-  border-top: none;
-  max-height: 200px;
+  height: auto;
   overflow: hidden;
   padding: 10px 10px 10px 20px;
+}
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap {
+  max-height: 200px;
+  overflow-y: auto;
 }
 .dash-panel .panel-feeds .panel-feed .panel-feed-wrap li {
   padding-bottom: 10px;
@@ -1313,11 +1352,29 @@ body#announcements ul#menu-main-menu li.company-resources ul.sub-menu li.current
   margin-bottom: 10px;
   border-bottom: 1px solid #918f8f;
 }
-.dash-panel .panel-feeds .panel-feed .panel-feed-wrap p {
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap a {
+  display: block;
+  text-decoration: none;
+  color: #4b4b4b;
+  position: relative;
+}
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap a:hover:after,
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap a:active:after,
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap a:focus:after {
+  content: "\f138";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  margin-top: -7px;
+  color: #b975da;
+}
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap span {
+  display: block;
   margin-bottom: 0px;
   font-size: 14px;
 }
-.dash-panel .panel-feeds .panel-feed .panel-feed-wrap p span {
+.dash-panel .panel-feeds .panel-feed .panel-feed-wrap span strong {
   color: #b975da;
 }
 .dash-panel .panel-content {
@@ -3731,6 +3788,41 @@ table#wp-calendar tfoot td.pad {
 /* --------------------------- */
 /* User styles */
 /* --------------------------- */
+.user-filters {
+  background-color: #918f8f;
+  padding: 10px;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+.user-filters .filter-actions a {
+  margin-bottom: 0px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: #787575;
+  color: #ffffff;
+}
+.user-filters .filter-actions a:hover,
+.user-filters .filter-actions a:active,
+.user-filters .filter-actions a:focus {
+  background-color: #c4c2c2;
+  color: #4b4b4b;
+}
+.user-filters .filter-actions a.active {
+  cursor: default;
+  background-color: #ffffff;
+  color: #4b4b4b;
+}
+.user-filters .form-group {
+  margin-bottom: 0px;
+}
+.user-filters .btn-group {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
 .user-actions {
   position: fixed;
   top: 0px;
@@ -4359,6 +4451,9 @@ body#user-page {
   font-weight: bold;
   text-align: center;
   color: #d9534f;
+}
+.user-list-table {
+  width: 100%;
 }
 .alert h2 {
   margin-top: 0px;

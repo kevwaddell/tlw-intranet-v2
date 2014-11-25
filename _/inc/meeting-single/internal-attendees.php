@@ -70,8 +70,6 @@
 										
 										<?php } ?>
 										
-										<?php if ($start_time > $now ) { ?>
-										
 										<?php if ( $current_user_ID == $staff_attendee['attendee_staff']['ID'] && ( $staff_attendee['status'] == "pending" || $staff_attendee['status'] == "rejected") ) { ?>	
 										<a href="?action=attendee_accept&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default accept action-btn"><i class="fa fa-thumbs-o-up"></i> Accept invite</a>
 										<?php } ?>
@@ -80,9 +78,8 @@
 										<a href="?action=attendee_reject&user_key=<?php echo $key; ?>&user=<?php echo $staff_attendee['attendee_staff']['ID']; ?>" class="btn btn-default reject action-btn"><i class="fa fa-thumbs-o-down"></i> Reject invite</a>
 										<?php } ?>
 										
-										<?php } ?>
 										
-										<a href="<?php echo get_author_posts_url($staff_attendee['attendee_staff']['ID']);?>" class="btn btn-default"><i class="fa fa-user"></i> View user profile</a>
+										<a href="<?php echo get_author_posts_url($staff_attendee['attendee_staff']['ID']);?>" class="btn btn-default"><i class="fa fa-user"></i> View profile</a>
 									</td>
 								</tr>
 								
