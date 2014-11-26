@@ -48,7 +48,8 @@ $today = strtotime("today");
 
 $user_job_title = get_the_author_meta( "job_title", $curauth->ID );
 $user_department = get_the_author_meta( "department", $curauth->ID );
-//echo '<pre>';print_r($user_department);echo '</pre>';
+$extention = get_the_author_meta( "extension", $curauth->ID );
+//echo '<pre>';print_r($extention);echo '</pre>';
 $job_description = get_the_author_meta( "description", $curauth->ID );
 $user_name = get_the_author_meta( "user_login", $curauth->ID );
 $user_first_name = get_the_author_meta( "first_name", $curauth->ID );

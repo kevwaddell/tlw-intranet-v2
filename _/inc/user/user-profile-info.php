@@ -24,7 +24,7 @@
 					<div class="info-label">Name:</div> 
 				</div>
 				<div class="col-xs-7">
-					<div class="text"><?php echo $user_display_name; ?></div>
+					<div class="text"><?php echo $user_display_name; ?><?php echo ($extention) ? '<span class="ext-num"><i class="fa fa-phone-square fa-lg"></i> '. $extention .'</span>':''; ?></div>
 				</div>
 				
 			</div>

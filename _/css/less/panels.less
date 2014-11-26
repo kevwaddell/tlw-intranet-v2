@@ -611,10 +611,62 @@
 			}
 		}	
 		
+		.panel-content {
+			p, .well {
+			.mag-bot(0);	
+			}
+		}
+		
 		.close-panel-btn {
 		.col(@pink);
 			&:hover, &:active, &:focus {
 			.col(darken(@pink, 20%));	
+			}
+		}
+		
+		.gquiz-field {
+		.mag-bot(0);	
+		}
+		.gquiz-field-label {
+		.mag-top(1);	
+		}
+		.gfield_label, .gquiz-field-label {
+		.mag-bot(1);
+		.col(@pink);	
+		}
+		
+		.validation_message {
+		.pad-all(1);
+		.bg-col(@danger);	
+		text-align: center;
+		.mag-top(1);
+		.col(white);
+		}
+		
+		.validation_error {
+		.pad-all(1);
+		.no-rounded;
+		.no-border;
+		.bg-col(@danger);
+		.col(white);	
+		text-align: center;
+		}
+		
+		.gquiz-field-choice {
+			ul {
+			.mag-bot(0);	
+			}
+		}
+		
+		.gform_footer {
+			.gform_button {
+			width: 100%;
+			.bg-col(@pink);
+			.no-rounded;
+			.no-border;
+				&:hover, &:active, &:focus {
+				.bg-col(darken(@pink, 20%));
+				}
 			}
 		}
 		
@@ -672,6 +724,12 @@
 			}
 		}	
 		
+		.panel-content {
+			p, .well {
+			.mag-bot(0);	
+			}
+		}
+		
 		.close-panel-btn {
 		.col(@orange);
 			&:hover, &:active, &:focus {
@@ -704,6 +762,8 @@
 		width: 48%;
 		.font-size(1.6);
 		font-weight: 300;
+		.pad-all(0);
+		.h(3);
 			&:hover, &:active, &:focus {
 			.bg-col(darken(@orange, 20%));	
 			}	
@@ -719,6 +779,10 @@
 		.mag-bot(0.5);	
 		}
 		
+		a.gpoll_back_button {
+		.mag-top(2);	
+		}
+		
 		a.gpoll_button, a.gpoll_back_button {
 		.no-text-dec;
 		.fright;
@@ -726,8 +790,8 @@
 		width: 48%;
 		.bg-col(@orange);	
 		.col(white);
-		.h(3.2);
-		.line-h(3.2);
+		.h(3);
+		.line-h(3);
 		text-align: center;
 			&:hover, &:active, &:focus {
 			.bg-col(darken(@orange, 20%));	
@@ -738,11 +802,34 @@
 			font-family: FontAwesome;	
 			.fright;
 			.block;
-			.w(3.2);
-			.h(3.2);
+			.w(3);
+			.h(3);
 			.bg-col(darken(@orange, 20%));
 			.col(white);	
 			}
+		}
+		
+		.gpoll_field {
+		.mag-bot(0);	
+		}
+		
+		#gforms_confirmation_message {
+		.pad-all(0);	
+		.mag-bot(0);	
+		}
+		
+		.gform_confirmation_message {
+		.mag-bot(1);
+		.pad-all(1);
+		.bg-col(lighten(@orange, 20%));	
+		}
+		
+		.gpoll_ratio_box, .gpoll_bar_juice {
+		.no-rounded;	
+		}
+		
+		.gpoll_bar {
+		.bg-col(@grayLt);	
 		}
 		
 		a.gpoll_back_button {

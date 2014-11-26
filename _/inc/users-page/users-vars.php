@@ -24,20 +24,20 @@ $department = get_the_author_meta( "department", $u->ID );
 		array_push($job_titles, $job_title);
 		}	
 		
-		if (isset($_POST) && $_POST['by-department']) {
-			if ($department[0] == $_POST['by-department']) {
+		if (isset($_GET['by-department'])) {
+			if ($department[0] == $_GET['by-department']) {
 			array_push($include_users, $u->ID);	
 			}	
 		}
 		
-		if (isset($_POST) && $_POST['by-name']) {
-			if ($u->ID == $_POST['by-name']) {
+		if ( isset($_GET['by-name']) ) {
+			if ($u->ID == $_GET['by-name']) {
 			array_push($include_users, $u->ID);	
 			}	
 		}
 		
-		if (isset($_POST) && $_POST['by-job-title']) {
-			if ($job_title == $_POST['by-job-title']) {
+		if ( isset($_GET['by-job-title']) ) {
+			if ($job_title == $_GET['by-job-title']) {
 			array_push($include_users, $u->ID);	
 			}	
 		}

@@ -12,28 +12,33 @@
 		//echo '<pre>';print_r($user);echo '</pre>';
 		?>
 		<tr class="entry-tr">
-			<td colspan="6">
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							
-							<td class="avatar" rowspan="3">
-								 <span class="user-avatar"><?php echo get_avatar( $user->ID, 150 ); ?></span>  
-							</td>
-							
-							<td class="name">
-								<?php echo get_the_author_meta('display_name', $user->ID);?>
-								<?php echo ($ext) ? '<span class="pull-right"><i class="fa fa-phone-square"></i> '.$ext.'</span>':''; ?>
-							</td>
-							
-							<td class="email">
-								<a href="mailto:<?php echo get_the_author_meta('user_email', $user->ID);?>" title="Email "><?php echo get_the_author_meta('user_email', $user->ID);?></a>	
-							</td>	
-						</tr>
-						<tr>
-							<td class="department">
-								
-								<?php if (!empty($department_ids) ) { ?>
+			<td>
+				<table width="100%" border="1" cellspacing="0" cellpadding="0" class="table table-bordered">
+				  <tbody>
+					 <?php if ($user->ID == $emp_otm_user['ID']) { ?>
+					  <tr>
+						  <td colspan="7" class="eotm-tag">
+							  <i class="fa fa-trophy pull-left"></i> Employee of the Month <i class="fa fa-trophy pull-right"></i>
+						  </td>
+					  </tr>
+					<?php } ?>
+				    <tr>
+				    	<td width="90" align="center" rowspan="3" class="user-avatar">
+					      <?php echo get_avatar( $user->ID, 80 ); ?>
+						</td>
+						<td width="30" align="center" height="30" class="icon">
+					      <i class="fa fa-user"></i>
+				    	</td>
+						<td width="250" class="txt" align="center">
+					      <?php echo get_the_author_meta('display_name', $user->ID);?>
+						</td>
+				      <td width="30" align="center" class="icon"><i class="fa fa-envelope"></i></td>
+				      <td class="txt email-link" colspan="3" align="center"><a href="mailto:<?php echo get_the_author_meta('user_email', $user->ID);?>" title="Email "><?php echo get_the_author_meta('user_email', $user->ID);?></a></td>
+				    </tr>
+				    <tr>
+				      <td height="30" align="center" class="icon"><i class="fa fa-cubes"></i></td>
+				      <td class="txt" align="center">
+					  <?php if (!empty($department_ids) ) { ?>
 									
 									<?php foreach ($department_ids as $dep_id) { 
 									$dep_ids_counter++;	
@@ -44,30 +49,31 @@
 									
 									<?php } ?>
 		
-								<?php } ?>
-							
-							</td>
-							<td class="job-title">
-								<?php if ($job_title) { ?>
-								<?php echo $job_title;?>
-								<?php } ?>
-							</td>
-						</tr>
-						<tr>
-							
-							<td class="ext-no">
-								<?php if ($ext) { ?>
-								Ext: <?php echo $ext;?>
-								<?php } ?>
-							</td>
-							
-							<td class="ext-no">
-							
-							</td>
-			
-						</tr>
-							
-					</tbody>
+					<?php } ?>
+					</td>
+				    <td align="center" class="icon" align="center">
+					    <i class="fa fa-cube"></i>
+					</td>
+				    <td class="txt" align="center">
+					     <?php if ($job_title) { ?>
+							<?php echo $job_title;?>
+						<?php } ?>
+					</td>
+					 <td width="30" align="center" class="icon">
+					    <i class="fa fa-phone"></i>
+					</td>
+				    <td class="txt ext-num" width="50" align="center">
+					     <?php if ($ext) { ?>
+							<?php echo $ext;?>
+						<?php } ?>
+					</td>
+				    </tr>
+				    <tr>
+				    <td height="30" align="center" colspan="6" class="view-link">
+					    <a href="<?php echo get_author_posts_url($user->ID);?>" title="View Profile" class="btn"><i class="fa fa-eye fa-lg"></i>View Profile</a>
+					</td>
+				    </tr>
+				  </tbody>
 				</table>
 			 </td>
 		</tr>

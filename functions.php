@@ -85,7 +85,7 @@ if ( function_exists( 'register_sidebar' ) ) {
 	
 	register_sidebar( $login_sb_args );	
 	
-	$dashboard_pan_args = array(
+	$question_pan_args = array(
 	'name'          => "Dashboard question of the day",
 	'id'            => "dashboard-poll",
 	'description'   => 'Panel for dashboard question of the day',
@@ -96,7 +96,22 @@ if ( function_exists( 'register_sidebar' ) ) {
 	'after_title'   => '' 
 	);
 	
-	register_sidebar( $dashboard_pan_args );	
+	register_sidebar( $question_pan_args );	
+	
+	$quiz_pan_args = array(
+	'name'          => "Quiz of the day",
+	'id'            => "quiz-of-the-day",
+	'description'   => 'Panel for dashboard quiz of the day',
+	'class'         => 'dash-panel',
+	'before_widget' => '',
+	'after_widget'  => '',
+	'before_title'  => '',
+	'after_title'   => '' 
+	);
+	
+	register_sidebar( $quiz_pan_args );	
+
+	
 }
 
 // Use shortcodes in text widgets.

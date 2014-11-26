@@ -12,6 +12,10 @@ Template Name: Users list page
 
 <h1 class="block-header<?php echo (!empty($color)) ? " col-".$color:"col-gray"; ?>"><?php if (!empty($icon)) {  echo '<i class="fa '.$icon.' fa-lg"></i>'; }?><?php echo the_title(); ?></h1>
 
+<div class="list-loader">
+	<i class="fa fa-spinner fa-4x fa-spin"></i>
+</div>
+
 <?php if ($total_users > 0) { ?>
 
 <div class="user-list">
