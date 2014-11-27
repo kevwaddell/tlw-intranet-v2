@@ -1,5 +1,6 @@
 <?php if ( isset($_POST['confirm_user_message']) ) { 
 //echo '<pre>';print_r($_POST);echo '</pre>';
+$_POST = stripslashes_deep( $_POST );
 $to_email = trim($_POST['to_email']);
 $from_email = trim($_POST['from_email']);
 $from_name = $_POST['from_name'];
@@ -51,7 +52,7 @@ echo '</pre>';
 	<input type="hidden" name="to_email" value="<?php echo $to_email; ?>">
 	<input type="hidden" name="from_email" value="<?php echo $from_email; ?>">
 	<input type="hidden" name="from_name" value="<?php echo $from_name; ?>">
-	<input type="hidden" name="subject" value="<?php echo $subject; ?>">
+	<input type="hidden" name="subject" value="<?php echo wp_strip_all_tags($subject); ?>">
 	<input type="hidden" name="message" value="<?php echo $message ; ?>">
 	<?php wp_nonce_field( 'post_nonce', 'send_nonce_field' ); ?>
 		

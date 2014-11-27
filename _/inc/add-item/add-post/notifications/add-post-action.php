@@ -1,5 +1,5 @@
 <?php if (isset($_POST['userid'])) { 
-
+$_POST = stripslashes_deep( $_POST );
 $errors = array();
 $title = trim($_POST['title']);
 $content = trim($_POST['addpost']);
@@ -87,7 +87,7 @@ echo '<pre>';
 
 <?php if (count($errors) == 0) { ?>
 		
-	<div class="alert alert-success">
+	<div class="alert alert-success text-center">
 		<strong>Your article is ready to be sent for review.</strong><br>
 		Use the links below to confirm or change you article.<br><br>
 	
@@ -107,7 +107,7 @@ echo '<pre>';
 	
 <?php } else { ?>
 	
-	<div class="alert alert-danger">
+	<div class="alert alert-danger text-center">
 		
 		<h4>Errors !</h4>
 	

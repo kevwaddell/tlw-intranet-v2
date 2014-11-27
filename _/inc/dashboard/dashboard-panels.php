@@ -35,6 +35,15 @@
 			</div>
 		</div>
 		
+		<div class="dash-panel col-blue panel-closed">
+			<h2 class="panel-head"><i class="fa fa-briefcase fa-lg"></i>Jobs board</h2>
+			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
+			
+			<div class="panel-content">
+			<?php include (STYLESHEETPATH . '/_/inc/dashboard/jobs-board-panel.php'); ?>
+			</div>
+		</div>
+		
 	</div>
 	
 	<div class="col-xs-6">
@@ -47,18 +56,7 @@
 			<?php include (STYLESHEETPATH . '/_/inc/dashboard/meeting-rooms-panel.php'); ?>
 			</div>
 		</div>
-		
-		<!--
-<div id="eotm-panel" class="dash-panel col-green panel-closed">
-			<h2 class="panel-head"><i class="fa fa-trophy fa-lg"></i>Employee of the month</h2>
-			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
-			
-			<div class="panel-content">
-			<?php include (STYLESHEETPATH . '/_/inc/dashboard/employee-of-month-panel.php'); ?>
-			</div>
-		</div>
--->
-		
+				
 		<div id="quiz-panel" class="dash-panel col-pink <?php echo (isset($_POST['is_submit_4'])) ? 'panel-open':'panel-closed'; ?>">
 			<h2 class="panel-head"><i class="fa fa-puzzle-piece fa-lg"></i>Quiz of the day</h2>
 			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
@@ -67,7 +65,16 @@
 			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Quiz of the day') ) : ?><?php endif; ?>
 			</div>
 		</div>
+
+		<div id="eotm-panel" class="dash-panel col-green panel-closed">
+			<h2 class="panel-head"><i class="fa fa-trophy fa-lg"></i>Employee of the month</h2>
+			<button class="close-panel-btn"><i class="fa fa-minus-circle fa-lg"></i><i class="fa fa-plus-circle fa-lg"></i></button>
 			
+			<div class="panel-content">
+			<?php include (STYLESHEETPATH . '/_/inc/dashboard/employee-of-month-panel.php'); ?>
+			</div>
+		</div>
+
 	</div>
 		
 </div>

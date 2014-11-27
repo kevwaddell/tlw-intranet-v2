@@ -320,11 +320,9 @@
 		.mag-bot(1);
 		}
 		
-		.announce-content {
+		.announce-content, .vacancies-content {
 		
 			h3 {
-			.font-size(3);
-			.line-h(3);
 			.mag-bot(1);	
 			}
 			
@@ -336,9 +334,9 @@
 			.pad-left(2);
 			.h(3);
 			.line-h(3);
-			.mag-bot(2);
 			.caps;
 			.font-size(1.4);
+			.mag-bot(2);
 			
 				&:after {
 				content: "\f105";
@@ -354,7 +352,7 @@
 				}	
 			}
 		}
-		
+				
 		.eotm-content {
 		.mag-bot(0);	
 		
@@ -488,6 +486,14 @@
 			}
 		}	
 		
+		.well {
+		.border-col(@aqua);
+		.no-rounded;	
+			strong {
+			.col(@blue);
+			}
+		}
+		
 		.close-panel-btn {
 		.col(@aqua);
 			&:hover, &:active, &:focus {
@@ -499,7 +505,7 @@
 		.col(@aqua);	
 		}
 		
-		.panel-btns {
+		.panel-btns {;
 			.btn {
 			.bg-col(darken(@aqua, 20%));
 				i {
@@ -617,6 +623,18 @@
 			}
 		}
 		
+		.well {
+		.border-col(@pink);
+		.no-rounded;	
+			a {
+			.col(@pink);
+			.bold;
+				&:hover, &:active, &:focus {
+				.col(darken(@pink, 20%));
+				}	
+			}
+		}
+		
 		.close-panel-btn {
 		.col(@pink);
 			&:hover, &:active, &:focus {
@@ -723,6 +741,18 @@
 			.col(@orange);	
 			}
 		}	
+		
+		.well {
+		.border-col(@orange);
+		.no-rounded;	
+			a {
+			.col(@orange);
+			.bold;
+				&:hover, &:active, &:focus {
+				.col(darken(@orange, 20%));
+				}	
+			}
+		}
 		
 		.panel-content {
 			p, .well {
@@ -847,6 +877,14 @@
 			.col( @blue );	
 			}
 		}	
+		
+		.well {
+		.border-col(@blue);
+		.no-rounded;	
+			strong {
+			.col(@blue);
+			}
+		}
 		
 		.close-panel-btn {
 		.col(@blue);

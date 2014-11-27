@@ -119,6 +119,19 @@
    	return false;
     });
     
+     $('body').on(event_type,'button.close-details-btn', function(e){
+    
+    var parent = $(this).parent();
+    
+    	if (parent.hasClass('details-closed')) {
+    	parent.removeClass('details-closed').addClass('details-open');
+    	} else {
+	    parent.removeClass('details-open').addClass('details-closed');	
+    	}
+    
+   	return false;
+    });
+    
     $('body').on(event_type,'button.close-section-btn', function(e){
     
     var parent = $(this).parent();

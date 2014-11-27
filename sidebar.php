@@ -18,7 +18,7 @@ $feat_img_title = $feat_img['title'];
 
 global $color;
 global $cat_id;
-$categories = get_categories();
+$categories = get_categories('hide_empty=0&exclude=1');
 //echo '<pre>';print_r($categories);echo '</pre>';
 ?>
 
@@ -43,7 +43,7 @@ $categories = get_categories();
 <?php endif; ?>
 
 
-<?php if (is_user_logged_in() && is_category() && current_user_can("administrator")) : ?>
+<?php if (is_user_logged_in() && is_category() && current_user_can("administrator") && $slug != 'vacancies') : ?>
 <div class="sidebar-actions">
 	<div class="action-btns<?php echo (!empty($color)) ? " col-".$color:" col-gray"; ?>">
 <?php include (STYLESHEETPATH . '/_/inc/category-page/btn-actions.php'); ?>

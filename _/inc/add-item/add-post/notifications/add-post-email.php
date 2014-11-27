@@ -31,7 +31,11 @@ add_filter( 'wp_mail_content_type','wps_set_content_type' );
 wp_mail( $to, $subject, $message, $headers );
 
 if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
-wp_mail( $rb_admin['user_email'], $subject, $message, $headers );
+	
+	foreach($news_editors as $news_editor) {
+	wp_mail( $news_editor['user_email'], $subject, $message, $headers );	
+	}
+	
 } else {
 wp_mail( "kevwaddell@mac.com", $subject, $message, $headers );
 }

@@ -32,17 +32,18 @@ $announcements = get_posts($announcement_args);
 
 
 <?php } else { ?>
-<h3>There are no Announcements at the moment.</h3>
+<div class="well text-center" style="margin-bottom: 0px;">There are no <strong>Announcements</strong> at the moment.</div>
 <?php } ?>
 
 
 </div>
 
 <div class="panel-btns">
+	<?php if ($announcements) { ?>
 	<a href="<?php echo get_category_link( $an_cat_id ); ?>" class="btn btn-default btn-block"><i class="fa fa-eye fa-lg"></i>All Announcments</a>
+	<?php } ?>
 	
 	<?php if (is_user_logged_in() && current_user_can("administrator")) { ?>
 	<a href="<?php echo get_permalink($add_announcement_pg->ID); ?>?httpref=<?php echo $home_url; ?>" class="btn btn-default btn-block"><i class="fa fa-plus-circle fa-lg"></i>Submit an Announcment</a>
 	<?php } ?>
-	
 </div>

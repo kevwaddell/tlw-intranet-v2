@@ -5,35 +5,35 @@
 		<input type="search" value="<?php the_search_query(); ?>" placeholder="Search…" class="search-query form-control" name="s" id="s" />
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios1" value="all" checked>All</label>
+		  <label><input type="radio" name="type" id="type-all" value="all" checked>All</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios2" value="office-news">Office News</label>
+		  <label><input type="radio" name="type" id="type-office-news" value="office-news">Office News</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios2" value="company-news">Company News</label>
+		  <label><input type="radio" name="type" id="type-company-news" value="company-news">Company News</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios3" value="events">Events</label>
+		  <label><input type="radio" name="type" id="type-events" value="events">Events</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios4" value="announcements">Announcements</label>
+		  <label><input type="radio" name="type" id="type-announcements" value="announcements">Announcements</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios5" value="meetings">Meetings</label>
+		  <label><input type="radio" name="type" id="type-meetings" value="meetings">Meetings</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios6" value="documents">Documents</label>
+		  <label><input type="radio" name="type" id="type-documents" value="documents">Documents</label>
 		</div>
 		
 		<div class="radio">
-		  <label><input type="radio" name="type" id="optionsRadios7" value="procedures">Procedures</label>
+		  <label><input type="radio" name="type" id="type-procedures" value="procedures">Procedures</label>
 		</div>
 		
 		<div class="action-btns col-gray">

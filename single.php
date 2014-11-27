@@ -42,7 +42,7 @@ $icon = 'fa-bullhorn';
 					<div class="content-outer">
 						<div class="content-inner">
 						
-							<?php if (isset($_GET['userid']) && $_GET['request'] == "edit_post") { 
+							<?php if (isset($_GET['userid']) && $_GET['edit_request'] == "edit_post") { 
 								$user_id = get_user_by('id', $_GET['userid']);
 							?>
 							
@@ -56,7 +56,13 @@ $icon = 'fa-bullhorn';
 							
 							<?php if ($cat[0]->slug == 'events') { ?>	
 							
-							<?php include (STYLESHEETPATH . '/_/inc/single-post/details-box.php'); ?>
+							<?php include (STYLESHEETPATH . '/_/inc/single-post/event-details-box.php'); ?>
+							
+							<?php } ?>
+							
+							<?php if ($cat[0]->slug == 'vacancies') { ?>	
+							
+							<?php include (STYLESHEETPATH . '/_/inc/single-post/vacancy-details-box.php'); ?>
 							
 							<?php } ?>
 

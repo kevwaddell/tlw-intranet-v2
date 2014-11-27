@@ -3,7 +3,8 @@ ul#menu-main-menu {
 	//main menu style
 	li {
 	//Link style
-	
+	.max-h(3);
+	//.over-hide;
 		a {
 		.block;
 		.no-text-dec;
@@ -37,10 +38,15 @@ ul#menu-main-menu {
 			}
 			
 		}//Link style
+		
+		
 	
 		ul.sub-menu {
 		.pad-left(0);
 		list-style: none;
+		.h(0);
+		.over-hide;
+		.transition(0.7s, ease-in-out);
 		
 			li {
 			.border-bot(@gray, 0.1);
@@ -89,8 +95,24 @@ ul#menu-main-menu {
 		
 		}
 		
+		&:hover, &:active, &:focus {
+		max-height: none;
+			ul.sub-menu {
+			height: auto;
+			.max-h(50);	
+			}
+		}
+		
 		&.current_page_item, &.current-menu-item, &.current-menu-parent  {
-			
+		max-height: none;	
+			&:hover, &:active, &:focus {
+				max-height: none;
+				ul.sub-menu {
+				height: auto;
+				max-height: none;
+				}
+			}
+		
 			a {	
 			.bg-col(@red);	
 				&:hover, &:active, &:focus {
@@ -103,6 +125,7 @@ ul#menu-main-menu {
 			}
 			
 			ul.sub-menu {
+			height: auto;
 				li{
 					a {
 					.bg-col(transparent);

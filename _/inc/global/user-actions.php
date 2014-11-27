@@ -44,7 +44,9 @@
 			
 		<?php } ?>
 		
+		<?php if (!is_search()) { ?>
 		<button id="search" class="user-btn"><span>Search</span><i class="fa fa-search fa-lg"></i></button>
+		<?php } ?>
 	</div>
 				
 	<?php if (is_user_logged_in()) { ?>
@@ -86,10 +88,11 @@
 	
 	<?php } ?>
 	
+	<?php if (!is_search()) { ?>
 	<div id="search-box" class="user-actions-wrap">
 		<h3>Search</h3>
 		<?php get_template_part( 'hidden-searchform' ); ?>
 	</div>
-
+	<?php } ?>
 
 </aside>

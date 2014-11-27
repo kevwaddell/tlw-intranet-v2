@@ -17,6 +17,10 @@ $return_url = get_home_url();
 if ( isset($_GET['httpref']) ) {
 $return_url = urldecode($_GET['httpref']);
 }
+
+$news_editors = get_field('news_editors', 'options');
+
+//echo '<pre>';print_r($news_editors);echo '</pre>';
 ?>	
 
 	<div class="alerts">

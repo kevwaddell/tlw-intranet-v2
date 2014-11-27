@@ -29,7 +29,7 @@
 	<?php } ?>
 	
 	<?php if (current_user_can("administrator") || current_user_can("editor") ) { ?>
-	<a href="<?php the_permalink(); ?>?request=edit_post&userid=<?php echo $current_user->ID; ?>" title="Edit Post" class="btn"><span>Edit Post</span><i class="fa fa-pencil fa-lg"></i></a>
+	<a href="<?php the_permalink(); ?>?edit_request=edit_post&userid=<?php echo $current_user->ID; ?>" title="Edit Post" class="btn"><span>Edit Post</span><i class="fa fa-pencil fa-lg"></i></a>
 	
 	<?php } ?>
 	
