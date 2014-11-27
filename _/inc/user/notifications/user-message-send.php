@@ -1,5 +1,6 @@
 <?php if ( isset($_POST['send_user_message']) ) { 
-//echo '<pre>';print_r($_POST);echo '</pre>';	
+//echo '<pre>';print_r($_POST);echo '</pre>';
+$_POST = stripslashes_deep( $_POST );	
 $http_ref = $_POST['_wp_http_referer'];
 
 include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-email.php');

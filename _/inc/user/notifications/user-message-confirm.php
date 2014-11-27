@@ -52,7 +52,7 @@ echo '</pre>';
 	<input type="hidden" name="to_email" value="<?php echo $to_email; ?>">
 	<input type="hidden" name="from_email" value="<?php echo $from_email; ?>">
 	<input type="hidden" name="from_name" value="<?php echo $from_name; ?>">
-	<input type="hidden" name="subject" value="<?php echo wp_strip_all_tags($subject); ?>">
+	<input type="hidden" name="subject" value="<?php echo $subject; ?>">
 	<input type="hidden" name="message" value="<?php echo $message ; ?>">
 	<?php wp_nonce_field( 'post_nonce', 'send_nonce_field' ); ?>
 		
