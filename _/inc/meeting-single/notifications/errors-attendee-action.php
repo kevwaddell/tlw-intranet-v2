@@ -2,6 +2,8 @@
 
 <div class="alert alert-danger">
 	
+	<h4><i class="fa fa-warning"></i> Errors</h4>
+	
 	<?php foreach ($errors as $error) { ?>
 	<strong><?php echo $error; ?></strong><br>
 	<?php } ?>

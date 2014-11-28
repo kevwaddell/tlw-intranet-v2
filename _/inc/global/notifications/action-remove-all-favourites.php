@@ -47,7 +47,9 @@
 
 <div class="alert alert-success text-center">
 	
-All <strong><?php echo $message;?></strong> has been removed from your favourites.<br><br>
+	<h4><i class="fa fa-check-circle fa-lg"></i> Success</h4>
+	
+	All <strong><?php echo $message;?></strong> has been removed from your favourites.<br><br>
 	
 	<div class="action-btns">
 		<a href="<?php echo $page_url[0]; ?>" class="btn btn-success btn-block">Continue</a>

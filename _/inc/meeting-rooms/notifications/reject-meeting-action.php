@@ -28,6 +28,9 @@ $end_time = get_field('end_time', $meeting->ID);
 ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
+	
 	Booking for <strong><?php echo $room[0]->name; ?></strong> meeting room has been rejected and<br><strong><?php echo $booked_by->data->display_name; ?></strong> has been notified.</strong><br><br>
 	<div class="action-btns">
 		<a href="<?php echo $page_url[0]; ?>" class="btn btn-success btn-block">Continue</a>

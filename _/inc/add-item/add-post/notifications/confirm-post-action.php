@@ -36,6 +36,8 @@ $confirm_message = "<strong>Your article has been sent for approval.</strong><br
 
 <div class="alert alert-success">
 	
+	<h4>Success</h4>
+	
 	<p class="text-center"><?php echo $confirm_message; ?></p>
 	<br>
 	<div class="action-btns">

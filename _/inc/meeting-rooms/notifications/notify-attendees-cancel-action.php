@@ -30,6 +30,8 @@ include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/notify-attendees-c
 
 ?>
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
 
 	<strong>The following attendees have been notified:</strong><br><br>
 	

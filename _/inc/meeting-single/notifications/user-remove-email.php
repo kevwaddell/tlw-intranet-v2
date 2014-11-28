@@ -126,6 +126,8 @@ $attendees_staff_total = $total_int;
 ?>
 <div class="alert alert-danger text-center">
 	
+	<h4><i class="fa fa-minus-circle"></i> Removed</h4>
+	
 	<strong><?php echo $name; ?></strong> has been removed from the attendee list.<br>
 	
 	<?php if ( isset($_GET['user_key']) && $start_time > $today_time) { ?>

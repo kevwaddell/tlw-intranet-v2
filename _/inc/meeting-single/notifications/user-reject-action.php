@@ -14,6 +14,9 @@ include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-reject-email
 ?>
 <?php if ($start_time > $now) { ?>
 <div class="alert alert-danger text-center">
+	
+	<h4><i class="fa fa-bullhorn"></i> Notified</h4>
+	
 	<strong><?php echo $booked_by->data->display_name; ?></strong> has been notified that you are unavailable for the meeting.<br><br>
 	
 	<div class="action-btns">
@@ -22,6 +25,9 @@ include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-reject-email
 </div>
 <?php } else { ?>
 <div class="alert alert-sucess text-center">
+	
+	<h4><i class="fa fa-refresh"></i> Updated</h4>
+	
 	Thank you for updating your status <strong><?php echo $user_meta['first_name'][0]; ?></strong>.<br><br>
 	
 	<div class="action-btns">

@@ -25,8 +25,7 @@
         // Consistent format with the HTML5 picker
         format: 'DD d MM yyyy',
         weekStart: 1,
-        todayHighlight: true,
-        daysOfWeekDisabled: "0,6"
+        todayHighlight: true
 		});
     }
     

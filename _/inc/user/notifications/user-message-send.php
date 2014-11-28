@@ -9,6 +9,8 @@ include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-email.php');
 <?php if ($email_sent) { ?>
 <div class="alert alert-success text-center">
 	
+	<h4><i class="fa fa-send"></i> Success</h4>
+	
 	<strong>Your message has been sent successfully.</strong><br><br>
 	
 	<div class="action-btns">
@@ -18,6 +20,8 @@ include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-email.php');
 </div>
 <?php } else { ?>
 <div class="alert alert-danger text-center">
+	
+	<h4><i class="fa fa-warning"></i> Error</h4>
 	
 	<strong>There was a problem send ing your message.</strong><br><br>
 	

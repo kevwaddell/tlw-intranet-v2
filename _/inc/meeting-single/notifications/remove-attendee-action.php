@@ -12,8 +12,11 @@ $user_meta = get_user_meta($_GET['user']);
 	
 ?>
 
-<div class="alert alert-danger text-center">
-	Are you sure you want to remove <strong><?php echo $name; ?></strong> from the <strong><?php echo $description; ?></strong> meeting.<br><br>
+<div class="alert alert-warning text-center">
+	
+	<h4><i class="fa fa-plus-circle"></i> Confirm</h4>
+	
+	Are you sure you want to remove<br><strong><?php echo $name; ?></strong> from the <strong><?php echo $description; ?></strong> meeting.<br><br>
 
 <div class="action-btns">
 
@@ -21,7 +24,7 @@ $user_meta = get_user_meta($_GET['user']);
 		<div class="col-xs-6">
 		
 			<?php if ( isset($_GET['user_key']) ) { ?>
-			<a href="?action=delete_attendee&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-danger btn-block btn-action"><i class="fa fa-check fa-lg"></i> Yes</a>
+			<a href="?action=delete_attendee&user_key=<?php echo $_GET['user_key']; ?>&user=<?php echo $_GET['user']; ?>" class="btn btn-success btn-block btn-action"><i class="fa fa-check fa-lg"></i> Yes</a>
 			<?php }  ?>
 			
 			<?php if ( isset($_GET['external_key']) ) { ?>

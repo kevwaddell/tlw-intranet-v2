@@ -98,6 +98,8 @@ $no_changes = 0;
 <a name="meeting-updated" id="meeting-updated"></a>
 <?php if ($no_changes == 1) { ?>
 <div class="alert alert-success">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
 
 	<p>The meeting has been updated and <strong>Office Administration</strong> has been notified.<br>
 	You will receive an email when your request has been approved.</p><br>
@@ -117,7 +119,9 @@ $no_changes = 0;
 </div>
 
 <?php } else { ?>
-<div class="alert alert-danger text-center">
+<div class="alert alert-warning text-center">
+	
+	<h4><i class="fa fa-warning"></i> Warning</h4>
 
 	You did not make any changes to <strong>'<?php echo $description; ?>'</strong> meeting.<br><br>
 	

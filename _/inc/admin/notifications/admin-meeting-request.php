@@ -29,6 +29,8 @@ $end_time = get_field('end_time', $meeting->ID);
 
 <?php } else { ?>
 <div class="alert alert-success text-center">
+	<h4>Approval</h4>
+	
 	Approve or reject booking request by <strong><?php echo $booked_by->data->display_name; ?></strong><br><br>
 	<span class="caps">Meeting Details:</span><br>
 	<span class="bold">Description:</span> <?php echo $desc; ?><br>
@@ -54,6 +56,7 @@ $end_time = get_field('end_time', $meeting->ID);
 <?php } else { ?>
 
 <div class="alert alert-danger text-center">
+<h4><i class="fa fa-warning fa-lg"></i> Warning</h4>
 <strong>Please login to approve booking requests <a href="#log-in-alert" data-toggle="modal" class="btn btn-default btn-danger"><i class="fa fa-lock"></i> Login</a></strong>
 </div>	
 	

@@ -24,6 +24,7 @@
 <?php if (empty($errors)) { ?>
 
 <div class="alert alert-success text-center">
+<h4><i class="fa fa-check-circle fa-lg"></i> Success</h4>
 	
 <strong><?php echo $post->post_title; ?></strong><br>has been added to your favourites.<br><br>
 	
@@ -36,6 +37,8 @@
 <?php } else { ?>
 
 <div class="alert alert-danger text-center">
+	
+	<h4><i class="fa fa-warning fa-lg"></i> Errors</h4>
 	
 	<?php foreach ($errors as $error) { ?>
 	<strong><?php echo $error; ?></strong><br>

@@ -44,6 +44,9 @@ date_default_timezone_set($default_tz);
 
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-chech-circle"></i> Success</h4>
+	
 	<strong><?php echo $user->data->display_name; ?></strong> has been notified of the meeting.<br><br>
 
 <div class="action-btns">

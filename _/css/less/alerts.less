@@ -1,7 +1,16 @@
 .alert {
 	h2 {
 	.mag-top(0);
-	}		
+	}
+	
+	.bg-col(@grayLt);		
+	.col(@gray);
+	
+	.border(@grayDk; 0.2);
+	
+	bold {
+	.col(@grayDk);
+	}
 }
 
 .alerts {
@@ -70,6 +79,35 @@
 		&.text-center {
 		text-align: center;
 		}
+		
+		&.alert-danger {
+		.border-col(@danger);	
+			h4 {
+			.bg-col(@danger);	
+			}
+		}
+		
+		&.alert-success {
+		.border-col(@success);	
+			h4 {
+			.bg-col(@success);	
+			}
+		}
+		
+		&.alert-warning {
+		.border-col(@warning);	
+			h4 {
+			.bg-col(@warning);	
+			}
+		}
+		
+		&.alert-info {
+		.border-col(@info);	
+			h4 {
+			.bg-col(@info);	
+			}
+		}
+		
 	}
 	
 	.errors {

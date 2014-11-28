@@ -37,12 +37,12 @@ $cat_id = $cat->term_id;
 							<div class="input-group-btn">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width: 150px;">Start hour <span class="caret"></span></button>
 								<ul class="dropdown-menu" id="start-hr-select" role="menu">
-								<?php for($h = 8 ; $h <= 21; $h++) { ?>
+								<?php for($h = 0 ; $h <= 23; $h++) { ?>
 				       				<li><a href="#"><?php echo sprintf('%02d', $h); ?></a></li>
 					   			<?php } ?>
 					   			</ul>
 					   		</div><!-- /btn-group -->
-					   		<input type="text" class="form-control" name="start_hrs" id="start_hrs" value="<?php echo (isset($_POST['start_hrs'])) ?  $_POST['start_hrs']:"08"; ?>" readonly>
+					   		<input type="text" class="form-control" name="start_hrs" id="start_hrs" value="<?php echo (isset($_POST['start_hrs'])) ?  $_POST['start_hrs']:"00"; ?>" readonly>
 					   		<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
 						</div>
 						
@@ -77,12 +77,12 @@ $cat_id = $cat->term_id;
 								<div class="input-group-btn">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width: 150px;">End hour <span class="caret"></span></button>
 									<ul class="dropdown-menu" id="end-hr-select" role="menu">
-									<?php for($h = 9 ; $h <= 22; $h++) { ?>
+									<?php for($h = 0 ; $h <= 23; $h++) { ?>
 					       				<li><a href="#"><?php echo sprintf('%02d', $h); ?></a></li>
 						   			<?php } ?>
 						   			</ul>
 						   		</div><!-- /btn-group -->
-						   		<input type="text" class="form-control" name="end_hrs" id="end_hrs" value="<?php echo (isset($_POST['end_hrs'])) ?  $_POST['end_hrs']:"09"; ?>" readonly>
+						   		<input type="text" class="form-control" name="end_hrs" id="end_hrs" value="<?php echo (isset($_POST['end_hrs'])) ?  $_POST['end_hrs']:"00"; ?>" readonly>
 						   		<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
 							</div>
 							

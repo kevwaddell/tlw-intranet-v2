@@ -1,5 +1,5 @@
 <?php if (isset($_POST['add-event'])) { 
-
+$_POST = stripslashes_deep( $_POST );
 $errors = array();
 $title = trim($_POST['title']);
 $content = trim($_POST['addpost']);
@@ -86,6 +86,9 @@ $httpref = $_POST['httpref'];
 <?php if (count($errors) == 0) { ?>
 		
 	<div class="alert alert-success text-center">
+		
+		<h4><i class="fa fa-check-circle"></i> Success</h4>
+		
 		<strong>Your event is ready to be sent for review.</strong><br>
 		Use the links below to confirm or change you article.<br><br>
 	
@@ -107,7 +110,7 @@ $httpref = $_POST['httpref'];
 	
 	<div class="alert alert-danger">
 		
-		<h4>Errors !</h4>
+		<h4><i class="fa fa-warning"></i> Errors!</h4>
 	
 		<ul>
 			<?php foreach ($errors as $error) { ?>

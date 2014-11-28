@@ -41,6 +41,8 @@ $from_email = $booked_by->data->user_email;
 ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Confirm</h4>
 
 	Booking of <strong><?php echo $room[0]->name; ?></strong> for <strong><?php echo $description; ?></strong> meeting has been canceled and <strong><?php echo $booked_by->data->display_name; ?></strong> has been notified.
 	<?php if (!empty($staff_attendees) && $staff_attendees > 0) { ?>

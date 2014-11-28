@@ -7,7 +7,10 @@ $room = wp_get_post_terms( $meeting->ID, 'tlw_rooms_tax');
 $description = get_field('meeting_description', $meeting->ID);
 ?>
 
-<div class="alert alert-danger text-center">
+<div class="alert alert-warning text-center">
+	
+	<h4><i class="fa fa-warning"></i> Confirm</h4>
+	
 	Are you sure you want to delete booking of <strong><?php echo $room[0]->name; ?></strong> for <strong><?php echo $description; ?></strong> meeting.<br><br>
 
 	<div class="row">

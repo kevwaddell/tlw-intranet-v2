@@ -17,6 +17,7 @@ $number_of_days = get_field('number_of_days', $holiday->ID);
 <?php } else { ?>
 	
 	<div class="alert alert-danger text-center">
+		<h4><i class="fa fa-warning fa-lg"></i> Warning</h4>
 		<strong>Please login to approve holiday requests <a href="#log-in-alert" data-toggle="modal" class="btn btn-default btn-danger"><i class="fa fa-lock"></i> Login</a></strong>
 	</div>	
 	

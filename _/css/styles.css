@@ -4828,8 +4828,16 @@ body#user-page {
   float: left;
   text-align: center;
 }
+.alert {
+  background-color: #e9e9e9;
+  color: #918f8f;
+  border: 2px solid #4b4b4b;
+}
 .alert h2 {
   margin-top: 0px;
+}
+.alert bold {
+  color: #4b4b4b;
 }
 .alerts .actions-wrap {
   position: fixed;
@@ -4895,6 +4903,30 @@ body#user-page {
 }
 .alerts .alert.text-center {
   text-align: center;
+}
+.alerts .alert.alert-danger {
+  border-color: #d9534f;
+}
+.alerts .alert.alert-danger h4 {
+  background-color: #d9534f;
+}
+.alerts .alert.alert-success {
+  border-color: #5cb85c;
+}
+.alerts .alert.alert-success h4 {
+  background-color: #5cb85c;
+}
+.alerts .alert.alert-warning {
+  border-color: #f0ad4e;
+}
+.alerts .alert.alert-warning h4 {
+  background-color: #f0ad4e;
+}
+.alerts .alert.alert-info {
+  border-color: #5bc0de;
+}
+.alerts .alert.alert-info h4 {
+  background-color: #5bc0de;
 }
 .alerts .errors {
   background-color: #f4cecd;
@@ -5016,6 +5048,10 @@ body#user-page {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+.form-group ul.dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
 }
 .form-group .input-group-addon {
   position: relative;

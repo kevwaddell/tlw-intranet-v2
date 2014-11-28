@@ -74,6 +74,9 @@ if (count($errors) == 0) {
 <?php if (count($errors) == 0) { ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Confirm</h4>
+	
 	Please confirm your meeting details below.<br><br>
 	
 	<strong class="caps">Meeting details:</strong><br>
@@ -101,7 +104,7 @@ if (count($errors) == 0) {
 
 <div class="alert alert-info">
 	
-	<h4>Booking request</h4>
+	<h4><i class="fa fa-warning"></i> Booking request</h4>
 	
 	<div class="well well-sm errors">
 	    <p>Errors!</p>

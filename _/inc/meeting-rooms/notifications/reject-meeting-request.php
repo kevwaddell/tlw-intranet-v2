@@ -7,7 +7,10 @@ $room = wp_get_post_terms( $meeting->ID, 'tlw_rooms_tax');
 $booked_by = get_user_by('id', $meeting->post_author);
 ?>
 
-<div class="alert alert-danger text-center">
+<div class="alert alert-warning text-center">
+	
+	<h4><i class="fa fa-warning"></i> Confirm</h4>
+	
 	Are you sure you want to reject booking of <strong><?php echo $room[0]->name; ?></strong><br>for <strong><?php echo $booked_by->data->display_name; ?></strong>.<br><br>
 
 	<div class="row">

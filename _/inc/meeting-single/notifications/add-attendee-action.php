@@ -75,6 +75,9 @@ if ( $_POST['attendee_type'] == "external" && empty($errors) ) {
 	<?php if (empty($errors) && $_POST['attendee_type'] == "internal") { ?>
 
 	<div class="alert alert-success text-center">
+		
+		<h4><i class="fa fa-check-circle"></i> Success</h4>
+		
 		<strong><?php echo $user->data->display_name; ?></strong> has been added to Internal attendees.<br> 
 		
 		<?php if ($start_time > $now) { ?>
@@ -110,6 +113,8 @@ if ( $_POST['attendee_type'] == "external" && empty($errors) ) {
 		
 	<div class="alert alert-success text-center">
 		
+		<h4><i class="fa fa-check-circle"></i> Success</h4>
+		
 		<strong><?php echo $ext_value; ?></strong> has been added to External attendees.<br><br>
 		
 		<div class="action-btns">
@@ -124,7 +129,7 @@ if ( $_POST['attendee_type'] == "external" && empty($errors) ) {
 		
 	<div class="alert alert-danger text-center">
 	
-	<h4>Add Attendee</h4>
+	<h4><i class="fa fa-plus-circle"></i> Add Attendee</h4>
 	
 	<div class="well well-sm errors">
 	    <p>Errors!</p>

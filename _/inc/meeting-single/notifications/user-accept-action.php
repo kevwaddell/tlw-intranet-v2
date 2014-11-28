@@ -13,6 +13,9 @@ include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-accept-email
 ?>
 <?php if ($start_time > $now) { ?>
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
+	
 	Thank you for your confirmation <strong><?php echo $user_meta['first_name'][0]; ?></strong>.<br>
 	<strong><?php echo $booked_by->data->display_name; ?></strong> has been notified of your acceptance.<br><br>
 	
@@ -23,6 +26,9 @@ include (STYLESHEETPATH . '/_/inc/meeting-single/notifications/user-accept-email
 </div>
 <?php } else { ?>
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-refresh"></i> Updated</h4>
+	
 	Thank you for updating your status <strong><?php echo $user_meta['first_name'][0]; ?></strong>.<br><br>
 	
 	<div class="action-btns">

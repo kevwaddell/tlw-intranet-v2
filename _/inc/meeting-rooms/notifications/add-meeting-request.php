@@ -5,7 +5,7 @@ $todays_date_raw = strtotime("now");
 ?>
 <div class="alert alert-info">
 
-<h4>Booking request</h4>
+<h4><i class="fa fa-clock-o"></i> Booking request</h4>
 
 <?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/add-form.php'); ?>
 

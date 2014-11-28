@@ -53,7 +53,7 @@ echo '</pre>';
 	<input type="hidden" name="from_email" value="<?php echo $from_email; ?>">
 	<input type="hidden" name="from_name" value="<?php echo $from_name; ?>">
 	<input type="hidden" name="subject" value="<?php echo $subject; ?>">
-	<input type="hidden" name="message" value="<?php echo $message ; ?>">
+	<input type="hidden" name="message" value="<?php echo urlencode($message); ?>">
 	<?php wp_nonce_field( 'post_nonce', 'send_nonce_field' ); ?>
 		
 	<div class="action-btns col-gray">

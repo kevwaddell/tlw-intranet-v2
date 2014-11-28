@@ -13,6 +13,9 @@ $description = get_field('meeting_description', $meeting->ID);
 ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
+	
 	Booking of <strong><?php echo $room[0]->name; ?></strong> for <strong><?php echo $description; ?></strong> meeting has been deleted.</strong><br><br>
 
 	<div class="action-btns">

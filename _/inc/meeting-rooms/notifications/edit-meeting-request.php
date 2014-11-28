@@ -14,6 +14,8 @@ $end_split = explode(":", date('H:i', $end_raw));
 ?>
 
 <div class="alert alert-info">
+	
+<h4><i class="fa fa-pencil-square"></i> Edit Booking</h4>
 
 <?php include (STYLESHEETPATH . '/_/inc/meeting-rooms/notifications/edit-form.php'); ?>
 

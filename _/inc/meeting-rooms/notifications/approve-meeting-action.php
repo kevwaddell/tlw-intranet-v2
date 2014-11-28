@@ -34,6 +34,8 @@ $end_time = get_field('end_time', $meeting->ID);
 ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
 
 	<strong><?php echo $room[0]->name; ?></strong> meeting room has been booked<br>for <strong><?php echo $booked_by->data->display_name; ?></strong>.<br><br>
 

@@ -5,7 +5,10 @@ $user = get_user_by('id', $_GET['user']);
 
 	<?php if ($current_user->ID == $_GET['user']) { ?>
 	
-	<div class="alert alert-success text-center">
+	<div class="alert alert-warning text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Confirm</h4>
+		
 	Please complete your attendee request using the buttons below.<br><br>
 	
 	<div class="action-btns">

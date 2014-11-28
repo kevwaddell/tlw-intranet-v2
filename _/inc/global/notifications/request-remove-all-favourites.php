@@ -20,12 +20,14 @@ $message = " for <strong>".$cat->name."</strong>";
 
 <div class="alert alert-success text-center">
 	
-Are you sure want to remove all favourites<?php echo ($message != "") ? $message:''; ?>.<br><br>
+	<h4><i class="fa fa-check-circle fa-lg"></i> Success</h4>
 	
-<div class="action-btns">
+	Are you sure want to remove all favourites<?php echo ($message != "") ? $message:''; ?>.<br><br>
+	
+	<div class="action-btns">
 		
-	<div class="row">
-		<div class="col-xs-6">
+		<div class="row">
+			<div class="col-xs-6">
 				<a href="<?php echo $url;?>" class="btn btn-success btn-block"><i class="fa fa-check fa-lg"></i> Yes</a>
 			</div>
 			<div class="col-xs-6">

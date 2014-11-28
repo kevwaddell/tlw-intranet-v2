@@ -6,7 +6,7 @@ $page_url = explode("?", $_SERVER['REQUEST_URI']);
 <?php include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-confirm.php'); ?>
 <?php include (STYLESHEETPATH . '/_/inc/user/notifications/user-message-send.php'); ?>
 
-<?php if (!isset($_POST['confirm_user_message'])  && empty($errors) || isset($_POST['change_user_message']) || isset($_POST['retry_user_message'])) { ?>
+<?php if (!isset($_POST['confirm_user_message']) && empty($errors) || isset($_POST['change_user_message']) || isset($_POST['retry_user_message'])) { ?>
 
 <form action="<?php echo $page_url[0]; ?>" method="post" class="message-form post-form" id="message_form">
 	

@@ -24,6 +24,9 @@
 ?>
 
 <div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
+	
 	Your room booking request has been sent to<br><strong>Office Administration</strong> for approval.<br>
 	You will receive an email when your request has been approved.<br><br>
 	
@@ -52,7 +55,10 @@
 	wp_delete_post( $meeting_id, true );
 	
 ?>
-<div class="alert alert-danger text-center">
+<div class="alert alert-success text-center">
+	
+	<h4><i class="fa fa-check-circle"></i> Success</h4>
+	
 	Your room booking request has been canceled.<br><br>
 	
 	<div class="action-btns">
